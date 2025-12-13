@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
@@ -23,10 +25,11 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
     public static final LootItemCondition.Builder HAS_GLASS_CHIPPER_OR_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().of(BetterToolsItems.GLASS_CHIPPER))
-            .or(MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1)))));
+            .or(BlockLootSubProvider.HAS_SILK_TOUCH);
 
     public static final List<Block> GLASS_BLOCKS = List.of(
             Blocks.GLASS,
@@ -65,8 +68,8 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
             Blocks.PINK_STAINED_GLASS_PANE
     );
 
-    public BetterToolsLootTableProvider(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    public BetterToolsLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override
@@ -83,7 +86,7 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
                                 block,
                                 LootItem.lootTableItem(Items.GLOWSTONE_DUST)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
-                                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.FORTUNE))
                                         .apply(LimitCount.limitCount(IntRange.range(1, 4)))
                         )
                 )
@@ -96,7 +99,7 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
                                 block,
                                 LootItem.lootTableItem(Items.PRISMARINE_CRYSTALS)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
-                                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.FORTUNE))
                                         .apply(LimitCount.limitCount(IntRange.range(1, 5)))
                         )
                 )

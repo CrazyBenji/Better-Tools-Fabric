@@ -3,15 +3,18 @@ package net.benji.bettertools.data;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
+import java.util.concurrent.CompletableFuture;
+
 public class BetterToolsRecipeProvider extends FabricRecipeProvider {
-    public BetterToolsRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public BetterToolsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(output, registryLookup);
     }
 
     public void generatePaxelRecipe(RecipeOutput writer, Item pickaxe, Item axe, Item shovel, Item output) {

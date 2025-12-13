@@ -22,8 +22,8 @@ import java.util.List;
 
 public class HammerItem extends PickaxeItem {
 
-    public HammerItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
-        super(material, attackDamage, attackSpeed, settings);
+    public HammerItem(Tier material, Properties settings) {
+        super(material, settings);
     }
 
     @Override

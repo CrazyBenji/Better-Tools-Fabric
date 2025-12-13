@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
@@ -21,8 +22,8 @@ import java.util.List;
 
 public class ScytheItem extends HoeItem {
 
-    public ScytheItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
-        super(material, attackDamage, attackSpeed, settings);
+    public ScytheItem(Tier material, Properties settings) {
+        super(material, settings);
     }
 
     @Override
@@ -60,7 +61,8 @@ public class ScytheItem extends HoeItem {
             if (anyBlockHoed) {
                 // Damage the tool once for the original block
                 assert player != null;
-                stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(context.getHand()));
+                EquipmentSlot equipmentSlot = stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                stack.hurtAndBreak(1, player, equipmentSlot);
                 return InteractionResult.SUCCESS;
             }
         }

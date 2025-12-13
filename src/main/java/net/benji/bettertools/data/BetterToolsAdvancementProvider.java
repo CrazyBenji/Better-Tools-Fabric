@@ -9,21 +9,24 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
-    public BetterToolsAdvancementProvider(FabricDataOutput output) {
-        super(output);
+    public BetterToolsAdvancementProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(output, registryLookup);
     }
 
     public AdvancementHolder getAdvancement(String id) {
         return Advancement.Builder.advancement().build(new ResourceLocation("minecraft", id));
     }
 
-    public void generateAdvancement(Consumer<AdvancementHolder> consumer) {
+    @Override
+    public void generateAdvancement(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
         AdvancementHolder getHammer = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(

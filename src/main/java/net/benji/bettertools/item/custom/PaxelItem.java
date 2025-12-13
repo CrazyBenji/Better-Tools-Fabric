@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoneycombItem;
@@ -59,8 +60,8 @@ public class PaxelItem extends DiggerItem {
                     .put(Blocks.ROOTED_DIRT, Blocks.DIRT_PATH.defaultBlockState())
                     .build();
 
-    public PaxelItem(Tier material, float attackDamage, float attackSpeed, Properties settings) {
-        super(attackDamage, attackSpeed, material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
+    public PaxelItem(Tier material, Properties settings) {
+        super(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
     }
 
     @Override
@@ -98,7 +99,8 @@ public class PaxelItem extends DiggerItem {
             level.setBlock(blockPos, optional4.get(), 11);
             level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, optional4.get()));
             if (player != null) {
-                itemStack.hurtAndBreak(1, player, playerx -> playerx.broadcastBreakEvent(context.getHand()));
+                EquipmentSlot equipmentSlot = context.getItemInHand().equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                itemStack.hurtAndBreak(1, player, equipmentSlot);
             }
 
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -127,7 +129,8 @@ public class PaxelItem extends DiggerItem {
                     level.setBlock(blockPos, blockState3, 11);
                     level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockState3));
                     if (player != null) {
-                        context.getItemInHand().hurtAndBreak(1, player, playerx -> playerx.broadcastBreakEvent(context.getHand()));
+                        EquipmentSlot equipmentSlot = context.getItemInHand().equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                        context.getItemInHand().hurtAndBreak(1, player, equipmentSlot);
                     }
                 }
 
