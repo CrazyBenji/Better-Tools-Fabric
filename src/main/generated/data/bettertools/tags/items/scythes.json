@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "bettertools:iron_scythe",
+    "bettertools:golden_scythe",
+    "bettertools:diamond_scythe",
+    "bettertools:netherite_scythe"
+  ]
+}

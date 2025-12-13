@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "bettertools:iron_lumber_axe",
+    "bettertools:golden_lumber_axe",
+    "bettertools:diamond_lumber_axe",
+    "bettertools:netherite_lumber_axe"
+  ]
+}

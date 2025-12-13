@@ -1,5 +1,9 @@
 package net.benji.bettertools;
 
+import net.benji.bettertools.block.BetterToolsBlocks;
+import net.benji.bettertools.enchantment.BetterToolsEnchantments;
+import net.benji.bettertools.item.BetterToolsItemGroups;
+import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -7,18 +11,13 @@ import org.slf4j.LoggerFactory;
 
 public class BetterToolsFabric implements ModInitializer {
 	public static final String MOD_ID = "bettertools";
-
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
+        BetterToolsItems.registerModItems();
+        BetterToolsItemGroups.registerItemGroups();
+        BetterToolsBlocks.registerModBlocks();
+        BetterToolsEnchantments.registerModEnchantments();
 	}
 }
