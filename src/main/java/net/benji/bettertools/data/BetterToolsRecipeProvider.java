@@ -3,20 +3,18 @@ package net.benji.bettertools.data;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-
-import java.util.function.Consumer;
 
 public class BetterToolsRecipeProvider extends FabricRecipeProvider {
     public BetterToolsRecipeProvider(FabricDataOutput output) {
         super(output);
     }
 
-    public void generatePaxelRecipe(Consumer<FinishedRecipe> writer, Item pickaxe, Item axe, Item shovel, Item output) {
+    public void generatePaxelRecipe(RecipeOutput writer, Item pickaxe, Item axe, Item shovel, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
                 .pattern("abc")
                 .pattern(" s ")
@@ -29,7 +27,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 .save(writer);
     }
 
-    public void generateHammerRecipe(Consumer<FinishedRecipe> writer, Item ingot, Item block, Item output) {
+    public void generateHammerRecipe(RecipeOutput writer, Item ingot, Item block, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
                 .pattern("mbm")
                 .pattern("msm")
@@ -41,7 +39,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 .save(writer);
     }
 
-    public void generateSickleRecipe(Consumer<FinishedRecipe> writer, Item ingot, Item output) {
+    public void generateSickleRecipe(RecipeOutput writer, Item ingot, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
                 .pattern("mmm")
                 .pattern(" sm")
@@ -52,7 +50,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 .save(writer);
     }
 
-    public void generateLumberAxeRecipe(Consumer<FinishedRecipe> writer, Item ingot, Item block, Item output) {
+    public void generateLumberAxeRecipe(RecipeOutput writer, Item ingot, Item block, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
                 .pattern("ib")
                 .pattern("is")
@@ -65,7 +63,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void buildRecipes(Consumer<FinishedRecipe> writer) {
+    public void buildRecipes(RecipeOutput writer) {
         generateHammerRecipe(writer, Items.IRON_INGOT, Items.IRON_BLOCK, BetterToolsItems.IRON_HAMMER);
         generateHammerRecipe(writer, Items.GOLD_INGOT, Items.GOLD_BLOCK, BetterToolsItems.GOLDEN_HAMMER);
         generateHammerRecipe(writer, Items.DIAMOND, Items.DIAMOND_BLOCK, BetterToolsItems.DIAMOND_HAMMER);

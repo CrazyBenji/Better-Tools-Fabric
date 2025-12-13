@@ -5,6 +5,7 @@ import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -18,13 +19,12 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
         super(output);
     }
 
-    public Advancement getAdvancement(String id) {
+    public AdvancementHolder getAdvancement(String id) {
         return Advancement.Builder.advancement().build(new ResourceLocation("minecraft", id));
     }
 
-    @Override
-    public void generateAdvancement(Consumer<Advancement> consumer) {
-        Advancement getHammer = Advancement.Builder.advancement()
+    public void generateAdvancement(Consumer<AdvancementHolder> consumer) {
+        AdvancementHolder getHammer = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(
                         BetterToolsItems.IRON_HAMMER,
@@ -39,7 +39,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("hammer", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.IRON_HAMMER))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_hammer");
 
-        Advancement getPaxel = Advancement.Builder.advancement()
+        AdvancementHolder getPaxel = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(
                         BetterToolsItems.IRON_PAXEL,
@@ -54,7 +54,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_paxel", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.IRON_PAXEL))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_paxel");
 
-        Advancement getScythe = Advancement.Builder.advancement()
+        AdvancementHolder getScythe = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(
                         BetterToolsItems.IRON_SCYTHE,
@@ -69,7 +69,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_scythe", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.IRON_SCYTHE))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_scythe");
 
-        Advancement getNetheriteScythe = Advancement.Builder.advancement()
+        AdvancementHolder getNetheriteScythe = Advancement.Builder.advancement()
                 .parent(getAdvancement("husbandry/obtain_netherite_hoe"))
                 .display(
                         BetterToolsItems.NETHERITE_SCYTHE,
@@ -87,7 +87,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_netherite_scythe", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.NETHERITE_SCYTHE))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":husbandry/get_netherite_scythe");
 
-        Advancement getGlassChipper = Advancement.Builder.advancement()
+        AdvancementHolder getGlassChipper = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(BetterToolsItems.GLASS_CHIPPER,
                         Component.translatable("advancements.story.get_glass_chipper.title"),
@@ -101,7 +101,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_glass_chipper", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.GLASS_CHIPPER))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_glass_chipper");
 
-        Advancement getBedrockSmasher = Advancement.Builder.advancement()
+        AdvancementHolder getBedrockSmasher = Advancement.Builder.advancement()
                 .parent(getAdvancement("nether/summon_wither"))
                 .display(BetterToolsItems.BEDROCK_SMASHER,
                         Component.translatable("advancements.nether.get_bedrock_smasher.title"),
@@ -115,7 +115,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_bedrock_smasher", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.BEDROCK_SMASHER))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":nether/get_bedrock_smasher");
 
-        Advancement getLumberAxe = Advancement.Builder.advancement()
+        AdvancementHolder getLumberAxe = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(BetterToolsItems.IRON_LUMBER_AXE,
                         Component.translatable("advancements.story.get_lumber_axe.title"),
