@@ -1,4 +1,4 @@
-// 1.20.2	2025-12-13T12:55:30.0886738	Better Tools/Block Loot Tables
+// 1.20.3	2025-12-13T13:14:15.9001174	Better Tools/Block Loot Tables
 b86c14969e82d388381fd5848e58670aec0609ce data\minecraft\loot_tables\blocks\orange_stained_glass.json
 375558ca07a3bdcd8d027e04cd41723111419f46 data\minecraft\loot_tables\blocks\blue_stained_glass.json
 278efc8851bf134c765524ba23c39111d56bcaed data\minecraft\loot_tables\blocks\blue_stained_glass_pane.json

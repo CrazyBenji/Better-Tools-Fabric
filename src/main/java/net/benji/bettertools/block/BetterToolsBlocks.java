@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class BetterToolsBlocks {
     public static final Block SMASHED_BEDROCK = registerBlock("smashed_bedrock",
-            new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)));
+            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

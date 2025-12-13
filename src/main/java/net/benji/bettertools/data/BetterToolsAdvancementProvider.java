@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -31,7 +31,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.story.get_hammer.title"),
                         Component.translatable("advancements.story.get_hammer.description"),
                         null,
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true,
                         true,
                         false
@@ -46,7 +46,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.story.get_paxel.title"),
                         Component.translatable("advancements.story.get_paxel.description"),
                         null,
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true,
                         true,
                         false
@@ -61,7 +61,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.story.get_scythe.title"),
                         Component.translatable("advancements.story.get_scythe.description"),
                         null,
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true,
                         true,
                         false
@@ -76,7 +76,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.husbandry.get_netherite_scythe.title"),
                         Component.translatable("advancements.husbandry.get_netherite_scythe.description"),
                         null,
-                        FrameType.CHALLENGE,
+                        AdvancementType.CHALLENGE,
                         true,
                         true,
                         true
@@ -93,7 +93,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.story.get_glass_chipper.title"),
                         Component.translatable("advancements.story.get_glass_chipper.description"),
                         null,
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true,
                         true,
                         false
@@ -107,7 +107,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.nether.get_bedrock_smasher.title"),
                         Component.translatable("advancements.nether.get_bedrock_smasher.description"),
                         null,
-                        FrameType.CHALLENGE,
+                        AdvancementType.CHALLENGE,
                         true,
                         true,
                         true
@@ -121,7 +121,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.story.get_lumber_axe.title"),
                         Component.translatable("advancements.story.get_lumber_axe.description"),
                         null,
-                        FrameType.TASK,
+                        AdvancementType.TASK,
                         true,
                         true,
                         false
