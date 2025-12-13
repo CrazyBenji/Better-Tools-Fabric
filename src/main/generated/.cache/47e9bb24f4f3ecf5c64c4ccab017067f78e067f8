@@ -1,4 +1,4 @@
-// 1.20.3	2025-12-13T13:14:15.9040116	Better Tools/Model Definitions
+// 1.20.4	2025-12-13T13:19:55.0350277	Better Tools/Model Definitions
 a77d12f73c8fc755642c05a25775cd4d46bff550 assets\bettertools\models\item\diamond_hammer.json
 a37d3f30d31cb875908827ff228ed3638aa3f701 assets\bettertools\models\block\smashed_bedrock.json
 4757668d95d9a89cbd5a24fc1bb70e2f964e4fa2 assets\bettertools\models\item\smashed_bedrock.json
@@ -16,7 +16,7 @@ b68edab62ea1c46898b2ca250134ae5b682b8a29 assets\bettertools\models\item\diamond_
 a13f8444e3711bbd2d0a569351c16742041e2286 assets\bettertools\models\item\golden_lumber_axe.json
 bdc3e82df5f91847c943fa05f4146fa6f68c79a5 assets\bettertools\models\item\netherite_paxel.json
 07f6e3e2defdbabe49c171c86bfc32fefc6378dd assets\bettertools\models\item\netherite_hammer.json
-e25bcff0b3862a35c98ec8002bcefea86c602144 assets\bettertools\models\item\iron_hammer.json
 86fed945efcf9cb2fc6558fce8f37a5450b9f55f assets\bettertools\models\item\glass_chipper.json
+e25bcff0b3862a35c98ec8002bcefea86c602144 assets\bettertools\models\item\iron_hammer.json
 ef4834deb3f7fcc2508876a341b6657a514b7a3d assets\bettertools\models\item\iron_scythe.json
 dfacfb2adce9757082b06d4b98a2997627a40ad6 assets\bettertools\models\item\golden_scythe.json
