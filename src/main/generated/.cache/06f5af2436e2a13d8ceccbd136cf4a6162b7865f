@@ -1,6 +1,6 @@
-// 1.21.3	2025-12-13T18:16:47.7979942	Better Tools/Tags for minecraft:item
-6119dfcacda6b0dcae460c35d0a84f85706f71ae data\bettertools\tags\item\scythes.json
-c27351e63043512b13708b5a1b08ecaded139712 data\bettertools\tags\item\paxels.json
-c351054b0c9f9f61ad95883845b8e160e4960fca data\bettertools\tags\item\hammers.json
-0f73f37ac1d977ce5619b9fabe073594466cde7e data\bettertools\tags\item\glass_chippers.json
-431f29016fde04b58974011e4eb0d0da20ee110f data\bettertools\tags\item\lumber_axes.json
+// 1.21.4	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:item
+0f73f37ac1d977ce5619b9fabe073594466cde7e data/bettertools/tags/item/glass_chippers.json
+c351054b0c9f9f61ad95883845b8e160e4960fca data/bettertools/tags/item/hammers.json
+431f29016fde04b58974011e4eb0d0da20ee110f data/bettertools/tags/item/lumber_axes.json
+c27351e63043512b13708b5a1b08ecaded139712 data/bettertools/tags/item/paxels.json
+6119dfcacda6b0dcae460c35d0a84f85706f71ae data/bettertools/tags/item/scythes.json

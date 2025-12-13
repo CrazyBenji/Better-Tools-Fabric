@@ -1,8 +1,8 @@
-// 1.21.3	2025-12-13T18:16:47.7984979	Better Tools/Advancements
-29932a087a92dacf0fe0ed64567210898282513c data\bettertools\advancement\story\get_hammer.json
-a62146261ee31ea46c658f12cc7dcb6853287b48 data\bettertools\advancement\story\get_lumber_axe.json
-e42f79017d2f67fd9e8d802836c33bb273e51c1d data\bettertools\advancement\story\get_glass_chipper.json
-258634410d29589e2813c92f4e34f83ac55fd6bf data\bettertools\advancement\husbandry\get_netherite_scythe.json
-f5eb8a4f39bea56f9a606ae88ab54500d4235b6e data\bettertools\advancement\story\get_paxel.json
-2270caf9c208c41d0f97e786a7563878d187ad1b data\bettertools\advancement\story\get_scythe.json
-9b29c413f9b5800ab51508cdb87633f7d54486d9 data\bettertools\advancement\nether\get_bedrock_smasher.json
+// 1.21.4	-999999999-01-01T00:00:00	Better Tools/Advancements
+258634410d29589e2813c92f4e34f83ac55fd6bf data/bettertools/advancement/husbandry/get_netherite_scythe.json
+9b29c413f9b5800ab51508cdb87633f7d54486d9 data/bettertools/advancement/nether/get_bedrock_smasher.json
+e42f79017d2f67fd9e8d802836c33bb273e51c1d data/bettertools/advancement/story/get_glass_chipper.json
+29932a087a92dacf0fe0ed64567210898282513c data/bettertools/advancement/story/get_hammer.json
+a62146261ee31ea46c658f12cc7dcb6853287b48 data/bettertools/advancement/story/get_lumber_axe.json
+f5eb8a4f39bea56f9a606ae88ab54500d4235b6e data/bettertools/advancement/story/get_paxel.json
+2270caf9c208c41d0f97e786a7563878d187ad1b data/bettertools/advancement/story/get_scythe.json
