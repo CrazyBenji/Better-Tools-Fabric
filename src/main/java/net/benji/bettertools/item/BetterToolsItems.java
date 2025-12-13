@@ -55,6 +55,6 @@ public class BetterToolsItems {
     }
 
     public static Item registerItem(String id, Item item) {
-        return Items.registerItem(new ResourceLocation(BetterToolsFabric.MOD_ID, id), item);
+        return Items.registerItem(ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, id), item);
     }
 }

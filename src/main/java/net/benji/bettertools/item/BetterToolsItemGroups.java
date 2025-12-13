@@ -14,7 +14,7 @@ public class BetterToolsItemGroups {
     public static final ResourceKey<CreativeModeTab> BETTER_TOOLS_KEY = createKey("bettertools_itemgroup");
 
     private static ResourceKey<CreativeModeTab> createKey(String name) {
-        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(BetterToolsFabric.MOD_ID, name));
+        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
     }
 
 

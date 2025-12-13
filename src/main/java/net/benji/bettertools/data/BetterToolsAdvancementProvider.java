@@ -22,7 +22,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
     }
 
     public AdvancementHolder getAdvancement(String id) {
-        return Advancement.Builder.advancement().build(new ResourceLocation("minecraft", id));
+        return Advancement.Builder.advancement().build(ResourceLocation.fromNamespaceAndPath("minecraft", id));
     }
 
     @Override

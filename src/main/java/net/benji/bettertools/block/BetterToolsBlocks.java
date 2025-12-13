@@ -16,12 +16,12 @@ public class BetterToolsBlocks {
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
-        return Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(BetterToolsFabric.MOD_ID, name), block);
+        return Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name), block);
 
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(BetterToolsFabric.MOD_ID, name),
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name),
                 new BlockItem(block, new Item.Properties()));
     }
 
