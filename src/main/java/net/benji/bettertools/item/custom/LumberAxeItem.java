@@ -7,7 +7,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +20,8 @@ public class LumberAxeItem extends AxeItem {
     private final int maxLogs;
     private Set<BlockPos> toBreak;
 
-    public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
-        super(tier,  properties);
+    public LumberAxeItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties, int maxLogs) {
+        super(tier, attackDamage, attackSpeed, properties);
         this.maxLogs = maxLogs;
         this.toBreak = new HashSet<>();
     }

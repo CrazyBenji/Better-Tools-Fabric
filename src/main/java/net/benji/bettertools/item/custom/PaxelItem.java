@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -60,8 +60,8 @@ public class PaxelItem extends DiggerItem {
                     .put(Blocks.ROOTED_DIRT, Blocks.DIRT_PATH.defaultBlockState())
                     .build();
 
-    public PaxelItem(Tier material, Properties settings) {
-        super(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
+    public PaxelItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
+        super(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, attackDamage, attackSpeed, properties);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class PaxelItem extends DiggerItem {
                 itemStack.hurtAndBreak(1, player, equipmentSlot);
             }
 
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
 
         // Shovel Logic
@@ -134,7 +134,7 @@ public class PaxelItem extends DiggerItem {
                     }
                 }
 
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             } else {
                 return InteractionResult.PASS;
             }

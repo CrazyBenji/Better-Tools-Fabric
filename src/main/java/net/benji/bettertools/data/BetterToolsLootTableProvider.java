@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
-    public final LootItemCondition.Builder HAS_GLASS_CHIPPER_OR_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().of(BetterToolsItems.GLASS_CHIPPER))
+    public final LootItemCondition.Builder HAS_GLASS_CHIPPER_OR_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.registries.lookupOrThrow(Registries.ITEM), BetterToolsItems.GLASS_CHIPPER))
             .or(this.hasSilkTouch());
 
     public static final List<Block> GLASS_BLOCKS = List.of(
