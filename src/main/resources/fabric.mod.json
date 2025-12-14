@@ -26,11 +26,11 @@
 		"bettertools.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.2",
-		"minecraft": "~1.21.6",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
+      "fabricloader": ">=0.18.2",
+      "minecraft": "~1.21.7",
+      "java": ">=21",
+      "fabric-api": "*"
+    },
 	"suggests": {
 		"another-mod": "*"
 	}
