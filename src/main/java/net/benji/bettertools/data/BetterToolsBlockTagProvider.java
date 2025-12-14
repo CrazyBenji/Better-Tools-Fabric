@@ -19,20 +19,20 @@ public class BetterToolsBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        getOrCreateTagBuilder(BetterToolsTags.Blocks.PAXEL_MINEABLE)
-                .forceAddTag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .forceAddTag(BlockTags.MINEABLE_WITH_AXE)
-                .forceAddTag(BlockTags.MINEABLE_WITH_SHOVEL);
+        valueLookupBuilder(BetterToolsTags.Blocks.PAXEL_MINEABLE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_AXE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_SHOVEL);
 
-        getOrCreateTagBuilder(BetterToolsTags.Blocks.GLASS_CHIPPER_MINEABLE)
-                .forceAddTag(ConventionalBlockTags.GLASS_BLOCKS)
-                .forceAddTag(ConventionalBlockTags.GLASS_PANES)
+        valueLookupBuilder(BetterToolsTags.Blocks.GLASS_CHIPPER_MINEABLE)
+                .addOptionalTag(ConventionalBlockTags.GLASS_BLOCKS)
+                .addOptionalTag(ConventionalBlockTags.GLASS_PANES)
                 .add(Blocks.TINTED_GLASS)
                 .add(Blocks.SEA_LANTERN)
                 .add(Blocks.GLOWSTONE)
                 .add(Blocks.REDSTONE_LAMP);
 
-        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BetterToolsBlocks.SMASHED_BEDROCK);
     }
 }
