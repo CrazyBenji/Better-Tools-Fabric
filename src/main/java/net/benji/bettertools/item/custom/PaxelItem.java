@@ -12,8 +12,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoneycombItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.Optional;
 
-public class PaxelItem extends DiggerItem {
+public class PaxelItem extends Item {
     protected static final Map<Block, Block> STRIPPABLES = new Builder<Block, Block>()
             .put(Blocks.OAK_WOOD, Blocks.STRIPPED_OAK_WOOD)
             .put(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG)
@@ -61,7 +61,7 @@ public class PaxelItem extends DiggerItem {
                     .build();
 
     public PaxelItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
-        super(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, attackDamage, attackSpeed, properties);
+        super(properties.tool(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, attackDamage, attackSpeed, 0));
     }
 
     @Override

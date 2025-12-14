@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.Level;
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LumberAxeItem extends AxeItem {
+public class LumberAxeItem extends Item {
     private final int maxLogs;
     private Set<BlockPos> toBreak;
 
     public LumberAxeItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties, int maxLogs) {
-        super(tier, attackDamage, attackSpeed, properties);
+        super(properties.axe(tier, attackDamage, attackSpeed));
         this.maxLogs = maxLogs;
         this.toBreak = new HashSet<>();
     }
