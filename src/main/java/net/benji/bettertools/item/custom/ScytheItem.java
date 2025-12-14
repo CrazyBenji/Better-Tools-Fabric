@@ -7,7 +7,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
@@ -20,10 +20,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScytheItem extends Item {
+public class ScytheItem extends HoeItem {
 
     public ScytheItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
-        super(properties.hoe(material, attackDamage, attackSpeed));
+        super(material, attackDamage, attackSpeed, properties);
     }
 
     @Override
@@ -39,17 +39,14 @@ public class ScytheItem extends Item {
 
             boolean anyBlockHoed = false;
 
-            // Attempt to hoe each block in the area
+            // Attempt to till each block in the area
             for (BlockPos targetPos : positionsToHoe) {
                 if (canHoeBlock(world, targetPos)) {
-                    BlockState currentState = world.getBlockState(targetPos);
-                    BlockState hoedState = getHoedState(currentState);
+                    if (world.getBlockState(targetPos.above()).isAir()) {
+                        // Set the tilled block state
+                        world.setBlock(targetPos, Blocks.FARMLAND.defaultBlockState(), 11);
 
-                    if (hoedState != null && world.getBlockState(targetPos.above()).isAir()) {
-                        // Set the hoed block state
-                        world.setBlock(targetPos, hoedState, 11);
-
-                        // Play hoe sound
+                        // Play tilling sound
                         world.playSound(null, targetPos, SoundEvents.HOE_TILL,
                                 SoundSource.BLOCKS, 1.0F, 1.0F);
 
@@ -67,7 +64,7 @@ public class ScytheItem extends Item {
             }
         }
 
-        // Fall back to default hoe behavior if no custom hoeing happened
+        // Fall back to default hoe behavior if no tilling happened
         return super.useOn(context);
     }
 
@@ -88,28 +85,10 @@ public class ScytheItem extends Item {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        // Check if the block can be hoed (dirt, grass, coarse dirt, etc.)
-        return block == Blocks.DIRT ||
-                block == Blocks.GRASS_BLOCK ||
+        return block == Blocks.GRASS_BLOCK ||
+                block == Blocks.DIRT_PATH ||
+                block == Blocks.DIRT ||
                 block == Blocks.COARSE_DIRT ||
-                block == Blocks.PODZOL ||
-                block == Blocks.MYCELIUM ||
                 block == Blocks.ROOTED_DIRT;
-    }
-
-    private BlockState getHoedState(BlockState currentState) {
-        Block currentBlock = currentState.getBlock();
-
-        // Convert blocks to their hoed equivalents
-        if (currentBlock == Blocks.DIRT ||
-                currentBlock == Blocks.GRASS_BLOCK ||
-                currentBlock == Blocks.COARSE_DIRT ||
-                currentBlock == Blocks.PODZOL ||
-                currentBlock == Blocks.MYCELIUM ||
-                currentBlock == Blocks.ROOTED_DIRT) {
-            return Blocks.FARMLAND.defaultBlockState();
-        }
-
-        return null; // Block cannot be hoed
     }
 }
