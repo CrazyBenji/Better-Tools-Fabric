@@ -49,6 +49,8 @@ public class PaxelItem extends DiggerItem {
             .put(Blocks.MANGROVE_WOOD, Blocks.STRIPPED_MANGROVE_WOOD)
             .put(Blocks.MANGROVE_LOG, Blocks.STRIPPED_MANGROVE_LOG)
             .put(Blocks.BAMBOO_BLOCK, Blocks.STRIPPED_BAMBOO_BLOCK)
+            .put(Blocks.PALE_OAK_WOOD, Blocks.STRIPPED_PALE_OAK_WOOD)
+            .put(Blocks.PALE_OAK_LOG, Blocks.STRIPPED_PALE_OAK_LOG)
             .build();
 
     protected static final Map<Block, BlockState> FLATTENABLES = new Builder<Block, BlockState>()
