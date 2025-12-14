@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LumberAxeItem extends Item {
+public class LumberAxeItem extends AxeItem {
     private final int maxLogs;
     private Set<BlockPos> toBreak;
 
     public LumberAxeItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties, int maxLogs) {
-        super(properties.axe(tier, attackDamage, attackSpeed));
+        super(tier, attackDamage, attackSpeed, properties);
         this.maxLogs = maxLogs;
         this.toBreak = new HashSet<>();
     }
