@@ -1,6 +1,6 @@
 // 1.21.9	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:item
 0f73f37ac1d977ce5619b9fabe073594466cde7e data/bettertools/tags/item/glass_chippers.json
-c351054b0c9f9f61ad95883845b8e160e4960fca data/bettertools/tags/item/hammers.json
-431f29016fde04b58974011e4eb0d0da20ee110f data/bettertools/tags/item/lumber_axes.json
-c27351e63043512b13708b5a1b08ecaded139712 data/bettertools/tags/item/paxels.json
-6119dfcacda6b0dcae460c35d0a84f85706f71ae data/bettertools/tags/item/scythes.json
+2bea3c1e4bf47be4ddff50862f43682856ba88b9 data/bettertools/tags/item/hammers.json
+5220676b10529c9a3a6360cc6f0b92b701a41cb1 data/bettertools/tags/item/lumber_axes.json
+64bf223003a2967d2dda869b095655697ffc50d0 data/bettertools/tags/item/paxels.json
+7ba24acbd1b345dddd1df071ae396916b0f24d10 data/bettertools/tags/item/scythes.json

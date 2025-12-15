@@ -14,6 +14,11 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.function.Function;
 
 public class BetterToolsItems {
+    public static final Item COPPER_HAMMER = registerItem(
+            "copper_hammer",
+            properties -> new HammerItem(ToolMaterial.COPPER, 1.0f, -2.8f, properties),
+            new Item.Properties()
+    );
     public static final Item IRON_HAMMER = registerItem(
             "iron_hammer",
             properties -> new HammerItem(ToolMaterial.IRON, 1.0f, -2.8f, properties),
@@ -31,6 +36,11 @@ public class BetterToolsItems {
             properties -> new HammerItem(ToolMaterial.NETHERITE, 1.0f, -2.8f, properties),
             new Item.Properties());
 
+    public static final Item COPPER_PAXEL = registerItem(
+            "copper_paxel",
+            properties -> new PaxelItem(ToolMaterial.COPPER, 3.0f, -2.8f, properties),
+            new Item.Properties()
+    );
     public static final Item IRON_PAXEL = registerItem(
             "iron_paxel",
             properties -> new PaxelItem(ToolMaterial.IRON, 3.0f, -2.8f, properties),
@@ -48,6 +58,11 @@ public class BetterToolsItems {
             properties -> new PaxelItem(ToolMaterial.NETHERITE, 3.0f, -2.8f, properties),
             new Item.Properties());
 
+    public static final Item COPPER_SCYTHE = registerItem(
+            "copper_scythe",
+            properties -> new ScytheItem(ToolMaterial.COPPER, 3.0f, -3.2f, properties),
+            new Item.Properties()
+    );
     public static final Item IRON_SCYTHE = registerItem(
             "iron_scythe",
             properties -> new ScytheItem(ToolMaterial.IRON, 3.0f, -3.2f, properties),
@@ -65,16 +80,9 @@ public class BetterToolsItems {
             properties -> new ScytheItem(ToolMaterial.NETHERITE, 3.0f, -3.2f, properties),
             new Item.Properties());
 
-    public static final Item GLASS_CHIPPER = registerItem(
-            "glass_chipper",
-            properties -> new GlassChipperItem(ToolMaterial.IRON, 0.0f, -3.2f, properties),
+    public static final Item COPPER_LUMBER_AXE = registerItem("copper_lumber_axe",
+            properties -> new LumberAxeItem(ToolMaterial.COPPER, 6.0f, -3.1f, properties, 32),
             new Item.Properties());
-
-    public static final Item BEDROCK_SMASHER = registerItem(
-            "bedrock_smasher",
-            properties -> new BlockSmasherItem(() -> Blocks.BEDROCK, () -> BetterToolsBlocks.SMASHED_BEDROCK, properties),
-            new Item.Properties().durability(16));
-
     public static final Item IRON_LUMBER_AXE = registerItem("iron_lumber_axe",
             properties -> new LumberAxeItem(ToolMaterial.IRON, 6.0f, -3.1f, properties, 32),
             new Item.Properties());
@@ -87,6 +95,16 @@ public class BetterToolsItems {
     public static final Item NETHERITE_LUMBER_AXE = registerItem("netherite_lumber_axe",
             properties -> new LumberAxeItem(ToolMaterial.NETHERITE, 6.0f, -3.1f, properties, 128),
             new Item.Properties());
+
+    public static final Item GLASS_CHIPPER = registerItem(
+            "glass_chipper",
+            properties -> new GlassChipperItem(ToolMaterial.IRON, 0.0f, -3.2f, properties),
+            new Item.Properties());
+
+    public static final Item BEDROCK_SMASHER = registerItem(
+            "bedrock_smasher",
+            properties -> new BlockSmasherItem(() -> Blocks.BEDROCK, () -> BetterToolsBlocks.SMASHED_BEDROCK, properties),
+            new Item.Properties().durability(16));
 
     public static void registerModItems() {
         BetterToolsFabric.LOGGER.info("Registering Mod Items for " + BetterToolsFabric.MOD_ID);

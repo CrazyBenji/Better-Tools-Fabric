@@ -26,30 +26,32 @@ public class BetterToolsItemGroups {
                         .title(Component.translatable("itemgroup.bettertools"))
                         .icon(() -> new ItemStack(BetterToolsItems.IRON_HAMMER))
                         .displayItems(((itemDisplayParameters, output) -> {
+                            output.accept(BetterToolsItems.COPPER_HAMMER);
                             output.accept(BetterToolsItems.IRON_HAMMER);
                             output.accept(BetterToolsItems.GOLDEN_HAMMER);
                             output.accept(BetterToolsItems.DIAMOND_HAMMER);
                             output.accept(BetterToolsItems.NETHERITE_HAMMER);
 
+                            output.accept(BetterToolsItems.COPPER_PAXEL);
                             output.accept(BetterToolsItems.IRON_PAXEL);
                             output.accept(BetterToolsItems.GOLDEN_PAXEL);
                             output.accept(BetterToolsItems.DIAMOND_PAXEL);
                             output.accept(BetterToolsItems.NETHERITE_PAXEL);
 
+                            output.accept(BetterToolsItems.COPPER_SCYTHE);
                             output.accept(BetterToolsItems.IRON_SCYTHE);
                             output.accept(BetterToolsItems.GOLDEN_SCYTHE);
                             output.accept(BetterToolsItems.DIAMOND_SCYTHE);
                             output.accept(BetterToolsItems.NETHERITE_SCYTHE);
 
-                            output.accept(BetterToolsItems.GLASS_CHIPPER);
-
-                            output.accept(BetterToolsItems.BEDROCK_SMASHER);
-
+                            output.accept(BetterToolsItems.COPPER_LUMBER_AXE);
                             output.accept(BetterToolsItems.IRON_LUMBER_AXE);
                             output.accept(BetterToolsItems.GOLDEN_LUMBER_AXE);
                             output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
                             output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
+                            output.accept(BetterToolsItems.GLASS_CHIPPER);
+                            output.accept(BetterToolsItems.BEDROCK_SMASHER);
                             // output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
                         })).build()
         );
