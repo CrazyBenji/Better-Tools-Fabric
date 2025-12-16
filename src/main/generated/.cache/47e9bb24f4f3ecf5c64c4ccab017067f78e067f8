@@ -1,9 +1,9 @@
-// 1.21.2	2025-12-13T17:54:02.598648	Better Tools/Model Definitions
+// 1.21.2	2025-12-16T14:05:41.3156949	Better Tools/Model Definitions
 a77d12f73c8fc755642c05a25775cd4d46bff550 assets\bettertools\models\item\diamond_hammer.json
 a37d3f30d31cb875908827ff228ed3638aa3f701 assets\bettertools\models\block\smashed_bedrock.json
 7663ae26c5f63de4a6ec55934d412285e9c8b519 assets\bettertools\models\item\netherite_scythe.json
-a960be3ef7e7379f7e466026a3665404fbc501ef assets\bettertools\models\item\golden_paxel.json
 5c0684e51b211f6691d1622f1ee86b5ec54a52cc assets\bettertools\models\item\iron_lumber_axe.json
+a960be3ef7e7379f7e466026a3665404fbc501ef assets\bettertools\models\item\golden_paxel.json
 a3d0cd49b914e3cacdec178fec7ddf5ea9595409 assets\bettertools\models\item\iron_paxel.json
 b68edab62ea1c46898b2ca250134ae5b682b8a29 assets\bettertools\models\item\diamond_scythe.json
 358731dc51f52861fb92d3d57e2f451e2954ffc0 assets\bettertools\models\item\netherite_lumber_axe.json
