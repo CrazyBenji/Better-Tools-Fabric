@@ -4,3 +4,7 @@
 5220676b10529c9a3a6360cc6f0b92b701a41cb1 data/bettertools/tags/item/lumber_axes.json
 64bf223003a2967d2dda869b095655697ffc50d0 data/bettertools/tags/item/paxels.json
 7ba24acbd1b345dddd1df071ae396916b0f24d10 data/bettertools/tags/item/scythes.json
+a3343eaf4e159934e84bd527076d47dc899ac27a data/minecraft/tags/item/enchantable/durability.json
+7ff0a33b2bcb198cfb2998235719e32487aab868 data/minecraft/tags/item/enchantable/mining.json
+3793c470e7fa1d2ad25002c107de73f0849cb623 data/minecraft/tags/item/enchantable/mining_loot.json
+611df3c510af12b09e56a578f13bdf161db0271c data/minecraft/tags/item/enchantable/sharp_weapon.json
