@@ -5,6 +5,7 @@ import net.benji.bettertools.util.BetterToolsTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -42,5 +43,29 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.GOLDEN_LUMBER_AXE)
                 .add(BetterToolsItems.DIAMOND_LUMBER_AXE)
                 .add(BetterToolsItems.NETHERITE_LUMBER_AXE);
+
+        valueLookupBuilder(ItemTags.MINING_ENCHANTABLE)
+                .addTag(BetterToolsTags.Items.HAMMERS)
+                .addTag(BetterToolsTags.Items.PAXELS)
+                .addTag(BetterToolsTags.Items.SCYTHES)
+                .addTag(BetterToolsTags.Items.LUMBER_AXES)
+                .addTag(BetterToolsTags.Items.GLASS_CHIPPERS);
+
+        valueLookupBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
+                .addTag(BetterToolsTags.Items.HAMMERS)
+                .addTag(BetterToolsTags.Items.PAXELS)
+                .addTag(BetterToolsTags.Items.SCYTHES)
+                .addTag(BetterToolsTags.Items.LUMBER_AXES);
+
+        valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+                .addTag(BetterToolsTags.Items.HAMMERS)
+                .addTag(BetterToolsTags.Items.PAXELS)
+                .addTag(BetterToolsTags.Items.SCYTHES)
+                .addTag(BetterToolsTags.Items.LUMBER_AXES)
+                .addTag(BetterToolsTags.Items.GLASS_CHIPPERS)
+                .add(BetterToolsItems.BEDROCK_SMASHER);
+
+        valueLookupBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
+                .addTag(BetterToolsTags.Items.LUMBER_AXES);
     }
 }
