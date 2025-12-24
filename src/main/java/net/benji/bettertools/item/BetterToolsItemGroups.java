@@ -6,19 +6,20 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class BetterToolsItemGroups {
-    public static final ResourceKey<CreativeModeTab> BETTER_TOOLS_KEY = createKey("bettertools_itemgroup");
+    public static final ResourceKey<@NotNull CreativeModeTab> BETTER_TOOLS_KEY = createKey("bettertools_itemgroup");
 
-    private static ResourceKey<CreativeModeTab> createKey(String name) {
-        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
+    private static ResourceKey<@NotNull CreativeModeTab> createKey(String name) {
+        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
     }
 
 
-    public static void bootstrap(Registry<CreativeModeTab> registry) {
+    public static void bootstrap(Registry<@NotNull CreativeModeTab> registry) {
         Registry.register(
                 registry,
                 BETTER_TOOLS_KEY,

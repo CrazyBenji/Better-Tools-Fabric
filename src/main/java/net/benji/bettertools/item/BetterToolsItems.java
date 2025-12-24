@@ -7,7 +7,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
 
@@ -111,7 +111,7 @@ public class BetterToolsItems {
     }
 
     public static Item registerItem(String name, Function<Item.Properties, Item> itemFactory, Item.Properties properties) {
-        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
+        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
         Item item = itemFactory.apply(properties.setId(itemKey));
         Registry.register(BuiltInRegistries.ITEM, itemKey, item);
 

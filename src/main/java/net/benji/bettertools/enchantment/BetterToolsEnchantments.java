@@ -5,19 +5,20 @@ import net.benji.bettertools.util.BetterToolsTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
+import org.jetbrains.annotations.NotNull;
 
 public class BetterToolsEnchantments {
-    public static final ResourceKey<Enchantment> REAPING =
-            ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, "reaping"));
+    public static final ResourceKey<@NotNull Enchantment> REAPING =
+            ResourceKey.create(Registries.ENCHANTMENT, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, "reaping"));
 
-    public static void bootstrap(BootstrapContext<Enchantment> registerable) {
+    public static void bootstrap(BootstrapContext<@NotNull Enchantment> registerable) {
         var enchantments = registerable.lookup(Registries.ENCHANTMENT);
         var items = registerable.lookup(Registries.ITEM);
 
@@ -35,7 +36,7 @@ public class BetterToolsEnchantments {
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
-        registry.register(key, builder.build(key.location()));
+        registry.register(key, builder.build(key.identifier()));
     }
 
     public static void registerModEnchantments() {

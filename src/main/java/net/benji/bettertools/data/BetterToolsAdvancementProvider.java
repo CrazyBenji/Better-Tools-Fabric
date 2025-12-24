@@ -8,10 +8,11 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -22,11 +23,11 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
     }
 
     public AdvancementHolder getAdvancement(String id) {
-        return Advancement.Builder.advancement().build(ResourceLocation.fromNamespaceAndPath("minecraft", id));
+        return Advancement.Builder.advancement().build(Identifier.fromNamespaceAndPath("minecraft", id));
     }
 
     @Override
-    public void generateAdvancement(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
+    public void generateAdvancement(HolderLookup.@NotNull Provider provider, @NotNull Consumer<AdvancementHolder> consumer) {
         AdvancementHolder getHammer = Advancement.Builder.advancement()
                 .parent(getAdvancement("story/iron_tools"))
                 .display(
