@@ -1,4 +1,4 @@
-// 1.21.9	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:block
+// 1.21.10	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:block
 c3d1593afdd895485ccf6c3574621436b3700c13 data/bettertools/tags/block/mineable/glass_chipper.json
 3b5164705f02c714b116ba0cd5edf27bb3ca151d data/bettertools/tags/block/mineable/paxel.json
 64f5176353f642aa08103a3e0e7443d420797ede data/minecraft/tags/block/mineable/pickaxe.json
