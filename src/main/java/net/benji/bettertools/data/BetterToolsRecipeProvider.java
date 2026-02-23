@@ -1,5 +1,6 @@
 package net.benji.bettertools.data;
 
+import net.benji.bettertools.data.recipes.PaxelRecipeBuilder;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -16,16 +17,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
         super(output);
     }
 
-    public void generatePaxelRecipe(Consumer<FinishedRecipe> writer, Item pickaxe, Item axe, Item shovel, Item output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
-                .pattern("abc")
-                .pattern(" s ")
-                .pattern(" s ")
-                .define('a', pickaxe)
-                .define('b', axe)
-                .define('c', shovel)
-                .define('s', Items.STICK)
-                .unlockedBy(getHasName(pickaxe), has(pickaxe))
+    public void generatePaxelRecipe(Consumer<FinishedRecipe> writer, Item pickaxe, Item axe, Item shovel, Item result) {
+        PaxelRecipeBuilder.paxel(pickaxe, axe, shovel, result)
+                .unlockedBy(getHasName(Items.IRON_PICKAXE), has(Items.IRON_PICKAXE))
                 .save(writer);
     }
 

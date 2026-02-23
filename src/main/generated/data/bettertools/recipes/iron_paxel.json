@@ -1,27 +1,20 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "bettertools:paxel",
+  "axe": {
+    "item": "minecraft:iron_axe"
+  },
   "category": "equipment",
-  "key": {
-    "a": {
-      "item": "minecraft:iron_pickaxe"
-    },
-    "b": {
-      "item": "minecraft:iron_axe"
-    },
-    "c": {
-      "item": "minecraft:iron_shovel"
-    },
-    "s": {
-      "item": "minecraft:stick"
-    }
+  "pickaxe": {
+    "item": "minecraft:iron_pickaxe"
   },
-  "pattern": [
-    "abc",
-    " s ",
-    " s "
-  ],
-  "result": {
-    "item": "bettertools:iron_paxel"
+  "result": "bettertools:iron_paxel",
+  "shovel": {
+    "item": "minecraft:iron_shovel"
   },
-  "show_notification": true
+  "stick1": {
+    "item": "minecraft:stick"
+  },
+  "stick2": {
+    "item": "minecraft:stick"
+  }
 }
