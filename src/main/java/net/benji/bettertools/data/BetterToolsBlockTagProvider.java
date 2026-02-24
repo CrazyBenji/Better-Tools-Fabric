@@ -35,6 +35,9 @@ public class BetterToolsBlockTagProvider extends FabricTagProvider.BlockTagProvi
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BetterToolsBlocks.SMASHED_BEDROCK);
 
+        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(BetterToolsBlocks.SMASHED_BEDROCK);
+
         getOrCreateTagBuilder(BetterToolsTags.Blocks.MACHETE_MINEABLE)
                 .forceAddTag(BlockTags.LEAVES)
                 .forceAddTag(BlockTags.FLOWERS)

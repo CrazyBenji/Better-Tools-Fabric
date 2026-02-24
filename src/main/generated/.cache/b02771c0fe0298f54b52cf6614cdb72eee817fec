@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-24T14:12:19.4379553	Better Tools/Block Loot Tables
+// 1.20.1	2026-02-24T18:12:59.009369	Better Tools/Block Loot Tables
 ccc69561da7aadf447664112a93a6c801ab31ad9 data\minecraft\loot_tables\blocks\gray_stained_glass_pane.json
 d24ae91918bbf50f6c2501bcd745a788526e75db data\minecraft\loot_tables\blocks\light_blue_stained_glass.json
 9f8f4cd9b5dd8ee54c011c93c1294b6a62590dc0 data\minecraft\loot_tables\blocks\magenta_stained_glass.json
@@ -24,6 +24,7 @@ c1c867bd593f6754a67cd00720ec7d43dd095424 data\minecraft\loot_tables\blocks\brown
 35a0653035b6c39627aad1f725df8e1857a16747 data\minecraft\loot_tables\blocks\lime_stained_glass.json
 ee6ff9e41e8feaf94d3a7cc5e8cae88a69efa0d1 data\minecraft\loot_tables\blocks\gray_stained_glass.json
 f211b268e27e5b37a0a658b64edfa358b9109b1f data\minecraft\loot_tables\blocks\purple_stained_glass_pane.json
+a00fa3a9653d2abc8a924727ee7ded1d843d7e68 data\bettertools\loot_tables\blocks\smashed_bedrock.json
 864f24b7c00f15514f9293ab259281479e9d4010 data\minecraft\loot_tables\blocks\black_stained_glass.json
 8738e9e8f82e37c733e5ae8fe15eb8dd97c8acac data\minecraft\loot_tables\blocks\black_stained_glass_pane.json
 20f95be2b60f486f9148c2bf66148854ff9b9e4e data\minecraft\loot_tables\blocks\light_blue_stained_glass_pane.json

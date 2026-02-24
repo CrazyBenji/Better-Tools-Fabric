@@ -1,5 +1,6 @@
 package net.benji.bettertools.data;
 
+import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -101,6 +102,8 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
                         )
                 )
         );
+
+        this.dropSelf(BetterToolsBlocks.SMASHED_BEDROCK);
     }
 
     public void dropWhenGlassChipper(Block block) {
