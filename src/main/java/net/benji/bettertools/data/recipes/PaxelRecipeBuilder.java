@@ -47,7 +47,11 @@ public class PaxelRecipeBuilder extends CraftingRecipeBuilder implements RecipeB
     }
 
     public static PaxelRecipeBuilder paxel(ItemLike pickaxe, ItemLike axe, ItemLike shovel, ItemLike sticks, ItemLike result) {
-        return new PaxelRecipeBuilder(pickaxe, axe, shovel, sticks, sticks, result);
+        return paxel(pickaxe, axe, shovel, sticks, sticks, result);
+    }
+
+    public static PaxelRecipeBuilder paxel(ItemLike pickaxe, ItemLike axe, ItemLike shovel, ItemLike stick1, ItemLike stick2, ItemLike result) {
+        return new PaxelRecipeBuilder(pickaxe, axe, shovel, stick1, stick2, result);
     }
 
     @Override
