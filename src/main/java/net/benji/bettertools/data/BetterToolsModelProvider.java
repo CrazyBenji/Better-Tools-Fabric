@@ -44,5 +44,10 @@ public class BetterToolsModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(BetterToolsItems.GOLDEN_LUMBER_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BetterToolsItems.DIAMOND_LUMBER_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BetterToolsItems.NETHERITE_LUMBER_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+
+        itemModelGenerator.generateFlatItem(BetterToolsItems.IRON_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.GOLDEN_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.DIAMOND_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.NETHERITE_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
     }
 }

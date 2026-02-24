@@ -1,12 +1,12 @@
-// 1.20.1	2026-02-23T19:35:46.146859	Better Tools/Recipes
+// 1.20.1	2026-02-24T14:12:19.4423392	Better Tools/Recipes
 1d1349ef2f5014f4dc273f170cd6ebf1f12098ca data\bettertools\recipes\diamond_lumber_axe.json
 4ea6acb091953d015bf23652855002dcdb9567e8 data\bettertools\advancements\recipes\tools\iron_hammer.json
 29a942f194f290c339d3ae2fa0dbe3514a786196 data\bettertools\recipes\netherite_hammer_smithing.json
 3f9c5460fdcca610444e8f0b1ea704e767c0d64f data\bettertools\advancements\recipes\tools\glass_chipper.json
 20c42ec5757ed3407812d41b0a75baf70a9f2ff5 data\bettertools\advancements\recipes\tools\diamond_paxel.json
 9b38d20b202c23aacb99bea93df2f26472a343b4 data\bettertools\advancements\recipes\tools\golden_hammer.json
-2bc463236452b26da72b0bb13caf06730f66458b data\bettertools\recipes\golden_lumber_axe.json
 ae445c25c4773bffc830eba5820a2542939ee0c5 data\bettertools\advancements\recipes\tools\iron_lumber_axe.json
+2bc463236452b26da72b0bb13caf06730f66458b data\bettertools\recipes\golden_lumber_axe.json
 6f31705aaab19fe8f31a399096cc01fa96d7029d data\bettertools\recipes\iron_lumber_axe.json
 e5419d3de93b202b33bafe508e3aa589806fa3ec data\bettertools\advancements\recipes\tools\diamond_hammer.json
 78e02840720cb7303882d156cfe60a7bedc412b9 data\bettertools\recipes\golden_paxel.json

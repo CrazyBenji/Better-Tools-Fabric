@@ -53,7 +53,13 @@ public class BetterToolsItems {
             new LumberAxeItem(Tiers.NETHERITE, new Item.Properties(), 128));
 
     public static final Item IRON_MACHETE = registerItem("iron_machete",
-            new MacheteItem(Tiers.IRON, new Item.Properties(), 32));
+            new MacheteItem(Tiers.IRON, new Item.Properties(), 16));
+    public static final Item GOLDEN_MACHETE = registerItem("golden_machete",
+            new MacheteItem(Tiers.GOLD, new Item.Properties(), 32));
+    public static final Item DIAMOND_MACHETE = registerItem("diamond_machete",
+            new MacheteItem(Tiers.IRON, new Item.Properties(), 48));
+    public static final Item NETHERITE_MACHETE = registerItem("netherite_machete",
+            new MacheteItem(Tiers.NETHERITE, new Item.Properties(), 64));
 
     public static void registerModItems() {
         BetterToolsFabric.LOGGER.info("Registering Mod Items for " + BetterToolsFabric.MOD_ID);

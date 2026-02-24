@@ -55,6 +55,7 @@ public class MacheteItem extends DiggerItem {
                 for (ItemStack drop : drops) {
                     Block.popResource(level, blockPos, drop);
                 }
+                player.swing(useOnContext.getHand());
             }
         }
 

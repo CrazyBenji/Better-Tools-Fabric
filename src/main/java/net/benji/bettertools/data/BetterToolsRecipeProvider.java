@@ -58,6 +58,17 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 .save(writer);
     }
 
+    public void generateMacheteRecipe(Consumer<FinishedRecipe> writer, Item ingot, Item output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
+                .pattern("  i")
+                .pattern(" i ")
+                .pattern("s  ")
+                .define('i', ingot)
+                .define('s', Items.STICK)
+                .unlockedBy(getHasName(ingot), has(ingot))
+                .save(writer);
+    }
+
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> writer) {
         generateHammerRecipe(writer, Items.IRON_INGOT, Items.IRON_BLOCK, BetterToolsItems.IRON_HAMMER);
@@ -97,5 +108,10 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
         generateLumberAxeRecipe(writer, Items.GOLD_INGOT, Items.GOLD_BLOCK, BetterToolsItems.GOLDEN_LUMBER_AXE);
         generateLumberAxeRecipe(writer, Items.DIAMOND, Items.DIAMOND_BLOCK, BetterToolsItems.DIAMOND_LUMBER_AXE);
         netheriteSmithing(writer, BetterToolsItems.DIAMOND_LUMBER_AXE, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_LUMBER_AXE);
+
+        generateMacheteRecipe(writer, Items.IRON_INGOT, BetterToolsItems.IRON_MACHETE);
+        generateMacheteRecipe(writer, Items.GOLD_INGOT, BetterToolsItems.GOLDEN_MACHETE);
+        generateMacheteRecipe(writer, Items.DIAMOND, BetterToolsItems.DIAMOND_MACHETE);
+        netheriteSmithing(writer, BetterToolsItems.DIAMOND_MACHETE, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_MACHETE);
     }
 }

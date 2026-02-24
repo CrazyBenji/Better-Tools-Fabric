@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:leaves",
+    "#minecraft:flowers",
+    "minecraft:grass",
+    "minecraft:fern",
+    "minecraft:tall_grass",
+    "minecraft:large_fern",
+    "minecraft:bamboo"
+  ]
+}
