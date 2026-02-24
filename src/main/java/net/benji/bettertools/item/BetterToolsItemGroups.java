@@ -1,6 +1,7 @@
 package net.benji.bettertools.item;
 
 import net.benji.bettertools.BetterToolsFabric;
+import net.benji.bettertools.block.BetterToolsBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 public class BetterToolsItemGroups {
     public static final ResourceKey<CreativeModeTab> BETTER_TOOLS_KEY = createKey("bettertools_itemgroup");
 
+    @SuppressWarnings("all")
     private static ResourceKey<CreativeModeTab> createKey(String name) {
         return ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(BetterToolsFabric.MOD_ID, name));
     }
@@ -50,7 +52,9 @@ public class BetterToolsItemGroups {
                             output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
                             output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
-                            // output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
+                            output.accept(BetterToolsItems.IRON_MACHETE);
+
+                            output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
                         })).build()
         );
     }

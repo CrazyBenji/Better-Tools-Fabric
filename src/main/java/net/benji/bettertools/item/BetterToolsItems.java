@@ -11,34 +11,34 @@ import net.minecraft.world.level.block.Blocks;
 
 public class BetterToolsItems {
     public static final Item IRON_HAMMER = registerItem("iron_hammer",
-            new HammerItem(Tiers.IRON, 1, -2.8F, new Item.Properties()));
+            new HammerItem(Tiers.IRON, new Item.Properties()));
     public static final Item GOLDEN_HAMMER = registerItem("golden_hammer",
-            new HammerItem(Tiers.GOLD, 1, -2.8F, new Item.Properties()));
+            new HammerItem(Tiers.GOLD, new Item.Properties()));
     public static final Item DIAMOND_HAMMER = registerItem("diamond_hammer",
-            new HammerItem(Tiers.DIAMOND, 1, -2.8F, new Item.Properties()));
+            new HammerItem(Tiers.DIAMOND, new Item.Properties()));
     public static final Item NETHERITE_HAMMER = registerItem("netherite_hammer",
-            new HammerItem(Tiers.NETHERITE, 1, -2.8F, new Item.Properties()));
+            new HammerItem(Tiers.NETHERITE, new Item.Properties()));
 
     public static final Item IRON_PAXEL = registerItem("iron_paxel",
-            new PaxelItem(Tiers.IRON, 2, -2.8F, new Item.Properties()));
+            new PaxelItem(Tiers.IRON, new Item.Properties()));
     public static final Item GOLDEN_PAXEL = registerItem("golden_paxel",
-            new PaxelItem(Tiers.GOLD, 2, -2.8F, new Item.Properties()));
+            new PaxelItem(Tiers.GOLD, new Item.Properties()));
     public static final Item DIAMOND_PAXEL = registerItem("diamond_paxel",
-            new PaxelItem(Tiers.DIAMOND, 2, -2.8F, new Item.Properties()));
+            new PaxelItem(Tiers.DIAMOND, new Item.Properties()));
     public static final Item NETHERITE_PAXEL = registerItem("netherite_paxel",
-            new PaxelItem(Tiers.NETHERITE, 2, -2.8F, new Item.Properties()));
+            new PaxelItem(Tiers.NETHERITE, new Item.Properties()));
 
     public static final Item IRON_SCYTHE = registerItem("iron_scythe",
-            new ScytheItem(Tiers.IRON, 3, -3.2F, new Item.Properties()));
+            new ScytheItem(Tiers.IRON, new Item.Properties()));
     public static final Item GOLDEN_SCYTHE = registerItem("golden_scythe",
-            new ScytheItem(Tiers.GOLD, 3, -3.2F, new Item.Properties()));
+            new ScytheItem(Tiers.GOLD, new Item.Properties()));
     public static final Item DIAMOND_SCYTHE = registerItem("diamond_scythe",
-            new ScytheItem(Tiers.DIAMOND, 3, -3.2F, new Item.Properties()));
+            new ScytheItem(Tiers.DIAMOND, new Item.Properties()));
     public static final Item NETHERITE_SCYTHE = registerItem("netherite_scythe",
-            new ScytheItem(Tiers.NETHERITE, 3, -3.2F, new Item.Properties()));
+            new ScytheItem(Tiers.NETHERITE, new Item.Properties()));
 
     public static final Item GLASS_CHIPPER = registerItem("glass_chipper",
-            new GlassChipperItem(Tiers.IRON, 0, -3.2F, new Item.Properties()));
+            new GlassChipperItem(Tiers.IRON, new Item.Properties()));
 
     public static final Item BEDROCK_SMASHER = registerItem("bedrock_smasher",
             new BlockSmasherItem(() -> Blocks.BEDROCK, () -> BetterToolsBlocks.SMASHED_BEDROCK, new Item.Properties().durability(16)));
@@ -51,6 +51,9 @@ public class BetterToolsItems {
             new LumberAxeItem(Tiers.DIAMOND, new Item.Properties(), 96));
     public static final Item NETHERITE_LUMBER_AXE = registerItem("netherite_lumber_axe",
             new LumberAxeItem(Tiers.NETHERITE, new Item.Properties(), 128));
+
+    public static final Item IRON_MACHETE = registerItem("iron_machete",
+            new MacheteItem(Tiers.IRON, new Item.Properties(), 32));
 
     public static void registerModItems() {
         BetterToolsFabric.LOGGER.info("Registering Mod Items for " + BetterToolsFabric.MOD_ID);

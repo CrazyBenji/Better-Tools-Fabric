@@ -119,7 +119,6 @@ public class PaxelRecipeBuilder extends CraftingRecipeBuilder implements RecipeB
 
         @Override
         public void serializeRecipeData(JsonObject jsonObject) {
-            super.serializeRecipeData(jsonObject);
             jsonObject.add("pickaxe", this.pickaxe.toJson());
             jsonObject.add("axe", this.axe.toJson());
             jsonObject.add("shovel", this.shovel.toJson());

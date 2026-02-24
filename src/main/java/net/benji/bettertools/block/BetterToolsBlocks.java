@@ -14,6 +14,7 @@ public class BetterToolsBlocks {
     public static final Block SMASHED_BEDROCK = registerBlock("smashed_bedrock",
             new Block(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)));
 
+    @SuppressWarnings("all")
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(BetterToolsFabric.MOD_ID, name), block);

@@ -1,7 +1,8 @@
 package net.benji.bettertools.item.custom;
 
 import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableMap.Builder;
+import net.benji.bettertools.mixin.AxeItemAccessor;
+import net.benji.bettertools.mixin.ShovelItemAccessor;
 import net.benji.bettertools.util.BetterToolsTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -26,41 +27,12 @@ import java.util.Map;
 import java.util.Optional;
 
 public class PaxelItem extends DiggerItem {
-    protected static final Map<Block, Block> STRIPPABLES = new Builder<Block, Block>()
-            .put(Blocks.OAK_WOOD, Blocks.STRIPPED_OAK_WOOD)
-            .put(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG)
-            .put(Blocks.DARK_OAK_WOOD, Blocks.STRIPPED_DARK_OAK_WOOD)
-            .put(Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG)
-            .put(Blocks.ACACIA_WOOD, Blocks.STRIPPED_ACACIA_WOOD)
-            .put(Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG)
-            .put(Blocks.CHERRY_WOOD, Blocks.STRIPPED_CHERRY_WOOD)
-            .put(Blocks.CHERRY_LOG, Blocks.STRIPPED_CHERRY_LOG)
-            .put(Blocks.BIRCH_WOOD, Blocks.STRIPPED_BIRCH_WOOD)
-            .put(Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG)
-            .put(Blocks.JUNGLE_WOOD, Blocks.STRIPPED_JUNGLE_WOOD)
-            .put(Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG)
-            .put(Blocks.SPRUCE_WOOD, Blocks.STRIPPED_SPRUCE_WOOD)
-            .put(Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG)
-            .put(Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM)
-            .put(Blocks.WARPED_HYPHAE, Blocks.STRIPPED_WARPED_HYPHAE)
-            .put(Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM)
-            .put(Blocks.CRIMSON_HYPHAE, Blocks.STRIPPED_CRIMSON_HYPHAE)
-            .put(Blocks.MANGROVE_WOOD, Blocks.STRIPPED_MANGROVE_WOOD)
-            .put(Blocks.MANGROVE_LOG, Blocks.STRIPPED_MANGROVE_LOG)
-            .put(Blocks.BAMBOO_BLOCK, Blocks.STRIPPED_BAMBOO_BLOCK)
-            .build();
+    public PaxelItem(Tier material, float attackDamageModifier, float attackSpeedModifier, Properties settings) {
+        super(attackDamageModifier, attackSpeedModifier, material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
+    }
 
-    protected static final Map<Block, BlockState> FLATTENABLES = new Builder<Block, BlockState>()
-                    .put(Blocks.GRASS_BLOCK, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.PODZOL, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.COARSE_DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.MYCELIUM, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.ROOTED_DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .build();
-
-    public PaxelItem(Tier material, float attackDamage, float attackSpeed, Properties settings) {
-        super(attackDamage, attackSpeed, material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
+    public PaxelItem(Tier tier, Properties properties) {
+        this(tier, 2.0F, -2.8F, properties);
     }
 
     @Override
@@ -108,7 +80,8 @@ public class PaxelItem extends DiggerItem {
         if (context.getClickedFace() == Direction.DOWN) {
             return InteractionResult.PASS;
         } else {
-            BlockState blockState2 = FLATTENABLES.get(blockState.getBlock());
+            Map<Block, BlockState> flattenables = ShovelItemAccessor.getFlattenables();
+            BlockState blockState2 = flattenables.get(blockState.getBlock());
             BlockState blockState3 = null;
             if (blockState2 != null && level.getBlockState(blockPos.above()).isAir()) {
                 level.playSound(player, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -140,7 +113,8 @@ public class PaxelItem extends DiggerItem {
     }
 
     private Optional<BlockState> getStripped(BlockState unstrippedState) {
-        return Optional.ofNullable(STRIPPABLES.get(unstrippedState.getBlock()))
+        Map<Block, Block> strippables = AxeItemAccessor.getStrippables();
+        return Optional.ofNullable(strippables.get(unstrippedState.getBlock()))
                 .map(block -> block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, unstrippedState.getValue(RotatedPillarBlock.AXIS)));
     }
 }

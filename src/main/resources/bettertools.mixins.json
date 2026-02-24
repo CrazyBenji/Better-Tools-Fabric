@@ -3,7 +3,9 @@
   "package": "net.benji.bettertools.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EnchantmentHelperMixin"
+    "AxeItemAccessor",
+    "EnchantmentHelperMixin",
+    "ShovelItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

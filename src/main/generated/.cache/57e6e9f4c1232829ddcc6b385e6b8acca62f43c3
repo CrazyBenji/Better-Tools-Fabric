@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-22T20:45:51.4181811	Better Tools/Recipes
+// 1.20.1	2026-02-23T19:35:46.146859	Better Tools/Recipes
 1d1349ef2f5014f4dc273f170cd6ebf1f12098ca data\bettertools\recipes\diamond_lumber_axe.json
 4ea6acb091953d015bf23652855002dcdb9567e8 data\bettertools\advancements\recipes\tools\iron_hammer.json
 29a942f194f290c339d3ae2fa0dbe3514a786196 data\bettertools\recipes\netherite_hammer_smithing.json
@@ -9,7 +9,7 @@
 ae445c25c4773bffc830eba5820a2542939ee0c5 data\bettertools\advancements\recipes\tools\iron_lumber_axe.json
 6f31705aaab19fe8f31a399096cc01fa96d7029d data\bettertools\recipes\iron_lumber_axe.json
 e5419d3de93b202b33bafe508e3aa589806fa3ec data\bettertools\advancements\recipes\tools\diamond_hammer.json
-61e6feb496686656ea263f5673c65602c295cfa1 data\bettertools\recipes\golden_paxel.json
+78e02840720cb7303882d156cfe60a7bedc412b9 data\bettertools\recipes\golden_paxel.json
 862ddbd0dc3080f1f963da11c0ad188119275de0 data\bettertools\recipes\netherite_scythe_smithing.json
 f302479ff9c4d3534d700908d9248303787d0930 data\bettertools\recipes\glass_chipper.json
 39f9159603090aae83dc920400b497d8250855ba data\bettertools\advancements\recipes\tools\golden_lumber_axe.json
@@ -21,8 +21,8 @@ de4a825e0180207d9ec991f25f3444ddbe001033 data\bettertools\recipes\netherite_lumb
 b716f2fec363cd1bad83a0ab7d1305a1932e5752 data\bettertools\recipes\golden_scythe.json
 9ff97e4a0f69c7114edc074c3a2316e0fbc49ad6 data\bettertools\recipes\diamond_hammer.json
 5ee9bd77ba71f33f509638f24983b1bf02932048 data\bettertools\advancements\recipes\tools\golden_scythe.json
-bedd8bfc9b74703323cc3590b597f27b2432565c data\bettertools\recipes\diamond_paxel.json
-6882449bd336c4079bfc9f792efd56762f440f1e data\bettertools\recipes\iron_paxel.json
+47fa619ddf315b42ab5105932fba7acd1f84c220 data\bettertools\recipes\diamond_paxel.json
+e5e73340840adba54c7f0ef586bbe988af06c7d8 data\bettertools\recipes\iron_paxel.json
 1919b0b0805bd57aa016ddd9106cb18991d0f782 data\bettertools\recipes\bedrock_smasher.json
 0817a523638adc9489d8bd7c26317bb07be8dde4 data\bettertools\advancements\recipes\tools\netherite_hammer_smithing.json
 ccf0340d5674032e86ff5ab9856d7dfcf267db59 data\bettertools\advancements\recipes\tools\iron_paxel.json
