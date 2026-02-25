@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "bettertools:iron_machete"
+    "bettertools:iron_machete",
+    "bettertools:golden_machete",
+    "bettertools:diamond_machete",
+    "bettertools:netherite_machete"
   ]
 }

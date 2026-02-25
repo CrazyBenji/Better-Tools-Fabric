@@ -44,6 +44,9 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
         getOrCreateTagBuilder(BetterToolsTags.Items.MACHETES)
-                .add(BetterToolsItems.IRON_MACHETE);
+                .add(BetterToolsItems.IRON_MACHETE)
+                .add(BetterToolsItems.GOLDEN_MACHETE)
+                .add(BetterToolsItems.DIAMOND_MACHETE)
+                .add(BetterToolsItems.NETHERITE_MACHETE);
     }
 }

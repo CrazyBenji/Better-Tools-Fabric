@@ -24,7 +24,7 @@ public class BetterToolsItemGroups {
         Registry.register(
                 registry,
                 BETTER_TOOLS_KEY,
-                CreativeModeTab.builder(CreativeModeTab.Row.TOP, 7)
+                CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                         .title(Component.translatable("itemgroup.bettertools"))
                         .icon(() -> new ItemStack(BetterToolsItems.IRON_HAMMER))
                         .displayItems(((itemDisplayParameters, output) -> {
@@ -43,16 +43,19 @@ public class BetterToolsItemGroups {
                             output.accept(BetterToolsItems.DIAMOND_SCYTHE);
                             output.accept(BetterToolsItems.NETHERITE_SCYTHE);
 
-                            output.accept(BetterToolsItems.GLASS_CHIPPER);
-
-                            output.accept(BetterToolsItems.BEDROCK_SMASHER);
-
                             output.accept(BetterToolsItems.IRON_LUMBER_AXE);
                             output.accept(BetterToolsItems.GOLDEN_LUMBER_AXE);
                             output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
                             output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
                             output.accept(BetterToolsItems.IRON_MACHETE);
+                            output.accept(BetterToolsItems.GOLDEN_MACHETE);
+                            output.accept(BetterToolsItems.DIAMOND_MACHETE);
+                            output.accept(BetterToolsItems.NETHERITE_MACHETE);
+
+                            output.accept(BetterToolsItems.GLASS_CHIPPER);
+
+                            output.accept(BetterToolsItems.BEDROCK_SMASHER);
 
                             output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
                         })).build()

@@ -11,13 +11,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LumberAxeItem extends AxeItem {
     private final int maxLogs;
-    private Set<BlockPos> toBreak;
+    private final Set<BlockPos> toBreak;
 
     public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
         super(tier, 6.0F, -3.2F, properties);
@@ -27,10 +26,8 @@ public class LumberAxeItem extends AxeItem {
 
     @Override
     public boolean mineBlock(@NotNull ItemStack stack, Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity player) {
-
-        if (!level.isClientSide && level instanceof ServerLevel server && state.is(BlockTags.LOGS)) {
-
-            breakConnectedLogs(server, pos);
+        if (level instanceof ServerLevel serverLevel && state.is(BlockTags.LOGS)) {
+            breakConnectedLogs(serverLevel, pos);
             for (BlockPos breakPos : toBreak) {
                 level.destroyBlock(breakPos, true);
                 stack.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(player.getUsedItemHand()));
@@ -38,16 +35,19 @@ public class LumberAxeItem extends AxeItem {
             this.toBreak.clear();
         }
 
-        return super.mineBlock(stack, level, state, pos, player);
+        return true;
     }
 
     private void breakConnectedLogs(ServerLevel level, BlockPos startPos) {
-        if (this.toBreak.size() >= maxLogs) {
+        if (this.toBreak.size() >= this.maxLogs) {
             return;
         }
-        ArrayList<BlockPos> toCheck = populateArrayList(startPos);
+        Set<BlockPos> toCheck = populateSet(startPos);
 
         for (BlockPos pos : toCheck) {
+            if (this.toBreak.size() >= this.maxLogs) {
+                return;
+            }
             if (!this.toBreak.contains(pos) && level.getBlockState(pos).is(BlockTags.LOGS)) {
                 this.toBreak.add(pos);
                 this.breakConnectedLogs(level, pos);
@@ -55,28 +55,29 @@ public class LumberAxeItem extends AxeItem {
         }
     }
 
-    private ArrayList<BlockPos> populateArrayList(BlockPos pos) {
-        ArrayList<BlockPos> list = new ArrayList<>();
-        list.add(pos.east());
-        list.add(pos.east().north());
-        list.add(pos.west());
-        list.add(pos.west().south());
-        list.add(pos.north());
-        list.add(pos.north().west());
-        list.add(pos.south());
-        list.add(pos.south().east());
+    @SuppressWarnings("all")
+    private Set<BlockPos> populateSet(BlockPos pos) {
+        Set<BlockPos> set = new HashSet<>();
+        set.add(pos.east());
+        set.add(pos.east().north());
+        set.add(pos.west());
+        set.add(pos.west().south());
+        set.add(pos.north());
+        set.add(pos.north().west());
+        set.add(pos.south());
+        set.add(pos.south().east());
 
-        list.add(pos.above());
-        list.add(pos.east().above());
-        list.add(pos.east().north().above());
-        list.add(pos.west().above());
-        list.add(pos.west().south().above());
-        list.add(pos.north().above());
-        list.add(pos.north().west().above());
-        list.add(pos.south().above());
-        list.add(pos.south().east().above());
+        set.add(pos.above());
+        set.add(pos.east().above());
+        set.add(pos.east().north().above());
+        set.add(pos.west().above());
+        set.add(pos.west().south().above());
+        set.add(pos.north().above());
+        set.add(pos.north().west().above());
+        set.add(pos.south().above());
+        set.add(pos.south().east().above());
 
-        return list;
+        return set;
     }
 
 }

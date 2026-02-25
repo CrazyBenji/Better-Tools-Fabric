@@ -22,6 +22,11 @@
   "item.bettertools.diamond_lumber_axe": "Diamond Lumber Axe",
   "item.bettertools.netherite_lumber_axe": "Netherite Lumber Axe",
 
+  "item.bettertools.iron_machete": "Iron Machete",
+  "item.bettertools.golden_machete": "Golden Machete",
+  "item.bettertools.diamond_machete": "Diamond Machete",
+  "item.bettertools.netherite_machete": "Netherite Machete",
+
   "block.bettertools.smashed_bedrock": "Smashed Bedrock",
 
   "itemgroup.bettertools": "Better Tools",
