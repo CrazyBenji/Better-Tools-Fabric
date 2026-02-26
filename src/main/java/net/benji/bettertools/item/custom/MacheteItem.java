@@ -1,24 +1,32 @@
 package net.benji.bettertools.item.custom;
 
 import net.benji.bettertools.util.BetterToolsTags;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class MacheteItem extends DiggerItem {
     protected final int maxFoliage;
     protected final Set<BlockPos> toBreak;
+
+    public static Component DESC = Component.translatable("desc.bettertools.machete").withStyle(ChatFormatting.BLUE);
 
     public MacheteItem(Tier tier, float attackDamageModifier, float attackSpeedModifier, Properties properties, int maxFoliage) {
         super(attackDamageModifier, attackSpeedModifier, tier, BetterToolsTags.Blocks.MACHETE_MINEABLE, properties); // Make tag
@@ -100,5 +108,15 @@ public class MacheteItem extends DiggerItem {
         }
 
         return neighbors;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, level, tooltipComponents, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipComponents.add(CommonComponents.EMPTY);
+            tooltipComponents.add(DESC);
+        }
     }
 }

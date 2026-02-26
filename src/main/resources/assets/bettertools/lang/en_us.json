@@ -48,5 +48,13 @@
   "advancements.story.get_lumber_axe.title": "Lumberjack",
   "advancements.story.get_lumber_axe.description": "Acquire a Lumber Axe",
   "advancements.story.get_machete.title": "Cutting Through the Competition",
-  "advancements.story.get_machete.description": "Acquire a Machete"
+  "advancements.story.get_machete.description": "Acquire a Machete",
+
+  "desc.bettertools.block_smasher": "Use on:",
+  "desc.bettertools.glass_chipper": "Breaks glass like blocks",
+  "desc.bettertools.hammer": "Mines in a 3x3 area",
+  "desc.bettertools.lumber_axe": "Breaks connected logs",
+  "desc.bettertools.paxel": "Works as a pickaxe, axe, or shovel",
+  "desc.bettertools.scythe": "Tills in a 3x3 area",
+  "desc.bettertools.machete": "Breaks connected foliage"
 }

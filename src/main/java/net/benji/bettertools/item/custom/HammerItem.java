@@ -1,12 +1,16 @@
 package net.benji.bettertools.item.custom;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -16,11 +20,14 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HammerItem extends PickaxeItem {
+    public static final Component DESC = Component.translatable("desc.bettertools.hammer").withStyle(ChatFormatting.BLUE);
+
     public HammerItem(Tier tier, int attackDamageModifier, float attackSpeedModifier, Properties properties) {
         super(tier, attackDamageModifier, attackSpeedModifier, properties);
     }
@@ -100,5 +107,15 @@ public class HammerItem extends PickaxeItem {
         }
 
         return stack.isCorrectToolForDrops(state);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, level, tooltipComponents, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipComponents.add(CommonComponents.EMPTY);
+            tooltipComponents.add(DESC);
+        }
     }
 }

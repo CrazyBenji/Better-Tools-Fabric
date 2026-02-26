@@ -4,29 +4,33 @@ import com.google.common.collect.BiMap;
 import net.benji.bettertools.mixin.AxeItemAccessor;
 import net.benji.bettertools.mixin.ShovelItemAccessor;
 import net.benji.bettertools.util.BetterToolsTags;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.HoneycombItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class PaxelItem extends DiggerItem {
+    public static final Component DESC = Component.translatable("desc.bettertools.paxel").withStyle(ChatFormatting.BLUE);
+
     public PaxelItem(Tier material, float attackDamageModifier, float attackSpeedModifier, Properties settings) {
         super(attackDamageModifier, attackSpeedModifier, material, BetterToolsTags.Blocks.PAXEL_MINEABLE, settings);
     }
@@ -116,5 +120,15 @@ public class PaxelItem extends DiggerItem {
         Map<Block, Block> strippables = AxeItemAccessor.getStrippables();
         return Optional.ofNullable(strippables.get(unstrippedState.getBlock()))
                 .map(block -> block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, unstrippedState.getValue(RotatedPillarBlock.AXIS)));
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, level, tooltipComponents, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipComponents.add(CommonComponents.EMPTY);
+            tooltipComponents.add(DESC);
+        }
     }
 }
