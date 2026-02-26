@@ -6,13 +6,20 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -36,8 +43,10 @@ public class ScytheItem extends HoeItem {
         BlockPos blockPos = useOnContext.getClickedPos();
         Player player = useOnContext.getPlayer();
         ItemStack itemStack = useOnContext.getItemInHand();
+        BlockState blockState = level.getBlockState(blockPos);
+        Block block = blockState.getBlock();
 
-        if (level instanceof ServerLevel) {
+        if (level instanceof ServerLevel serverLevel) {
             // Get all positions in 3x3 area around the clicked position
             List<BlockPos> positionsToHoe = get3x3Positions(blockPos);
 
@@ -64,6 +73,29 @@ public class ScytheItem extends HoeItem {
                 // Damage the tool once for the original block
                 if (player != null) {
                     itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(useOnContext.getHand()));
+                }
+                return InteractionResult.SUCCESS;
+            }
+
+            // Crop harvesting behavior
+            if (block instanceof CropBlock) {
+                // Generate loot table
+                LootParams.Builder lootBuilder = new LootParams.Builder(serverLevel)
+                        .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockPos))
+                        .withParameter(LootContextParams.TOOL, itemStack)
+                        .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
+                        .withParameter(LootContextParams.BLOCK_STATE, blockState);
+
+                List<ItemStack> drops = blockState.getDrops(lootBuilder);
+
+                // Set block back to default state(age 0)
+                level.setBlock(blockPos, block.defaultBlockState(), 0);
+
+                for (ItemStack drop : drops) {
+                    Block.popResource(level, blockPos, drop);
+                }
+                if (player != null) {
+                    player.swing(useOnContext.getHand());
                 }
                 return InteractionResult.SUCCESS;
             }

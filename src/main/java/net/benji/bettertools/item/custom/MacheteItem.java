@@ -3,25 +3,18 @@ package net.benji.bettertools.item.custom;
 import net.benji.bettertools.util.BetterToolsTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MacheteItem extends DiggerItem {
     protected final int maxFoliage;
@@ -38,35 +31,9 @@ public class MacheteItem extends DiggerItem {
     }
 
     @Override
-    public @NotNull InteractionResult useOn(UseOnContext useOnContext) {
-        BlockPos blockPos = useOnContext.getClickedPos();
-        Player player = useOnContext.getPlayer();
-        Level level = useOnContext.getLevel();
-        BlockState blockState = level.getBlockState(blockPos);
-        Block block = blockState.getBlock();
-        assert player != null;
-        ItemStack itemStack = player.getUseItem();
-
-        if (level instanceof ServerLevel serverLevel) {
-            if (block instanceof CropBlock) {
-                List<ItemStack> drops = generateLootTable(itemStack, serverLevel, blockState, blockPos, player);
-
-                level.setBlock(blockPos, block.defaultBlockState(), 0);
-
-                for (ItemStack drop : drops) {
-                    Block.popResource(level, blockPos, drop);
-                }
-                player.swing(useOnContext.getHand());
-            }
-        }
-
-        return InteractionResult.PASS;
-    }
-
-    @Override
     public boolean mineBlock(ItemStack itemStack, Level level, BlockState blockState, BlockPos blockPos, LivingEntity livingEntity) {
         if (level instanceof ServerLevel serverLevel && blockState.is(BetterToolsTags.Blocks.MACHETE_MINEABLE)) {
-            breakConnectedFoliage(serverLevel, blockPos);
+            findConnectedFoliage(serverLevel, blockPos);
             for (BlockPos breakPos : toBreak) {
                 BlockState breakState = level.getBlockState(breakPos);
 
@@ -95,55 +62,43 @@ public class MacheteItem extends DiggerItem {
         return blockState.getDrops(lootBuilder);
     }
 
-    public void breakConnectedFoliage(ServerLevel serverLevel, BlockPos startingPos) {
-        if (this.toBreak.size() >= this.maxFoliage) {
-            return;
-        }
+    public void findConnectedFoliage(ServerLevel serverLevel, BlockPos startingPos) {
+        Queue<BlockPos> queue = new LinkedList<>();
+        Set<BlockPos> visited = new HashSet<>();
 
-        Set<BlockPos> toCheck = populateSet(startingPos);
+        queue.add(startingPos.immutable());
+        visited.add(startingPos.immutable());
 
-        for (BlockPos blockPos : toCheck) {
-            if (this.toBreak.size() >= this.maxFoliage) {
-                return;
-            }
-            if (!this.toBreak.contains(blockPos) && serverLevel.getBlockState(blockPos).is(BetterToolsTags.Blocks.MACHETE_MINEABLE)) {
-                this.toBreak.add(blockPos);
-                this.breakConnectedFoliage(serverLevel, blockPos);
+        while (!queue.isEmpty() && this.toBreak.size() < this.maxFoliage) {
+            BlockPos current = queue.poll();
+            this.toBreak.add(current);
+
+            for (BlockPos neighbor : getNeighbors(current)) {
+                if (visited.contains(neighbor)) continue;
+                visited.add(neighbor.immutable());
+
+                BlockState neighborState = serverLevel.getBlockState(neighbor);
+
+                if (neighborState.is(BetterToolsTags.Blocks.MACHETE_MINEABLE)) {
+                    queue.add(neighbor.immutable());
+                }
             }
         }
     }
 
-    @SuppressWarnings("all")
-    private Set<BlockPos> populateSet(BlockPos blockPos) {
-        Set<BlockPos> set = new HashSet<>();
-        set.add(blockPos.east());
-        set.add(blockPos.east().north());
-        set.add(blockPos.west());
-        set.add(blockPos.west().south());
-        set.add(blockPos.north());
-        set.add(blockPos.north().west());
-        set.add(blockPos.south());
-        set.add(blockPos.south().east());
+    private List<BlockPos> getNeighbors(BlockPos center) {
+        List<BlockPos> neighbors = new ArrayList<>();
+        int radius = 1;
 
-        set.add(blockPos.above());
-        set.add(blockPos.east().above());
-        set.add(blockPos.east().north().above());
-        set.add(blockPos.west().above());
-        set.add(blockPos.west().south().above());
-        set.add(blockPos.north().above());
-        set.add(blockPos.north().west().above());
-        set.add(blockPos.south().above());
-        set.add(blockPos.south().east().above());
+        for (int x = -radius; x <= radius; x++) {
+            for (int y = -radius; y <= radius; y++) {
+                for (int z = -radius; z <= radius; z++) {
+                    if (x == 0 && y == 0 && z == 0) continue;
+                    neighbors.add(center.offset(x, y, z));
+                }
+            }
+        }
 
-        set.add(blockPos.below());
-        set.add(blockPos.east().below());
-        set.add(blockPos.east().north().below());
-        set.add(blockPos.west().below());
-        set.add(blockPos.west().south().below());
-        set.add(blockPos.north().below());
-        set.add(blockPos.north().west().below());
-        set.add(blockPos.south().below());
-        set.add(blockPos.south().east().below());
-        return set;
+        return neighbors;
     }
 }
