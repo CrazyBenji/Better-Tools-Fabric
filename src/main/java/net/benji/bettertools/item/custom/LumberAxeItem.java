@@ -28,7 +28,7 @@ public class LumberAxeItem extends AxeItem {
 
     public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
         super(tier, 6.0F, -3.2F, properties);
-        this.maxLogs = maxLogs;
+        this.maxLogs = maxLogs - 1;
         this.toBreak = new HashSet<>();
     }
 
@@ -43,7 +43,7 @@ public class LumberAxeItem extends AxeItem {
             this.toBreak.clear();
         }
 
-        return true;
+        return super.mineBlock(stack, level, state, pos, player);
     }
 
     private void breakConnectedLogs(ServerLevel level, BlockPos startPos) {
