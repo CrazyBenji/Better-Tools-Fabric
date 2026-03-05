@@ -42,7 +42,6 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .addCriterion("got_hammer", InventoryChangeTrigger.TriggerInstance.hasItems(
                         ItemPredicate.Builder.item().of(BetterToolsTags.Items.HAMMERS).build()
                 ))
-                .requirements(RequirementsStrategy.OR)
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_hammer");
 
         Advancement getPaxel = Advancement.Builder.advancement()
