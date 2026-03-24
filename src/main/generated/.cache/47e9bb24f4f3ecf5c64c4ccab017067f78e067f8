@@ -1,6 +1,6 @@
-// 1.20.1	2026-02-24T19:15:25.3123709	Better Tools/Model Definitions
-7663ae26c5f63de4a6ec55934d412285e9c8b519 assets\bettertools\models\item\netherite_scythe.json
+// 1.20.1	2026-03-24T12:17:24.8222141	Better Tools/Model Definitions
 a77d12f73c8fc755642c05a25775cd4d46bff550 assets\bettertools\models\item\diamond_hammer.json
+7663ae26c5f63de4a6ec55934d412285e9c8b519 assets\bettertools\models\item\netherite_scythe.json
 358731dc51f52861fb92d3d57e2f451e2954ffc0 assets\bettertools\models\item\netherite_lumber_axe.json
 6839ca41fad2dc703a6e7ccbf649e983611c9566 assets\bettertools\models\item\golden_hammer.json
 ef4834deb3f7fcc2508876a341b6657a514b7a3d assets\bettertools\models\item\iron_scythe.json
@@ -14,8 +14,8 @@ dfacfb2adce9757082b06d4b98a2997627a40ad6 assets\bettertools\models\item\golden_s
 bfc435261ca3d0cc6b65b5b0dae3a9549ccbf2dd assets\bettertools\models\item\netherite_machete.json
 e25bcff0b3862a35c98ec8002bcefea86c602144 assets\bettertools\models\item\iron_hammer.json
 adaeff76ba2519e3e078c902af7de3ec7b2bee28 assets\bettertools\models\item\diamond_machete.json
-bdc3e82df5f91847c943fa05f4146fa6f68c79a5 assets\bettertools\models\item\netherite_paxel.json
 07f6e3e2defdbabe49c171c86bfc32fefc6378dd assets\bettertools\models\item\netherite_hammer.json
+bdc3e82df5f91847c943fa05f4146fa6f68c79a5 assets\bettertools\models\item\netherite_paxel.json
 a960be3ef7e7379f7e466026a3665404fbc501ef assets\bettertools\models\item\golden_paxel.json
 ce4ee1fc8124869fa7e5bc9aea2e6041bbfa20aa assets\bettertools\models\item\iron_machete.json
 b68edab62ea1c46898b2ca250134ae5b682b8a29 assets\bettertools\models\item\diamond_scythe.json
