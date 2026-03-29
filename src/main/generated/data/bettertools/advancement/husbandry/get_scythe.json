@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:story/iron_tools",
+  "parent": "minecraft:husbandry/planted_seed",
   "criteria": {
     "got_scythe": {
       "conditions": {
         "items": [
           {
-            "items": "bettertools:iron_scythe"
+            "items": "#bettertools:scythes"
           }
         ]
       },
@@ -14,14 +14,14 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.story.get_scythe.description"
+      "translate": "advancements.husbandry.get_scythe.description"
     },
     "icon": {
       "count": 1,
       "id": "bettertools:iron_scythe"
     },
     "title": {
-      "translate": "advancements.story.get_scythe.title"
+      "translate": "advancements.husbandry.get_scythe.title"
     }
   },
   "requirements": [

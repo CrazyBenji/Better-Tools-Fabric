@@ -1,6 +1,9 @@
 package net.benji.bettertools.item.custom;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -8,22 +11,30 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LumberAxeItem extends AxeItem {
     private final int maxLogs;
-    private Set<BlockPos> toBreak;
+    private final Set<BlockPos> toBreak;
 
-    public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
-        super(tier,  properties);
+    private static final Component DESC = Component.translatable("desc.bettertools.lumber_axe").withStyle(ChatFormatting.BLUE);
+
+    public LumberAxeItem(Tier tier, float attackDamageModifier, float attackSpeedModifier, Properties properties, int maxLogs) {
+        super(tier,  properties.attributes(createAttributes(tier, attackDamageModifier, attackSpeedModifier)));
         this.maxLogs = maxLogs;
         this.toBreak = new HashSet<>();
+    }
+
+    public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
+        this(tier, 6.0F, -3.1F, properties, maxLogs);
     }
 
     @Override
@@ -50,6 +61,9 @@ public class LumberAxeItem extends AxeItem {
         ArrayList<BlockPos> toCheck = populateArrayList(startPos);
 
         for (BlockPos pos : toCheck) {
+            if (this.toBreak.size() >= this.maxLogs) {
+                return;
+            }
             if (!this.toBreak.contains(pos) && level.getBlockState(pos).is(BlockTags.LOGS)) {
                 this.toBreak.add(pos);
                 this.breakConnectedLogs(level, pos);
@@ -81,4 +95,13 @@ public class LumberAxeItem extends AxeItem {
         return list;
     }
 
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipComponents.add(CommonComponents.EMPTY);
+            tooltipComponents.add(DESC);
+        }
+    }
 }

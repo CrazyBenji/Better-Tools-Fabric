@@ -1,6 +1,7 @@
 package net.benji.bettertools.item;
 
 import net.benji.bettertools.BetterToolsFabric;
+import net.benji.bettertools.block.BetterToolsBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,46 +18,47 @@ public class BetterToolsItemGroups {
         return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
     }
 
+    public static final CreativeModeTab BETTER_TOOLS = Registry.register(
+            BuiltInRegistries.CREATIVE_MODE_TAB,
+            BETTER_TOOLS_KEY,
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 7)
+                    .title(Component.translatable("itemgroup.bettertools"))
+                    .icon(() -> new ItemStack(BetterToolsItems.IRON_HAMMER))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        output.accept(BetterToolsItems.IRON_HAMMER);
+                        output.accept(BetterToolsItems.GOLDEN_HAMMER);
+                        output.accept(BetterToolsItems.DIAMOND_HAMMER);
+                        output.accept(BetterToolsItems.NETHERITE_HAMMER);
 
-    public static void bootstrap(Registry<CreativeModeTab> registry) {
-        Registry.register(
-                registry,
-                BETTER_TOOLS_KEY,
-                CreativeModeTab.builder(CreativeModeTab.Row.TOP, 7)
-                        .title(Component.translatable("itemgroup.bettertools"))
-                        .icon(() -> new ItemStack(BetterToolsItems.IRON_HAMMER))
-                        .displayItems(((itemDisplayParameters, output) -> {
-                            output.accept(BetterToolsItems.IRON_HAMMER);
-                            output.accept(BetterToolsItems.GOLDEN_HAMMER);
-                            output.accept(BetterToolsItems.DIAMOND_HAMMER);
-                            output.accept(BetterToolsItems.NETHERITE_HAMMER);
+                        output.accept(BetterToolsItems.IRON_PAXEL);
+                        output.accept(BetterToolsItems.GOLDEN_PAXEL);
+                        output.accept(BetterToolsItems.DIAMOND_PAXEL);
+                        output.accept(BetterToolsItems.NETHERITE_PAXEL);
 
-                            output.accept(BetterToolsItems.IRON_PAXEL);
-                            output.accept(BetterToolsItems.GOLDEN_PAXEL);
-                            output.accept(BetterToolsItems.DIAMOND_PAXEL);
-                            output.accept(BetterToolsItems.NETHERITE_PAXEL);
+                        output.accept(BetterToolsItems.IRON_SCYTHE);
+                        output.accept(BetterToolsItems.GOLDEN_SCYTHE);
+                        output.accept(BetterToolsItems.DIAMOND_SCYTHE);
+                        output.accept(BetterToolsItems.NETHERITE_SCYTHE);
 
-                            output.accept(BetterToolsItems.IRON_SCYTHE);
-                            output.accept(BetterToolsItems.GOLDEN_SCYTHE);
-                            output.accept(BetterToolsItems.DIAMOND_SCYTHE);
-                            output.accept(BetterToolsItems.NETHERITE_SCYTHE);
+                        output.accept(BetterToolsItems.IRON_LUMBER_AXE);
+                        output.accept(BetterToolsItems.GOLDEN_LUMBER_AXE);
+                        output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
+                        output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
-                            output.accept(BetterToolsItems.GLASS_CHIPPER);
+                        output.accept(BetterToolsItems.IRON_MACHETE);
+                        output.accept(BetterToolsItems.GOLDEN_MACHETE);
+                        output.accept(BetterToolsItems.DIAMOND_MACHETE);
+                        output.accept(BetterToolsItems.NETHERITE_MACHETE);
 
-                            output.accept(BetterToolsItems.BEDROCK_SMASHER);
+                        output.accept(BetterToolsItems.GLASS_CHIPPER);
 
-                            output.accept(BetterToolsItems.IRON_LUMBER_AXE);
-                            output.accept(BetterToolsItems.GOLDEN_LUMBER_AXE);
-                            output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
-                            output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
+                        output.accept(BetterToolsItems.BEDROCK_SMASHER);
 
-                            // output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
-                        })).build()
-        );
-    }
+                        output.accept(BetterToolsBlocks.SMASHED_BEDROCK);
+                    })).build()
+    );
 
-    public static void registerItemGroups() {
-        BetterToolsFabric.LOGGER.info("Registering Item Groups for " + BetterToolsFabric.MOD_ID);
-        bootstrap(BuiltInRegistries.CREATIVE_MODE_TAB);
+    public static void registerCreativeModeTabs() {
+        BetterToolsFabric.LOGGER.info("Registering Creative Mode Tabs for " + BetterToolsFabric.MOD_ID);
     }
 }

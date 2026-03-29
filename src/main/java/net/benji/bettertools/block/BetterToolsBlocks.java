@@ -25,7 +25,7 @@ public class BetterToolsBlocks {
                 new BlockItem(block, new Item.Properties()));
     }
 
-    public static void registerModBlocks() {
+    public static void registerBlocks() {
         BetterToolsFabric.LOGGER.info("Registering Mod Blocks for " + BetterToolsFabric.MOD_ID);
     }
 

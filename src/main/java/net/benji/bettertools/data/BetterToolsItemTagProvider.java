@@ -44,18 +44,26 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.DIAMOND_LUMBER_AXE)
                 .add(BetterToolsItems.NETHERITE_LUMBER_AXE);
 
+        getOrCreateTagBuilder(BetterToolsTags.Items.MACHETES)
+                .add(BetterToolsItems.IRON_MACHETE)
+                .add(BetterToolsItems.GOLDEN_MACHETE)
+                .add(BetterToolsItems.DIAMOND_MACHETE)
+                .add(BetterToolsItems.NETHERITE_MACHETE);
+
         getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
                 .addTag(BetterToolsTags.Items.PAXELS)
                 .addTag(BetterToolsTags.Items.SCYTHES)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES)
-                .addTag(BetterToolsTags.Items.GLASS_CHIPPERS);
+                .addTag(BetterToolsTags.Items.GLASS_CHIPPERS)
+                .addTag(BetterToolsTags.Items.MACHETES);
 
         getOrCreateTagBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
                 .addTag(BetterToolsTags.Items.PAXELS)
                 .addTag(BetterToolsTags.Items.SCYTHES)
-                .addTag(BetterToolsTags.Items.LUMBER_AXES);
+                .addTag(BetterToolsTags.Items.LUMBER_AXES)
+                .addTag(BetterToolsTags.Items.MACHETES);
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
@@ -63,7 +71,8 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .addTag(BetterToolsTags.Items.SCYTHES)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES)
                 .addTag(BetterToolsTags.Items.GLASS_CHIPPERS)
-                .add(BetterToolsItems.BEDROCK_SMASHER);
+                .add(BetterToolsItems.BEDROCK_SMASHER)
+                .addTag(BetterToolsTags.Items.MACHETES);
 
         getOrCreateTagBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES);
