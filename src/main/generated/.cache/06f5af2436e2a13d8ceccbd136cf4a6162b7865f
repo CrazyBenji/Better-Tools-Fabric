@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-09T22:23:22.3350713	Better Tools/Tags for minecraft:item
+// 1.21.1	2026-07-10T01:51:32.0150177	Better Tools/Tags for minecraft:item
 bd97c1486d8304b9e0ac1eb448fee0bda4852e81 data\bettertools\tags\item\paxels.json
 c0c967e89e5c6ba34a68e5eb70a5bda1deefefd7 data\minecraft\tags\item\axes.json
 63318a67d368a10f67a7f1e01c98e383c6e2f69f data\bettertools\tags\item\hammers.json
@@ -14,7 +14,7 @@ f8080c144e99c4911118eea11edfb34b47186778 data\minecraft\tags\item\shovels.json
 687070cff988c75fe735e0010c2546dbfd81c19c data\minecraft\tags\item\swords.json
 0b16b2719656775f594ddb0e0ffc4ff7246f67c4 data\minecraft\tags\item\pickaxes.json
 3abb8babdf82f99840cdcfe2976e6ac0344eb555 data\bettertools\tags\item\copper_tools.json
+ff8897d93a70e31b0896542a6e46304ffb11de75 data\minecraft\tags\item\enchantable\mining_loot.json
 fcefb1c6becd701b04f226e36936fcb057802cae data\bettertools\tags\item\lumber_axes.json
 0f73f37ac1d977ce5619b9fabe073594466cde7e data\bettertools\tags\item\glass_chippers.json
-ff8897d93a70e31b0896542a6e46304ffb11de75 data\minecraft\tags\item\enchantable\mining_loot.json
 ebbbaf0794d81c4cbde33fec96339afe37914b29 data\minecraft\tags\item\hoes.json

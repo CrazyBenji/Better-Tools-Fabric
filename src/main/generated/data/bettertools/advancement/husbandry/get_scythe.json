@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:husbandry/planted_seed",
+  "parent": "minecraft:husbandry/plant_seed",
   "criteria": {
     "got_scythe": {
       "conditions": {

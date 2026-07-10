@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-09T22:23:22.336072	Better Tools/Advancements
+// 1.21.1	2026-07-10T01:51:32.0170192	Better Tools/Advancements
 4295059395381babcb4526c50e37af4763084b8d data\bettertools\advancement\story\get_hammer.json
 179fe3078e9d35b0f539da4bb1e36a7a0982b36e data\bettertools\advancement\story\get_lumber_axe.json
 69c03dba398b8e72a5bdc6007ac0f1b51c2113ac data\bettertools\advancement\story\get_wood_chisel.json
@@ -7,6 +7,6 @@
 2abfd4d2a7ba2859c7a78f007e9d40e42f084a6d data\bettertools\advancement\story\get_amethyst_tool.json
 1281b6709527852eb1036c87bf75e691b5b799a0 data\bettertools\advancement\husbandry\get_netherite_scythe.json
 128775c4449638850f1a06d3ce7e7004d90e508d data\bettertools\advancement\story\get_paxel.json
-21fd0c0a763ac68a7adda3e187b688321cf7758a data\bettertools\advancement\husbandry\get_scythe.json
+ecd932b4edba192f3a0384674ad4ddaf7413559b data\bettertools\advancement\husbandry\get_scythe.json
 b3f2c195fbddd6f0faf6ffeefbc0cbb0a2b8b6b4 data\bettertools\advancement\story\get_copper_tool.json
 9b29c413f9b5800ab51508cdb87633f7d54486d9 data\bettertools\advancement\nether\get_bedrock_smasher.json

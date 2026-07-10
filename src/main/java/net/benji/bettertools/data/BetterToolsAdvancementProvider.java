@@ -64,7 +64,7 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_paxel");
 
         AdvancementHolder getScythe = Advancement.Builder.advancement()
-                .parent(getAdvancement("husbandry/planted_seed"))
+                .parent(getAdvancement("husbandry/plant_seed"))
                 .display(
                         BetterToolsItems.IRON_SCYTHE,
                         Component.translatable("advancements.husbandry.get_scythe.title"),
