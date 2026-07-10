@@ -1,11 +1,36 @@
 package net.benji.bettertools.item.custom;
 
 import net.benji.bettertools.util.BetterToolsTags;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 public class GlassChipperItem extends Item {
-    public GlassChipperItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties) {
-        super(properties.tool(tier, BetterToolsTags.Blocks.GLASS_CHIPPER_MINEABLE, attackDamage, attackSpeed, 0));
+    public static final Component DESC = Component.translatable("desc.bettertools.glass_chipper").withStyle(ChatFormatting.BLUE);
+
+    public GlassChipperItem(ToolMaterial toolMaterial, float attackDamageModifier, float attackSpeedModifier, Properties properties) {
+        super(properties.tool(toolMaterial, BetterToolsTags.Blocks.GLASS_CHIPPER_MINEABLE, attackDamageModifier, attackSpeedModifier, 0));
+    }
+
+    public GlassChipperItem(ToolMaterial toolMaterial, Properties properties) {
+        this(toolMaterial, 0.0F, -3.2F, properties);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipAdder.accept(CommonComponents.EMPTY);
+            tooltipAdder.accept(DESC);
+        }
     }
 }

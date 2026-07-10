@@ -1,7 +1,11 @@
 package net.benji.bettertools.item.custom;
 
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -10,9 +14,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -21,9 +33,14 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class ScytheItem extends HoeItem {
+    public static final Component DESC = Component.translatable("desc.bettertools.scythe").withStyle(ChatFormatting.BLUE);
 
-    public ScytheItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
-        super(material, attackDamage, attackSpeed, properties);
+    public ScytheItem(ToolMaterial toolMaterial, float attackDamageModifier, float attackSpeedModifier, Properties properties) {
+        super(toolMaterial, attackDamageModifier, attackSpeedModifier, properties);
+    }
+
+    public ScytheItem(ToolMaterial toolMaterial, Properties properties) {
+        this(toolMaterial, 3.0F, -3.2F, properties);
     }
 
     @Override
@@ -32,41 +49,67 @@ public class ScytheItem extends HoeItem {
         BlockPos blockPos = useOnContext.getClickedPos();
         Player player = useOnContext.getPlayer();
         ItemStack itemStack = useOnContext.getItemInHand();
+        BlockState blockState = level.getBlockState(blockPos);
+        Block block = blockState.getBlock();
 
-        // Get all positions in 3x3 area around the clicked position
-        List<BlockPos> positionsToHoe = get3x3Positions(blockPos);
+        if (level instanceof ServerLevel serverLevel) {
+            // Get all positions in 3x3 area around the clicked position
+            List<BlockPos> positionsToHoe = get3x3Positions(blockPos);
 
-        boolean anyBlockHoed = false;
+            boolean anyBlockHoed = false;
 
-        // Attempt to till each block in the area
-        for (BlockPos targetPos : positionsToHoe) {
-            Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = TILLABLES.get(level.getBlockState(targetPos).getBlock());
-            if (pair != null) {
-                Predicate<UseOnContext> predicate = pair.getFirst();
-                Consumer<UseOnContext> consumer = pair.getSecond();
+            for (BlockPos targetPos : positionsToHoe) {
                 UseOnContext context = new UseOnContext(level, player, useOnContext.getHand(), itemStack,
                         new BlockHitResult(useOnContext.getClickLocation(), useOnContext.getClickedFace(), targetPos, useOnContext.isInside()));
-                if (predicate.test(context)) {
-                    if (!level.isClientSide()) {
+                Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = TILLABLES.get(
+                        level.getBlockState(targetPos).getBlock()
+                );
+                if (pair != null) {
+                    Predicate<UseOnContext> predicate = pair.getFirst();
+                    Consumer<UseOnContext> consumer = pair.getSecond();
+                    if (predicate.test(context)) {
+                        level.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                         consumer.accept(context);
+                        anyBlockHoed = true;
                     }
-
-                    anyBlockHoed = true;
                 }
             }
-        }
 
-        if (anyBlockHoed) {
-            level.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-            // Damage the tool once for the original block
-            if (player != null) {
-                EquipmentSlot equipmentSlot = itemStack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-                itemStack.hurtAndBreak(1, player, equipmentSlot);
+            if (anyBlockHoed) {
+                // Damage the tool once for the original block
+                if (player != null) {
+                    EquipmentSlot equipmentSlot = itemStack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                    itemStack.hurtAndBreak(1, player, equipmentSlot);
+                }
+                return InteractionResult.SUCCESS;
             }
-            return InteractionResult.SUCCESS;
+
+            // Crop harvesting behavior
+            if (block instanceof CropBlock cropBlock && cropBlock.isMaxAge(blockState)) {
+                // Generate loot table
+                LootParams.Builder lootBuilder = new LootParams.Builder(serverLevel)
+                        .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockPos))
+                        .withParameter(LootContextParams.TOOL, itemStack)
+                        .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
+                        .withParameter(LootContextParams.BLOCK_STATE, blockState);
+
+                List<ItemStack> drops = blockState.getDrops(lootBuilder);
+
+                // Set block back to default state(age 0)
+                level.setBlock(blockPos, block.defaultBlockState(), 0);
+
+                for (ItemStack drop : drops) {
+                    Block.popResource(level, blockPos, drop);
+                }
+                if (player != null) {
+                    player.swing(useOnContext.getHand());
+                }
+                return InteractionResult.SUCCESS;
+            }
         }
 
-        return InteractionResult.PASS;
+        // Fall back to default hoe behavior if no custom hoeing happened
+        return super.useOn(useOnContext);
     }
 
     private List<BlockPos> get3x3Positions(BlockPos center) {
@@ -80,5 +123,15 @@ public class ScytheItem extends HoeItem {
         }
 
         return positions;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipAdder.accept(CommonComponents.EMPTY);
+            tooltipAdder.accept(DESC);
+        }
     }
 }

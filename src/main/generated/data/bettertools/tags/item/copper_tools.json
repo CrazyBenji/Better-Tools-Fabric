@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:copper_sword",
+    "minecraft:copper_shovel",
+    "minecraft:copper_pickaxe",
+    "minecraft:copper_axe",
+    "minecraft:copper_hoe",
+    "bettertools:copper_hammer",
+    "bettertools:copper_paxel",
+    "bettertools:copper_scythe",
+    "bettertools:copper_lumber_axe",
+    "bettertools:copper_machete"
+  ]
+}

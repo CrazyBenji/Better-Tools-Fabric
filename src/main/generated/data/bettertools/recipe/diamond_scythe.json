@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "m": "minecraft:diamond",
-    "s": "minecraft:stick"
+    "s": "#c:rods/wooden"
   },
   "pattern": [
     "mmm",

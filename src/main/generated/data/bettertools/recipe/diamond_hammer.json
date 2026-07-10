@@ -4,7 +4,7 @@
   "key": {
     "b": "minecraft:diamond_block",
     "m": "minecraft:diamond",
-    "s": "minecraft:stick"
+    "s": "#c:rods/wooden"
   },
   "pattern": [
     "mbm",
