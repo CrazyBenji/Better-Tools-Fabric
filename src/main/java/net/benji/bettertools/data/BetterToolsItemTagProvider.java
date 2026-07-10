@@ -2,8 +2,8 @@ package net.benji.bettertools.data;
 
 import net.benji.bettertools.item.BetterToolsItems;
 import net.benji.bettertools.util.BetterToolsTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -11,9 +11,9 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvider {
+public class BetterToolsItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
-    public BetterToolsItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+    public BetterToolsItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
 

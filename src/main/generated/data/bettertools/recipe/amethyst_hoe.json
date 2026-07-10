@@ -6,12 +6,11 @@
     "s": "#c:rods/wooden"
   },
   "pattern": [
-    "ii ",
-    " s ",
-    " s "
+    "ii",
+    " s",
+    " s"
   ],
   "result": {
-    "count": 1,
     "id": "bettertools:amethyst_hoe"
   }
 }

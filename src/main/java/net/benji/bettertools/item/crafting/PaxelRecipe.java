@@ -1,55 +1,59 @@
 package net.benji.bettertools.item.crafting;
 
-import com.mojang.serialization.Codec;
+import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
-public class PaxelRecipe extends ShapedRecipe {
-    final ShapedRecipePattern pattern;
-    final ItemStack result;
-    final String group;
-    final CraftingBookCategory category;
-    final boolean showNotification;
+public class PaxelRecipe extends NormalCraftingRecipe {
+    public static final MapCodec<PaxelRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec((i) -> i.group(CommonInfo.MAP_CODEC.forGetter((o) -> o.commonInfo), CraftingBookInfo.MAP_CODEC.forGetter((o) -> o.bookInfo), ShapedRecipePattern.MAP_CODEC.forGetter((o) -> o.pattern), ItemStackTemplate.CODEC.fieldOf("result").forGetter((o) -> o.result)).apply(i, PaxelRecipe::new));
+    public static final StreamCodec<RegistryFriendlyByteBuf, PaxelRecipe> STREAM_CODEC = StreamCodec.composite(CommonInfo.STREAM_CODEC, (o) -> o.commonInfo, CraftingBookInfo.STREAM_CODEC, (o) -> o.bookInfo, ShapedRecipePattern.STREAM_CODEC, (o) -> o.pattern, ItemStackTemplate.STREAM_CODEC, (o) -> o.result, PaxelRecipe::new);
+    public static final RecipeSerializer<PaxelRecipe> SERIALIZER = new RecipeSerializer<>(MAP_CODEC, STREAM_CODEC);
+    private final ShapedRecipePattern pattern;
+    private final ItemStackTemplate result;
 
-    public PaxelRecipe(String string, CraftingBookCategory craftingBookCategory, ShapedRecipePattern shapedRecipePattern, ItemStack itemStack, boolean bl) {
-        super(string, craftingBookCategory, shapedRecipePattern, itemStack, bl);
-        this.group = string;
-        this.category = craftingBookCategory;
-        this.pattern = shapedRecipePattern;
-        this.result = itemStack;
-        this.showNotification = bl;
+    public PaxelRecipe(final Recipe.CommonInfo commonInfo, final CraftingRecipe.CraftingBookInfo bookInfo, final ShapedRecipePattern pattern, final ItemStackTemplate result) {
+        super(commonInfo, bookInfo);
+        this.pattern = pattern;
+        this.result = result;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingInput craftingInput, @NotNull HolderLookup.Provider provider) {
-        super.assemble(craftingInput, provider);
-        ItemStack toReturn = result.copy();
+    public @NotNull ItemStack assemble(@NotNull CraftingInput craftingInput) {
+        ItemStack toReturn = result.create();
         EnchantmentHelper.setEnchantments(toReturn, combineEnchantments(craftingInput));
         return toReturn;
     }
 
     private ItemEnchantments combineEnchantments(CraftingInput craftingInput) {
-        if (this.pattern.ingredients().get(0).isPresent()) {
-            ItemEnchantments.Mutable combined = this.pattern.ingredients().get(0).get().test(craftingInput.getItem(0))
+        if (this.pattern.ingredients().getFirst().isPresent()) {
+            ItemEnchantments.Mutable combined = this.pattern.ingredients().getFirst().get().test(craftingInput.getItem(0))
                     ? new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(craftingInput.getItem(0)))
                     : new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(craftingInput.getItem(2)));
 
             List<ItemEnchantments> enchantmentsToCombine = List.of(
                     EnchantmentHelper.getEnchantmentsForCrafting(craftingInput.getItem(1)),
-                    this.pattern.ingredients().get(0).get().test(craftingInput.getItem(0))
+                    this.pattern.ingredients().getFirst().get().test(craftingInput.getItem(0))
                             ? EnchantmentHelper.getEnchantmentsForCrafting(craftingInput.getItem(2))
                             : EnchantmentHelper.getEnchantmentsForCrafting(craftingInput.getItem(0))
             );
@@ -68,51 +72,33 @@ public class PaxelRecipe extends ShapedRecipe {
         return null;
     }
 
-    @Override
-    public @NotNull RecipeSerializer<PaxelRecipe> getSerializer() {
-        return BetterToolsRecipeSerializers.PAXEL_RECIPE_SERIALIZER;
+    @VisibleForTesting
+    public List<Optional<Ingredient>> getIngredients() {
+        return this.pattern.ingredients();
     }
 
-    public static class PaxelRecipeSerializer implements RecipeSerializer<PaxelRecipe> {
-        public static final MapCodec<PaxelRecipe> CODEC = RecordCodecBuilder.mapCodec(
-                instance -> instance.group(
-                                Codec.STRING.optionalFieldOf("group", "").forGetter(shapedRecipe -> shapedRecipe.group),
-                                CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(shapedRecipe -> shapedRecipe.category),
-                                ShapedRecipePattern.MAP_CODEC.forGetter(shapedRecipe -> shapedRecipe.pattern),
-                                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(shapedRecipe -> shapedRecipe.result),
-                                Codec.BOOL.optionalFieldOf("show_notification", true).forGetter(shapedRecipe -> shapedRecipe.showNotification)
-                        )
-                        .apply(instance, PaxelRecipe::new)
-        );
-        public static final StreamCodec<RegistryFriendlyByteBuf, PaxelRecipe> STREAM_CODEC = StreamCodec.of(
-                PaxelRecipeSerializer::toNetwork, PaxelRecipeSerializer::fromNetwork
-        );
+    protected @NonNull PlacementInfo createPlacementInfo() {
+        return PlacementInfo.createFromOptionals(this.pattern.ingredients());
+    }
 
-        @Override
-        public @NotNull MapCodec<PaxelRecipe> codec() {
-            return CODEC;
-        }
+    public boolean matches(final CraftingInput input, final @NonNull Level level) {
+        return this.pattern.matches(input);
+    }
 
-        @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, PaxelRecipe> streamCodec() {
-            return STREAM_CODEC;
-        }
+    public int getWidth() {
+        return this.pattern.width();
+    }
 
-        private static PaxelRecipe fromNetwork(RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-            String string = registryFriendlyByteBuf.readUtf();
-            CraftingBookCategory craftingBookCategory = registryFriendlyByteBuf.readEnum(CraftingBookCategory.class);
-            ShapedRecipePattern shapedRecipePattern = ShapedRecipePattern.STREAM_CODEC.decode(registryFriendlyByteBuf);
-            ItemStack itemStack = ItemStack.STREAM_CODEC.decode(registryFriendlyByteBuf);
-            boolean bl = registryFriendlyByteBuf.readBoolean();
-            return new PaxelRecipe(string, craftingBookCategory, shapedRecipePattern, itemStack, bl);
-        }
+    public int getHeight() {
+        return this.pattern.height();
+    }
 
-        private static void toNetwork(RegistryFriendlyByteBuf registryFriendlyByteBuf, PaxelRecipe shapedRecipe) {
-            registryFriendlyByteBuf.writeUtf(shapedRecipe.group);
-            registryFriendlyByteBuf.writeEnum(shapedRecipe.category);
-            ShapedRecipePattern.STREAM_CODEC.encode(registryFriendlyByteBuf, shapedRecipe.pattern);
-            ItemStack.STREAM_CODEC.encode(registryFriendlyByteBuf, shapedRecipe.result);
-            registryFriendlyByteBuf.writeBoolean(shapedRecipe.showNotification);
-        }
+    public @NonNull List<RecipeDisplay> display() {
+        return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((e) -> (SlotDisplay)e.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(Items.CRAFTING_TABLE)));
+    }
+
+    @Override
+    public @NotNull RecipeSerializer<PaxelRecipe> getSerializer() {
+        return SERIALIZER;
     }
 }

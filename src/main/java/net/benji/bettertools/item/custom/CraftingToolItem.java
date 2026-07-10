@@ -1,10 +1,12 @@
 package net.benji.bettertools.item.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import org.jetbrains.annotations.NotNull;
@@ -27,17 +29,17 @@ public class CraftingToolItem extends Item {
     }
 
     @Override
-    public ItemStack getRecipeRemainder(ItemStack stack) {
+    public @org.jspecify.annotations.Nullable ItemStackTemplate getCraftingRemainder(ItemStack stack) {
         ItemStack remainder = stack.copy();
 
         int damage = remainder.getDamageValue() + 1;
 
         if (damage >= remainder.getMaxDamage()) {
-            return ItemStack.EMPTY;
+            return ItemStack.EMPTY.getCraftingRemainder();
         }
 
         remainder.setDamageValue(damage);
-        return remainder;
+        return ItemStackTemplate.fromNonEmptyStack(remainder);
     }
 
     @Override

@@ -2,8 +2,8 @@ package net.benji.bettertools.data;
 
 import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.item.BetterToolsItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -27,7 +27,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
+public class BetterToolsLootTableProvider extends FabricBlockLootSubProvider {
     public final LootItemCondition.Builder HAS_GLASS_CHIPPER_OR_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.registries.lookupOrThrow(Registries.ITEM), BetterToolsItems.GLASS_CHIPPER))
             .or(this.hasSilkTouch());
 
@@ -68,7 +68,7 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
             Blocks.PINK_STAINED_GLASS_PANE
     );
 
-    public BetterToolsLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public BetterToolsLootTableProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 

@@ -17,7 +17,6 @@
       "translate": "advancements.story.get_glass_chipper.description"
     },
     "icon": {
-      "count": 1,
       "id": "bettertools:glass_chipper"
     },
     "title": {

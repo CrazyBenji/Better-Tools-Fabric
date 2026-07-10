@@ -6,12 +6,11 @@
     "s": "#c:rods/wooden"
   },
   "pattern": [
-    "ii ",
-    "is ",
-    " s "
+    "ii",
+    "is",
+    " s"
   ],
   "result": {
-    "count": 1,
     "id": "bettertools:amethyst_axe"
   }
 }

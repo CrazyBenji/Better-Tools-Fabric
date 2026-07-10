@@ -17,7 +17,6 @@
       "translate": "advancements.story.get_amethyst_tools.description"
     },
     "icon": {
-      "count": 1,
       "id": "bettertools:amethyst_pickaxe"
     },
     "title": {

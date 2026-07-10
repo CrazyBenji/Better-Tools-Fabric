@@ -6,12 +6,11 @@
     "s": "#c:rods/wooden"
   },
   "pattern": [
-    " i ",
-    " s ",
-    " s "
+    "i",
+    "s",
+    "s"
   ],
   "result": {
-    "count": 1,
     "id": "bettertools:amethyst_shovel"
   }
 }

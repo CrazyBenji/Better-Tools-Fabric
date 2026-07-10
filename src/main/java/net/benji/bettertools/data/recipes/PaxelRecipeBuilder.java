@@ -3,129 +3,107 @@ package net.benji.bettertools.data.recipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.benji.bettertools.item.crafting.PaxelRecipe;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.level.ItemLike;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class PaxelRecipeBuilder implements RecipeBuilder {
     private final HolderGetter<Item> items;
     private final RecipeCategory category;
-    private final Item result;
-    private final int count;
-    private final List<String> rows = Lists.<String>newArrayList();
-    private final Map<Character, Ingredient> key = Maps.<Character, Ingredient>newLinkedHashMap();
-    private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    @Nullable
-    private String group;
+    private final ItemStackTemplate result;
+    private final List<String> rows = Lists.newArrayList();
+    private final Map<Character, Ingredient> key = Maps.newLinkedHashMap();
+    private final RecipeUnlockAdvancementBuilder advancementBuilder = new RecipeUnlockAdvancementBuilder();
+    private @org.jspecify.annotations.Nullable String group;
     private boolean showNotification = true;
 
-    private PaxelRecipeBuilder(HolderGetter<Item> holderGetter, RecipeCategory recipeCategory, ItemLike itemLike, int i) {
-        this.items = holderGetter;
-        this.category = recipeCategory;
-        this.result = itemLike.asItem();
-        this.count = i;
+    private PaxelRecipeBuilder(final HolderGetter<Item> items, final RecipeCategory category, final ItemStackTemplate result) {
+        this.items = items;
+        this.category = category;
+        this.result = result;
     }
 
-    public static PaxelRecipeBuilder paxel(HolderGetter<Item> holderGetter, RecipeCategory recipeCategory, ItemLike itemLike) {
-        return paxel(holderGetter, recipeCategory, itemLike, 1);
+    private PaxelRecipeBuilder(final HolderGetter<Item> items, final RecipeCategory category, final ItemLike result, final int count) {
+        this(items, category, new ItemStackTemplate(result.asItem(), count));
     }
 
-    public static PaxelRecipeBuilder paxel(HolderGetter<Item> holderGetter, RecipeCategory recipeCategory, ItemLike itemLike, int i) {
-        return new PaxelRecipeBuilder(holderGetter, recipeCategory, itemLike, i);
+    public static PaxelRecipeBuilder paxel(final HolderGetter<Item> items, final RecipeCategory category, final ItemLike item) {
+        return paxel(items, category, item, 1);
     }
 
-    public PaxelRecipeBuilder define(Character character, TagKey<Item> tagKey) {
-        return this.define(character, Ingredient.of(this.items.getOrThrow(tagKey)));
+    public static PaxelRecipeBuilder paxel(final HolderGetter<Item> items, final RecipeCategory category, final ItemLike item, final int count) {
+        return new PaxelRecipeBuilder(items, category, item, count);
     }
 
-    public PaxelRecipeBuilder define(Character character, ItemLike itemLike) {
-        return this.define(character, Ingredient.of(itemLike));
+    public PaxelRecipeBuilder define(final Character symbol, final TagKey<Item> tag) {
+        return this.define(symbol, Ingredient.of(this.items.getOrThrow(tag)));
     }
 
-    public PaxelRecipeBuilder define(Character character, Ingredient ingredient) {
-        if (this.key.containsKey(character)) {
-            throw new IllegalArgumentException("Symbol '" + character + "' is already defined!");
-        } else if (character == ' ') {
+    public PaxelRecipeBuilder define(final Character symbol, final ItemLike item) {
+        return this.define(symbol, Ingredient.of(item));
+    }
+
+    public PaxelRecipeBuilder define(final Character symbol, final Ingredient ingredient) {
+        if (this.key.containsKey(symbol)) {
+            throw new IllegalArgumentException("Symbol '" + symbol + "' is already defined!");
+        }
+
+        if (symbol == ' ') {
             throw new IllegalArgumentException("Symbol ' ' (whitespace) is reserved and cannot be defined");
-        } else {
-            this.key.put(character, ingredient);
-            return this;
         }
+
+        this.key.put(symbol, ingredient);
+        return this;
     }
 
-    public PaxelRecipeBuilder pattern(String string) {
-        if (!this.rows.isEmpty() && string.length() != this.rows.get(0).length()) {
+    public PaxelRecipeBuilder pattern(final String row) {
+        if (!this.rows.isEmpty() && row.length() != this.rows.getFirst().length()) {
             throw new IllegalArgumentException("Pattern must be the same width on every line!");
-        } else {
-            this.rows.add(string);
-            return this;
         }
-    }
 
-    public @NotNull PaxelRecipeBuilder unlockedBy(String string, Criterion<?> criterion) {
-        this.criteria.put(string, criterion);
+        this.rows.add(row);
         return this;
     }
 
-    public @NotNull PaxelRecipeBuilder group(@Nullable String string) {
-        this.group = string;
+    public @NonNull PaxelRecipeBuilder unlockedBy(final @NonNull String name, final @NonNull Criterion<?> criterion) {
+        this.advancementBuilder.unlockedBy(name, criterion);
         return this;
     }
 
-    public PaxelRecipeBuilder showNotification(boolean bl) {
-        this.showNotification = bl;
+    public @NonNull PaxelRecipeBuilder group(final @Nullable String group) {
+        this.group = group;
+        return this;
+    }
+
+    public PaxelRecipeBuilder showNotification(final boolean showNotification) {
+        this.showNotification = showNotification;
         return this;
     }
 
     @Override
-    public @NotNull Item getResult() {
-        return this.result;
+    public @NonNull ResourceKey<Recipe<?>> defaultId() {
+        return RecipeBuilder.getDefaultRecipeId(this.result);
     }
 
     @Override
-    public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
-        ShapedRecipePattern shapedRecipePattern = this.ensureValid(resourceKey);
-        Advancement.Builder builder = recipeOutput.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
-                .rewards(AdvancementRewards.Builder.recipe(resourceKey))
-                .requirements(AdvancementRequirements.Strategy.OR);
-        this.criteria.forEach(builder::addCriterion);
-        PaxelRecipe paxelRecipe = new PaxelRecipe(
-                Objects.requireNonNullElse(this.group, ""),
-                RecipeBuilder.determineBookCategory(this.category),
-                shapedRecipePattern,
-                new ItemStack(this.result, this.count),
-                this.showNotification
+    public void save(final RecipeOutput output, final @NonNull ResourceKey<Recipe<?>> id) {
+        ShapedRecipePattern pattern = ShapedRecipePattern.of(this.key, this.rows);
+        PaxelRecipe recipe = new PaxelRecipe(
+                RecipeBuilder.createCraftingCommonInfo(this.showNotification), RecipeBuilder.createCraftingBookInfo(this.category, this.group), pattern, this.result
         );
-        recipeOutput.accept(resourceKey, paxelRecipe, builder.build(resourceKey.identifier().withPrefix("recipes/" + this.category.getFolderName() + "/")));
-    }
-
-    private ShapedRecipePattern ensureValid(ResourceKey<Recipe<?>> resourceKey) {
-        if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + resourceKey.identifier());
-        } else {
-            return ShapedRecipePattern.of(this.key, this.rows);
-        }
+        output.accept(id, recipe, this.advancementBuilder.build(output, id, this.category));
     }
 }

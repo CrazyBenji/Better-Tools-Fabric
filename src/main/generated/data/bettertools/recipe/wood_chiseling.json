@@ -1,4 +1,5 @@
 {
   "type": "bettertools:wood_chiseling",
-  "category": "misc"
+  "chisel": "bettertools:wood_chisel",
+  "log": "#minecraft:logs"
 }

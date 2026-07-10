@@ -17,7 +17,6 @@
       "translate": "advancements.story.get_wood_chisel.description"
     },
     "icon": {
-      "count": 1,
       "id": "bettertools:wood_chisel"
     },
     "title": {

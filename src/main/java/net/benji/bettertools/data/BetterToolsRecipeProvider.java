@@ -3,22 +3,24 @@ package net.benji.bettertools.data;
 import net.benji.bettertools.data.recipes.PaxelRecipeBuilder;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.benji.bettertools.item.crafting.WoodChiselingRecipe;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
 public class BetterToolsRecipeProvider extends FabricRecipeProvider {
-    public BetterToolsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public BetterToolsRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
     }
 
@@ -96,7 +98,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 generateAxeRecipe(exporter, Items.AMETHYST_SHARD, BetterToolsItems.AMETHYST_AXE);
                 generateHoeRecipe(exporter, Items.AMETHYST_SHARD, BetterToolsItems.AMETHYST_HOE);
 
-                SpecialRecipeBuilder.special(WoodChiselingRecipe::new).save(exporter, "wood_chiseling");
+                SpecialRecipeBuilder.special(() -> new WoodChiselingRecipe(
+                        Ingredient.of(BetterToolsItems.WOOD_CHISEL),
+                        Ingredient.of(registries.lookupOrThrow(Registries.ITEM).getOrThrow(ItemTags.LOGS)))).save(exporter, "wood_chiseling");
             }
 
             public void generatePaxelRecipe(RecipeOutput recipeOutput, Item pickaxe, Item axe, Item shovel, Item output) {
@@ -160,9 +164,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
 
             public void generateSwordRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
                 shaped(RecipeCategory.TOOLS, output, 1)
-                        .pattern(" i ")
-                        .pattern(" i ")
-                        .pattern(" s ")
+                        .pattern("i")
+                        .pattern("i")
+                        .pattern("s")
                         .define('i', ingot)
                         .define('s', ConventionalItemTags.WOODEN_RODS)
                         .unlockedBy(getHasName(ingot), has(ingot))
@@ -170,9 +174,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
             }
             public void generateShovelRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
                 shaped(RecipeCategory.TOOLS, output, 1)
-                        .pattern(" i ")
-                        .pattern(" s ")
-                        .pattern(" s ")
+                        .pattern("i")
+                        .pattern("s")
+                        .pattern("s")
                         .define('i', ingot)
                         .define('s', ConventionalItemTags.WOODEN_RODS)
                         .unlockedBy(getHasName(ingot), has(ingot))
@@ -190,9 +194,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
             }
             public void generateAxeRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
                 shaped(RecipeCategory.TOOLS, output, 1)
-                        .pattern("ii ")
-                        .pattern("is ")
-                        .pattern(" s ")
+                        .pattern("ii")
+                        .pattern("is")
+                        .pattern(" s")
                         .define('i', ingot)
                         .define('s', ConventionalItemTags.WOODEN_RODS)
                         .unlockedBy(getHasName(ingot), has(ingot))
@@ -200,9 +204,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
             }
             public void generateHoeRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
                 shaped(RecipeCategory.TOOLS, output, 1)
-                        .pattern("ii ")
-                        .pattern(" s ")
-                        .pattern(" s ")
+                        .pattern("ii")
+                        .pattern(" s")
+                        .pattern(" s")
                         .define('i', ingot)
                         .define('s', ConventionalItemTags.WOODEN_RODS)
                         .unlockedBy(getHasName(ingot), has(ingot))

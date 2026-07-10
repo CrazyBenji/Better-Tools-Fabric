@@ -9,12 +9,12 @@ import net.minecraft.world.item.crafting.*;
 public class BetterToolsRecipeSerializers {
     public static final RecipeSerializer<PaxelRecipe> PAXEL_RECIPE_SERIALIZER = registerRecipeSerializer(
             "paxel",
-            new PaxelRecipe.PaxelRecipeSerializer()
+            PaxelRecipe.SERIALIZER
     );
 
     public static final RecipeSerializer<WoodChiselingRecipe> WOOD_CHISELING_RECIPE_SERIALIZER = registerRecipeSerializer(
             "wood_chiseling",
-            new CustomRecipe.Serializer<>(WoodChiselingRecipe::new)
+            WoodChiselingRecipe.SERIALIZER
     );
 
     public static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerRecipeSerializer(String key, S recipeSerializer) {
