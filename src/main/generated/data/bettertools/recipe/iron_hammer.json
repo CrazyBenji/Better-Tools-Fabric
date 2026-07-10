@@ -4,7 +4,7 @@
   "key": {
     "b": "minecraft:iron_block",
     "m": "minecraft:iron_ingot",
-    "s": "minecraft:stick"
+    "s": "#c:rods/wooden"
   },
   "pattern": [
     "mbm",

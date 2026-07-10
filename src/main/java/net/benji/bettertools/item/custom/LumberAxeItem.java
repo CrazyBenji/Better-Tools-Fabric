@@ -1,84 +1,71 @@
 package net.benji.bettertools.item.custom;
 
+import net.benji.bettertools.util.BetterToolsTags;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
-public class LumberAxeItem extends AxeItem {
-    private final int maxLogs;
-    private Set<BlockPos> toBreak;
+public class LumberAxeItem extends AxeItem implements VeinMiningTool {
+    protected final int maxBlocks;
 
-    public LumberAxeItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties, int maxLogs) {
-        super(tier, attackDamage, attackSpeed, properties);
-        this.maxLogs = maxLogs;
-        this.toBreak = new HashSet<>();
+    public static final Component DESC = Component.translatable("desc.bettertools.lumber_axe").withStyle(ChatFormatting.BLUE);
+
+    public LumberAxeItem(ToolMaterial toolMaterial, float attackDamageModifier, float attackSpeedModifier, Properties properties, int maxBlocks) {
+        super(toolMaterial,  attackDamageModifier, attackSpeedModifier, properties);
+        this.maxBlocks = maxBlocks;
+    }
+
+    public LumberAxeItem(ToolMaterial toolMaterial, Properties properties, int maxBlocks) {
+        this(toolMaterial, 6.0F, -3.1F, properties, maxBlocks);
     }
 
     @Override
-    public boolean mineBlock(@NotNull ItemStack stack, Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity player) {
-
-        if (!level.isClientSide && level instanceof ServerLevel server && state.is(BlockTags.LOGS)) {
-
-            breakConnectedLogs(server, pos);
+    public boolean mineBlock(@NotNull ItemStack itemStack, Level level, @NotNull BlockState state, @NotNull BlockPos blockPos, @NotNull LivingEntity livingEntity) {
+        if (level instanceof ServerLevel serverLevel && state.is(BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES)) {
+            Set<BlockPos> toBreak = findConnectedBlocks(serverLevel, blockPos, this.maxBlocks, BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES);
             for (BlockPos breakPos : toBreak) {
-                level.destroyBlock(breakPos, true);
-                EquipmentSlot equipmentSlot = stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-                stack.hurtAndBreak(1, player, equipmentSlot);
+                BlockState breakState = level.getBlockState(breakPos);
+
+                List<ItemStack> drops = generateLootTable(itemStack, serverLevel, breakState, breakPos, livingEntity);
+
+                level.destroyBlock(breakPos, false);
+
+                for (ItemStack drop : drops) {
+                    Block.popResource(level, blockPos, drop);
+                }
+                EquipmentSlot equipmentSlot = itemStack.equals(livingEntity.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                itemStack.hurtAndBreak(1, livingEntity, equipmentSlot);
             }
-            this.toBreak.clear();
+            toBreak.clear();
         }
 
-        return super.mineBlock(stack, level, state, pos, player);
+        return true;
     }
 
-    private void breakConnectedLogs(ServerLevel level, BlockPos startPos) {
-        if (this.toBreak.size() >= maxLogs) {
-            return;
-        }
-        ArrayList<BlockPos> toCheck = populateArrayList(startPos);
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, tooltipFlag);
 
-        for (BlockPos pos : toCheck) {
-            if (!this.toBreak.contains(pos) && level.getBlockState(pos).is(BlockTags.LOGS)) {
-                this.toBreak.add(pos);
-                this.breakConnectedLogs(level, pos);
-            }
+        if (tooltipFlag.isAdvanced()) {
+            tooltipAdder.accept(CommonComponents.EMPTY);
+            tooltipAdder.accept(DESC);
         }
     }
-
-    private ArrayList<BlockPos> populateArrayList(BlockPos pos) {
-        ArrayList<BlockPos> list = new ArrayList<>();
-        list.add(pos.east());
-        list.add(pos.east().north());
-        list.add(pos.west());
-        list.add(pos.west().south());
-        list.add(pos.north());
-        list.add(pos.north().west());
-        list.add(pos.south());
-        list.add(pos.south().east());
-
-        list.add(pos.above());
-        list.add(pos.east().above());
-        list.add(pos.east().north().above());
-        list.add(pos.west().above());
-        list.add(pos.west().south().above());
-        list.add(pos.north().above());
-        list.add(pos.north().west().above());
-        list.add(pos.south().above());
-        list.add(pos.south().east().above());
-
-        return list;
-    }
-
 }
