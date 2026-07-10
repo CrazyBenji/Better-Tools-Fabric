@@ -33,12 +33,15 @@ public class WoodChiselingRecipe extends CustomRecipe {
                 if (itemStack.is(BetterToolsItems.WOOD_CHISEL.asItem()) && !chisel) {
                     chisel = true;
                 }
-                else if (itemStack.getItem() instanceof BlockItem blockItem) {
+                else if (itemStack.getItem() instanceof BlockItem blockItem && !log) {
                     Map<Block, Block> strippables = AxeItemAccessor.getStrippables();
                     Optional<Block> logBlock = Optional.ofNullable(strippables.get(blockItem.getBlock()));
                     if (logBlock.isPresent()) {
                         log = true;
                     }
+                }
+                else {
+                    return false;
                 }
             }
         }
@@ -48,7 +51,7 @@ public class WoodChiselingRecipe extends CustomRecipe {
 
     @Override
     public @NotNull ItemStack assemble(CraftingInput recipeInput, HolderLookup.Provider provider) {
-        ItemStack result = new ItemStack(Items.STRIPPED_OAK_LOG);
+        ItemStack result = ItemStack.EMPTY;
 
         for (int i = 0; i < recipeInput.size(); i++) {
             ItemStack input = recipeInput.getItem(i);
