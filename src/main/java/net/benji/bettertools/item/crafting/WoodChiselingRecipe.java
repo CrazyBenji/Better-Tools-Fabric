@@ -33,12 +33,15 @@ public class WoodChiselingRecipe extends CustomRecipe {
                 if (itemStack.is(BetterToolsItems.WOOD_CHISEL.asItem()) && !chisel) {
                     chisel = true;
                 }
-                else if (itemStack.getItem() instanceof BlockItem blockItem) {
+                else if (itemStack.getItem() instanceof BlockItem blockItem && !log) {
                     Map<Block, Block> strippables = AxeItemAccessor.getStrippables();
                     Optional<Block> logBlock = Optional.ofNullable(strippables.get(blockItem.getBlock()));
                     if (logBlock.isPresent()) {
                         log = true;
                     }
+                }
+                else {
+                    return false;
                 }
             }
         }
