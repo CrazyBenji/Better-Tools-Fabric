@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:story/iron_tools",
+  "parent": "minecraft:story/smelt_iron",
   "criteria": {
     "got_lumber_axe": {
       "conditions": {
         "items": [
           {
-            "items": "bettertools:iron_lumber_axe"
+            "items": "#bettertools:lumber_axes"
           }
         ]
       },

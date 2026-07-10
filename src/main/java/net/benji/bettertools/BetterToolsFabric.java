@@ -4,6 +4,7 @@ import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.enchantment.BetterToolsEnchantments;
 import net.benji.bettertools.item.BetterToolsItemGroups;
 import net.benji.bettertools.item.BetterToolsItems;
+import net.benji.bettertools.item.crafting.BetterToolsRecipeSerializers;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -15,9 +16,10 @@ public class BetterToolsFabric implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-        BetterToolsItems.registerModItems();
-        BetterToolsItemGroups.registerItemGroups();
-        BetterToolsBlocks.registerModBlocks();
-        BetterToolsEnchantments.registerModEnchantments();
+        BetterToolsItems.registerItems();
+        BetterToolsItemGroups.registerCreativeModeTabs();
+        BetterToolsBlocks.registerBlocks();
+        BetterToolsEnchantments.registerEnchantments();
+		BetterToolsRecipeSerializers.registerRecipeSerializers();
 	}
 }

@@ -34,5 +34,34 @@ public class BetterToolsBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BetterToolsBlocks.SMASHED_BEDROCK);
+
+        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(BetterToolsBlocks.SMASHED_BEDROCK);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.MACHETE_MINEABLE)
+                .forceAddTag(BlockTags.LEAVES)
+                .forceAddTag(BlockTags.FLOWERS)
+                .add(Blocks.SHORT_GRASS)
+                .add(Blocks.FERN)
+                .add(Blocks.TALL_GRASS)
+                .add(Blocks.LARGE_FERN)
+                .add(Blocks.BAMBOO)
+                .add(Blocks.NETHER_WART_BLOCK)
+                .add(Blocks.WARPED_WART_BLOCK)
+                .add(Blocks.CRIMSON_ROOTS)
+                .add(Blocks.WARPED_ROOTS);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.INCORRECT_FOR_COPPER_TOOL)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.INCORRECT_FOR_AMETHYST_TOOL)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.MACHETE_VEIN_MINES)
+                .forceAddTag(BetterToolsTags.Blocks.MACHETE_MINEABLE);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES)
+                .forceAddTag(BlockTags.LOGS);
     }
 }
