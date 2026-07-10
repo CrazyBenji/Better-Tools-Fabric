@@ -1,4 +1,10 @@
 // 1.21.6	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:block
+af1e9dcb3ecb909bde41700ab3e478a302ea9b2e data/bettertools/tags/block/incorrect_for_amethyst_tool.json
+39077f8e94ddebb7971dd90274a73304cd5d9dab data/bettertools/tags/block/incorrect_for_copper_tool.json
+692596115bdbee171c4d635edaf1da45912fa5e5 data/bettertools/tags/block/lumber_axe_vein_mines.json
+0baaf7c359b6dde322d493577d373ebbfe87e9d2 data/bettertools/tags/block/machete_vein_mines.json
 c3d1593afdd895485ccf6c3574621436b3700c13 data/bettertools/tags/block/mineable/glass_chipper.json
+7f318e8636143e35adda656623b24f1f9ade6577 data/bettertools/tags/block/mineable/machete.json
 3b5164705f02c714b116ba0cd5edf27bb3ca151d data/bettertools/tags/block/mineable/paxel.json
 64f5176353f642aa08103a3e0e7443d420797ede data/minecraft/tags/block/mineable/pickaxe.json
+64f5176353f642aa08103a3e0e7443d420797ede data/minecraft/tags/block/needs_diamond_tool.json

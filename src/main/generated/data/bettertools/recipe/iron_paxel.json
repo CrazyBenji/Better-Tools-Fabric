@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "bettertools:paxel",
   "category": "equipment",
   "key": {
-    "a": "minecraft:iron_pickaxe",
-    "b": "minecraft:iron_axe",
-    "c": "minecraft:iron_shovel",
-    "s": "minecraft:stick"
+    "a": "minecraft:iron_axe",
+    "p": "minecraft:iron_pickaxe",
+    "r": "#c:rods/wooden",
+    "s": "minecraft:iron_shovel"
   },
   "pattern": [
-    "abc",
-    " s ",
-    " s "
+    "pas",
+    " r ",
+    " r "
   ],
   "result": {
     "count": 1,

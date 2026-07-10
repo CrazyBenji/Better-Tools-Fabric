@@ -1,5 +1,6 @@
 package net.benji.bettertools.data;
 
+import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -9,7 +10,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -105,6 +105,8 @@ public class BetterToolsLootTableProvider extends FabricBlockLootTableProvider {
                         )
                 )
         );
+
+        this.dropSelf(BetterToolsBlocks.SMASHED_BEDROCK);
     }
 
     public void dropWhenGlassChipper(Block block) {

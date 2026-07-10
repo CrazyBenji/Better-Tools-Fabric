@@ -1,13 +1,15 @@
 {
-	"required": true,
-	"package": "net.benji.bettertools.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "net.benji.bettertools.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AxeItemAccessor",
+    "ShovelItemAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }

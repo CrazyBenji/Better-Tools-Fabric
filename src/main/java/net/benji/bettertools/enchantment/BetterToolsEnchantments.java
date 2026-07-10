@@ -38,7 +38,7 @@ public class BetterToolsEnchantments {
         registry.register(key, builder.build(key.location()));
     }
 
-    public static void registerModEnchantments() {
+    public static void registerEnchantments() {
         BetterToolsFabric.LOGGER.info("Registering Enchantments for " + BetterToolsFabric.MOD_ID);
     }
 

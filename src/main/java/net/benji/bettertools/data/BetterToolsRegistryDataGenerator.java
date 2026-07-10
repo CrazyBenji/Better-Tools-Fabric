@@ -20,6 +20,6 @@ public class BetterToolsRegistryDataGenerator extends FabricDynamicRegistryProvi
 
     @Override
     public @NotNull String getName() {
-        return "Better Tools Registry Data Generator";
+        return "BetterToolsRegistryDataGenerator";
     }
 }

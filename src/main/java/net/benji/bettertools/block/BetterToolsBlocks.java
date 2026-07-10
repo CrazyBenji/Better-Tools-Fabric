@@ -19,7 +19,7 @@ public class BetterToolsBlocks {
             "smashed_bedrock",
             Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN),
-            false);
+            true);
 
     private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         ResourceKey<Block> blockKey = keyOfBlock(name);
@@ -40,7 +40,7 @@ public class BetterToolsBlocks {
         return ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
     }
 
-    public static void registerModBlocks() {
+    public static void registerBlocks() {
         BetterToolsFabric.LOGGER.info("Registering Mod Blocks for " + BetterToolsFabric.MOD_ID);
     }
 
