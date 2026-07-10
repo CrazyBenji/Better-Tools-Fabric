@@ -1,22 +1,24 @@
 package net.benji.bettertools.item.custom;
 
 import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableMap.Builder;
+import net.benji.bettertools.mixin.AxeItemAccessor;
+import net.benji.bettertools.mixin.ShovelItemAccessor;
 import net.benji.bettertools.util.BetterToolsTags;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.HoneycombItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -26,19 +28,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class PaxelItem extends Item {
-    protected static final Map<Block, BlockState> FLATTENABLES = new Builder<Block, BlockState>()
-                    .put(Blocks.GRASS_BLOCK, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.PODZOL, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.COARSE_DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.MYCELIUM, Blocks.DIRT_PATH.defaultBlockState())
-                    .put(Blocks.ROOTED_DIRT, Blocks.DIRT_PATH.defaultBlockState())
-                    .build();
+    public static final Component DESC = Component.translatable("desc.bettertools.paxel").withStyle(ChatFormatting.BLUE);
 
-    public PaxelItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
-        super(properties.tool(material, BetterToolsTags.Blocks.PAXEL_MINEABLE, attackDamage, attackSpeed, 0));
+    public PaxelItem(ToolMaterial toolMaterial, float attackDamageModifier, float attackSpeedModifier, Properties properties) {
+        super(properties.tool(toolMaterial, BetterToolsTags.Blocks.PAXEL_MINEABLE, attackDamageModifier, attackSpeedModifier, 0));
+    }
+
+    public PaxelItem(ToolMaterial toolMaterial, Properties properties) {
+        this(toolMaterial, 3.0F, -2.8F, properties);
     }
 
     @Override
@@ -49,15 +49,15 @@ public class PaxelItem extends Item {
         BlockState blockState = level.getBlockState(blockPos);
 
         // Axe Logic
-        BlockState strippedBlockState = StrippableBlockRegistry.getStrippedBlockState(blockState);
+        Optional<BlockState> optional = this.getStripped(blockState);
         Optional<BlockState> optional2 = WeatheringCopper.getPrevious(blockState);
         Optional<BlockState> optional3 = Optional.ofNullable((Block)((BiMap<?, ?>)HoneycombItem.WAX_OFF_BY_BLOCK.get()).get(blockState.getBlock()))
                 .map(block -> block.withPropertiesOf(blockState));
         ItemStack itemStack = context.getItemInHand();
         Optional<BlockState> optional4 = Optional.empty();
-        if (strippedBlockState != null) {
+        if (optional.isPresent()) {
             level.playSound(player, blockPos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
-            optional4 = Optional.of(strippedBlockState);
+            optional4 = optional;
         } else if (optional2.isPresent()) {
             level.playSound(player, blockPos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.levelEvent(player, 3005, blockPos, 0);
@@ -87,7 +87,8 @@ public class PaxelItem extends Item {
         if (context.getClickedFace() == Direction.DOWN) {
             return InteractionResult.PASS;
         } else {
-            BlockState blockState2 = FLATTENABLES.get(blockState.getBlock());
+            Map<Block, BlockState> flattenables = ShovelItemAccessor.getFlattenables();
+            BlockState blockState2 = flattenables.get(blockState.getBlock());
             BlockState blockState3 = null;
             if (blockState2 != null && level.getBlockState(blockPos.above()).isAir()) {
                 level.playSound(player, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -102,9 +103,9 @@ public class PaxelItem extends Item {
             }
 
             if (blockState3 != null) {
-                if (!level.isClientSide()) {
-                    level.setBlock(blockPos, blockState3, 11);
-                    level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockState3));
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.setBlock(blockPos, blockState3, 11);
+                    serverLevel.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockState3));
                     if (player != null) {
                         EquipmentSlot equipmentSlot = context.getItemInHand().equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
                         context.getItemInHand().hurtAndBreak(1, player, equipmentSlot);
@@ -117,5 +118,21 @@ public class PaxelItem extends Item {
             }
         }
 
+    }
+
+    private Optional<BlockState> getStripped(BlockState unstrippedState) {
+        Map<Block, Block> strippables = AxeItemAccessor.getStrippables();
+        return Optional.ofNullable(strippables.get(unstrippedState.getBlock()))
+                .map(block -> block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, unstrippedState.getValue(RotatedPillarBlock.AXIS)));
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipAdder.accept(CommonComponents.EMPTY);
+            tooltipAdder.accept(DESC);
+        }
     }
 }

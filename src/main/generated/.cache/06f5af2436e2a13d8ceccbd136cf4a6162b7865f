@@ -1,10 +1,19 @@
 // 1.21.11	-999999999-01-01T00:00:00	Better Tools/Tags for minecraft:item
+bde6ca31173d1f22d5f6fe355dc90c9faa35b239 data/bettertools/tags/item/amethyst_tool_materials.json
+da5296d0fe1bafa98827bf2d40fb895a42734706 data/bettertools/tags/item/amethyst_tools.json
+3e22e878f2b75051893704783ac33fc7c42cc334 data/bettertools/tags/item/copper_tools.json
 0f73f37ac1d977ce5619b9fabe073594466cde7e data/bettertools/tags/item/glass_chippers.json
-2bea3c1e4bf47be4ddff50862f43682856ba88b9 data/bettertools/tags/item/hammers.json
-5220676b10529c9a3a6360cc6f0b92b701a41cb1 data/bettertools/tags/item/lumber_axes.json
-64bf223003a2967d2dda869b095655697ffc50d0 data/bettertools/tags/item/paxels.json
-7ba24acbd1b345dddd1df071ae396916b0f24d10 data/bettertools/tags/item/scythes.json
-a3343eaf4e159934e84bd527076d47dc899ac27a data/minecraft/tags/item/enchantable/durability.json
-7ff0a33b2bcb198cfb2998235719e32487aab868 data/minecraft/tags/item/enchantable/mining.json
-3793c470e7fa1d2ad25002c107de73f0849cb623 data/minecraft/tags/item/enchantable/mining_loot.json
+63318a67d368a10f67a7f1e01c98e383c6e2f69f data/bettertools/tags/item/hammers.json
+fcefb1c6becd701b04f226e36936fcb057802cae data/bettertools/tags/item/lumber_axes.json
+7ddd2e8af7834af8b853cce65a7c5b41d46f710e data/bettertools/tags/item/machetes.json
+bd97c1486d8304b9e0ac1eb448fee0bda4852e81 data/bettertools/tags/item/paxels.json
+67a9e8ee3a0bf97101ff33a69ea5cb780144d812 data/bettertools/tags/item/scythes.json
+e196e934de63f6bbaa0f7c743707e94440646b45 data/minecraft/tags/item/axes.json
+1c78e1df2c8b3eade196890db620b812396c5a08 data/minecraft/tags/item/enchantable/durability.json
+c6a45510648a49112f932fc9d17843fe44c7d6a4 data/minecraft/tags/item/enchantable/mining.json
+ff8897d93a70e31b0896542a6e46304ffb11de75 data/minecraft/tags/item/enchantable/mining_loot.json
 611df3c510af12b09e56a578f13bdf161db0271c data/minecraft/tags/item/enchantable/sharp_weapon.json
+c34b4c2281c7d0dadacc879e2ff11fe385498c9f data/minecraft/tags/item/hoes.json
+6fb0dea82439584c28db0ad8aec951251dfab386 data/minecraft/tags/item/pickaxes.json
+82f71730a4400e07a5920c59de7fb8d5b1ca3453 data/minecraft/tags/item/shovels.json
+7d4a8a94c4d3eecd6f9b4131436ac79f44a6422c data/minecraft/tags/item/swords.json

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": "minecraft:amethyst_block",
+    "m": "minecraft:amethyst_shard",
+    "s": "#c:rods/wooden"
+  },
+  "pattern": [
+    "mbm",
+    "msm",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bettertools:amethyst_hammer"
+  }
+}

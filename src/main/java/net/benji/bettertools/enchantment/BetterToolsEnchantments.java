@@ -12,13 +12,12 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
-import org.jetbrains.annotations.NotNull;
 
 public class BetterToolsEnchantments {
-    public static final ResourceKey<@NotNull Enchantment> REAPING =
+    public static final ResourceKey<Enchantment> REAPING =
             ResourceKey.create(Registries.ENCHANTMENT, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, "reaping"));
 
-    public static void bootstrap(BootstrapContext<@NotNull Enchantment> registerable) {
+    public static void bootstrap(BootstrapContext<Enchantment> registerable) {
         var enchantments = registerable.lookup(Registries.ENCHANTMENT);
         var items = registerable.lookup(Registries.ITEM);
 
@@ -39,7 +38,7 @@ public class BetterToolsEnchantments {
         registry.register(key, builder.build(key.identifier()));
     }
 
-    public static void registerModEnchantments() {
+    public static void registerEnchantments() {
         BetterToolsFabric.LOGGER.info("Registering Enchantments for " + BetterToolsFabric.MOD_ID);
     }
 

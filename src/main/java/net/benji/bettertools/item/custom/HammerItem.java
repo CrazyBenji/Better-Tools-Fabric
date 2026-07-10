@@ -1,12 +1,17 @@
 package net.benji.bettertools.item.custom;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,16 +24,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HammerItem extends Item {
+    public static final Component DESC = Component.translatable("desc.bettertools.hammer").withStyle(ChatFormatting.BLUE);
 
-    public HammerItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
-        super(properties.pickaxe(material, attackDamage, attackSpeed));
+    public HammerItem(ToolMaterial toolMaterial, float attackDamageModifier, float attackSpeedModifier, Properties properties) {
+        super(properties.pickaxe(toolMaterial, attackDamageModifier, attackSpeedModifier));
+    }
+
+    public HammerItem(ToolMaterial toolMaterial, Properties properties) {
+        this(toolMaterial, 1.0F, -2.8F, properties);
     }
 
     @Override
     public boolean mineBlock(@NotNull ItemStack stack, Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity player) {
-        if (!level.isClientSide() && level instanceof ServerLevel) {
+        if (level instanceof ServerLevel serverLevel) {
             BlockHitResult hitResult = player.level().clip(new ClipContext(player.getEyePosition(1F),
                     (player.getEyePosition(1f).add(player.getViewVector(1F).scale(6F))),
                     ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
@@ -38,20 +49,20 @@ public class HammerItem extends Item {
 
             for (BlockPos targetPos : positionsToBreak) {
                 if (!targetPos.equals(pos)) {
-                    BlockState targetState = level.getBlockState(targetPos);
+                    BlockState targetState = serverLevel.getBlockState(targetPos);
 
-                    if (canBreakBlock(targetState, stack, level, pos)) {
-                        LootParams.Builder lootBuilder = new LootParams.Builder((ServerLevel)level)
+                    if (canBreakBlock(targetState, stack, serverLevel, pos)) {
+                        LootParams.Builder lootBuilder = new LootParams.Builder(serverLevel)
                                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(targetPos))
                                 .withParameter(LootContextParams.TOOL, stack)
                                 .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
                                 .withParameter(LootContextParams.BLOCK_STATE, targetState);
                         List<ItemStack> drops = targetState.getDrops(lootBuilder);
 
-                        level.destroyBlock(targetPos, false);
+                        serverLevel.destroyBlock(targetPos, false);
 
                         for (ItemStack drop : drops) {
-                            Block.popResource(level, targetPos, drop);
+                            Block.popResource(serverLevel, targetPos, drop);
                         }
                     }
                 }
@@ -97,5 +108,15 @@ public class HammerItem extends Item {
         }
 
         return stack.isCorrectToolForDrops(state);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, tooltipFlag);
+
+        if (tooltipFlag.isAdvanced()) {
+            tooltipAdder.accept(CommonComponents.EMPTY);
+            tooltipAdder.accept(DESC);
+        }
     }
 }
