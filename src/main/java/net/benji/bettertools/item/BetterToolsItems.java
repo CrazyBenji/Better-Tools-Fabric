@@ -32,6 +32,16 @@ public class BetterToolsItems {
             properties -> new HammerItem(Tiers.NETHERITE, properties),
             new Item.Properties()
     );
+    public static final Item COPPER_HAMMER = registerItem(
+            "copper_hammer",
+            properties -> new HammerItem(BetterToolsTiers.COPPER, properties),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_HAMMER = registerItem(
+            "amethyst_hammer",
+            properties -> new HammerItem(BetterToolsTiers.AMETHYST, properties),
+            new Item.Properties()
+    );
 
     public static final Item IRON_PAXEL = registerItem(
             "iron_paxel",
@@ -51,6 +61,16 @@ public class BetterToolsItems {
     public static final Item NETHERITE_PAXEL = registerItem(
             "netherite_paxel",
             properties -> new PaxelItem(Tiers.NETHERITE, properties),
+            new Item.Properties()
+    );
+    public static final Item COPPER_PAXEL = registerItem(
+            "copper_paxel",
+            properties -> new PaxelItem(BetterToolsTiers.COPPER, properties),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_PAXEL = registerItem(
+            "amethyst_paxel",
+            properties -> new PaxelItem(BetterToolsTiers.AMETHYST, properties),
             new Item.Properties()
     );
 
@@ -74,6 +94,16 @@ public class BetterToolsItems {
             properties -> new ScytheItem(Tiers.NETHERITE, properties),
             new Item.Properties()
     );
+    public static final Item COPPER_SCYTHE = registerItem(
+            "copper_scythe",
+            properties -> new ScytheItem(BetterToolsTiers.COPPER, properties),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_SCYTHE = registerItem(
+            "amethyst_scythe",
+            properties -> new ScytheItem(BetterToolsTiers.AMETHYST, properties),
+            new Item.Properties()
+    );
 
     public static final Item GLASS_CHIPPER = registerItem(
             "glass_chipper",
@@ -85,6 +115,12 @@ public class BetterToolsItems {
             "bedrock_smasher",
             properties -> new BlockSmasherItem(() -> Blocks.BEDROCK, () -> BetterToolsBlocks.SMASHED_BEDROCK, properties),
             new Item.Properties().durability(16)
+    );
+
+    public static final Item WOOD_CHISEL = registerItem(
+            "wood_chisel",
+            properties -> new CraftingToolItem(properties, "desc.bettertools.wood_chisel"),
+            new Item.Properties().durability(256)
     );
 
     public static final Item IRON_LUMBER_AXE = registerItem(
@@ -107,6 +143,16 @@ public class BetterToolsItems {
             properties -> new LumberAxeItem(Tiers.NETHERITE, properties, 128),
             new Item.Properties()
     );
+    public static final Item COPPER_LUMBER_AXE = registerItem(
+            "copper_lumber_axe",
+            properties -> new LumberAxeItem(BetterToolsTiers.COPPER, properties, 32),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_LUMBER_AXE = registerItem(
+            "amethyst_lumber_axe",
+            properties -> new LumberAxeItem(BetterToolsTiers.AMETHYST, properties, 64),
+            new Item.Properties()
+    );
 
     public static final Item IRON_MACHETE = registerItem(
             "iron_machete",
@@ -126,6 +172,68 @@ public class BetterToolsItems {
     public static final Item NETHERITE_MACHETE = registerItem(
             "netherite_machete",
             properties -> new MacheteItem(Tiers.NETHERITE, properties, 64),
+            new Item.Properties()
+    );
+    public static final Item COPPER_MACHETE = registerItem(
+            "copper_machete",
+            properties -> new MacheteItem(BetterToolsTiers.COPPER, properties, 16),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_MACHETE = registerItem(
+            "amethyst_machete",
+            properties -> new MacheteItem(BetterToolsTiers.AMETHYST, properties, 32),
+            new Item.Properties()
+    );
+
+    public static final Item COPPER_SWORD = registerItem(
+            "copper_sword",
+            properties -> new SwordItem(BetterToolsTiers.COPPER, properties.attributes(SwordItem.createAttributes(BetterToolsTiers.COPPER, 3, -2.4F))),
+            new Item.Properties()
+    );
+    public static final Item COPPER_SHOVEL = registerItem(
+            "copper_shovel",
+            properties -> new ShovelItem(BetterToolsTiers.COPPER, properties.attributes(ShovelItem.createAttributes(BetterToolsTiers.COPPER, 1.5F, -3.0F))),
+            new Item.Properties()
+    );
+    public static final Item COPPER_PICKAXE = registerItem(
+            "copper_pickaxe",
+            properties -> new PickaxeItem(BetterToolsTiers.COPPER, properties.attributes(PickaxeItem.createAttributes(BetterToolsTiers.COPPER, 1.0F, -2.8F))),
+            new Item.Properties()
+    );
+    public static final Item COPPER_AXE = registerItem(
+            "copper_axe",
+            properties -> new AxeItem(BetterToolsTiers.COPPER, properties.attributes(AxeItem.createAttributes(BetterToolsTiers.COPPER, 7.0F, -3.2F))),
+            new Item.Properties()
+    );
+    public static final Item COPPER_HOE = registerItem(
+            "copper_hoe",
+            properties -> new HoeItem(BetterToolsTiers.COPPER, properties.attributes(HoeItem.createAttributes(BetterToolsTiers.COPPER, -1.0F, -2.0F))),
+            new Item.Properties()
+    );
+
+    public static final Item AMETHYST_SWORD = registerItem(
+            "amethyst_sword",
+            properties -> new SwordItem(BetterToolsTiers.AMETHYST, properties.attributes(SwordItem.createAttributes(BetterToolsTiers.AMETHYST, 3, -2.4F))),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_SHOVEL = registerItem(
+            "amethyst_shovel",
+            properties -> new ShovelItem(BetterToolsTiers.AMETHYST, properties.attributes(ShovelItem.createAttributes(BetterToolsTiers.AMETHYST, 1.5F, -3.0F))),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_PICKAXE = registerItem(
+            "amethyst_pickaxe",
+            properties -> new PickaxeItem(BetterToolsTiers.AMETHYST, properties.attributes(PickaxeItem.createAttributes(BetterToolsTiers.AMETHYST, 1.0F, -2.8F))),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_AXE = registerItem(
+            "amethyst_axe",
+            properties -> new AxeItem(BetterToolsTiers.AMETHYST, properties.attributes(AxeItem.createAttributes(BetterToolsTiers.AMETHYST, 7.0F, -3.2F))),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_HOE = registerItem(
+            "amethyst_hoe",
+            properties -> new HoeItem(BetterToolsTiers.AMETHYST, properties.attributes(HoeItem.createAttributes(BetterToolsTiers.AMETHYST, -1.0F, -2.0F))),
             new Item.Properties()
     );
 

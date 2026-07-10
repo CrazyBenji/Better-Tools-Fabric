@@ -84,7 +84,7 @@ public class ScytheItem extends HoeItem {
             }
 
             // Crop harvesting behavior
-            if (block instanceof CropBlock) {
+            if (block instanceof CropBlock cropBlock && cropBlock.isMaxAge(blockState)) {
                 // Generate loot table
                 LootParams.Builder lootBuilder = new LootParams.Builder(serverLevel)
                         .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockPos))

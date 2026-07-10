@@ -1,5 +1,6 @@
 package net.benji.bettertools.item.custom;
 
+import net.benji.bettertools.util.BetterToolsTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.CommonComponents;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,78 +23,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LumberAxeItem extends AxeItem {
-    private final int maxLogs;
-    private final Set<BlockPos> toBreak;
+public class LumberAxeItem extends AxeItem implements VeinMiningTool {
+    protected final int maxBlocks;
 
-    private static final Component DESC = Component.translatable("desc.bettertools.lumber_axe").withStyle(ChatFormatting.BLUE);
+    public static final Component DESC = Component.translatable("desc.bettertools.lumber_axe").withStyle(ChatFormatting.BLUE);
 
-    public LumberAxeItem(Tier tier, float attackDamageModifier, float attackSpeedModifier, Properties properties, int maxLogs) {
+    public LumberAxeItem(Tier tier, float attackDamageModifier, float attackSpeedModifier, Properties properties, int maxBlocks) {
         super(tier,  properties.attributes(createAttributes(tier, attackDamageModifier, attackSpeedModifier)));
-        this.maxLogs = maxLogs;
-        this.toBreak = new HashSet<>();
+        this.maxBlocks = maxBlocks;
     }
 
-    public LumberAxeItem(Tier tier, Properties properties, int maxLogs) {
-        this(tier, 6.0F, -3.1F, properties, maxLogs);
+    public LumberAxeItem(Tier tier, Properties properties, int maxBlocks) {
+        this(tier, 6.0F, -3.1F, properties, maxBlocks);
     }
 
     @Override
-    public boolean mineBlock(@NotNull ItemStack stack, Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity player) {
-
-        if (!level.isClientSide && level instanceof ServerLevel server && state.is(BlockTags.LOGS)) {
-
-            breakConnectedLogs(server, pos);
+    public boolean mineBlock(@NotNull ItemStack itemStack, Level level, @NotNull BlockState state, @NotNull BlockPos blockPos, @NotNull LivingEntity livingEntity) {
+        if (level instanceof ServerLevel serverLevel && state.is(BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES)) {
+            Set<BlockPos> toBreak = findConnectedBlocks(serverLevel, blockPos, this.maxBlocks, BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES);
             for (BlockPos breakPos : toBreak) {
-                level.destroyBlock(breakPos, true);
-                EquipmentSlot equipmentSlot = stack.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-                stack.hurtAndBreak(1, player, equipmentSlot);
+                BlockState breakState = level.getBlockState(breakPos);
+
+                List<ItemStack> drops = generateLootTable(itemStack, serverLevel, breakState, breakPos, livingEntity);
+
+                level.destroyBlock(breakPos, false);
+
+                for (ItemStack drop : drops) {
+                    Block.popResource(level, blockPos, drop);
+                }
+                EquipmentSlot equipmentSlot = itemStack.equals(livingEntity.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                itemStack.hurtAndBreak(1, livingEntity, equipmentSlot);
             }
-            this.toBreak.clear();
+            toBreak.clear();
         }
 
-        return super.mineBlock(stack, level, state, pos, player);
-    }
-
-    private void breakConnectedLogs(ServerLevel level, BlockPos startPos) {
-        if (this.toBreak.size() >= maxLogs) {
-            return;
-        }
-        ArrayList<BlockPos> toCheck = populateArrayList(startPos);
-
-        for (BlockPos pos : toCheck) {
-            if (this.toBreak.size() >= this.maxLogs) {
-                return;
-            }
-            if (!this.toBreak.contains(pos) && level.getBlockState(pos).is(BlockTags.LOGS)) {
-                this.toBreak.add(pos);
-                this.breakConnectedLogs(level, pos);
-            }
-        }
-    }
-
-    private ArrayList<BlockPos> populateArrayList(BlockPos pos) {
-        ArrayList<BlockPos> list = new ArrayList<>();
-        list.add(pos.east());
-        list.add(pos.east().north());
-        list.add(pos.west());
-        list.add(pos.west().south());
-        list.add(pos.north());
-        list.add(pos.north().west());
-        list.add(pos.south());
-        list.add(pos.south().east());
-
-        list.add(pos.above());
-        list.add(pos.east().above());
-        list.add(pos.east().north().above());
-        list.add(pos.west().above());
-        list.add(pos.west().south().above());
-        list.add(pos.north().above());
-        list.add(pos.north().west().above());
-        list.add(pos.south().above());
-        list.add(pos.south().east().above());
-
-        return list;
+        return true;
     }
 
     @Override
