@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TexturedModel;
 
 public class BetterToolsModelProvider extends FabricModelProvider {
     public BetterToolsModelProvider(FabricPackOutput output) {
@@ -16,7 +15,7 @@ public class BetterToolsModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-        blockStateModelGenerator.createTrivialBlock(BetterToolsBlocks.SMASHED_BEDROCK, TexturedModel.CUBE);
+        blockStateModelGenerator.createTrivialCube(BetterToolsBlocks.SMASHED_BEDROCK);
     }
 
     @Override

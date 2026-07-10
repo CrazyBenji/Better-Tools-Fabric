@@ -4,7 +4,7 @@ import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.item.BetterToolsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
-import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
@@ -33,39 +33,39 @@ public class BetterToolsLootTableProvider extends FabricBlockLootSubProvider {
 
     public static final List<Block> GLASS_BLOCKS = List.of(
             Blocks.GLASS,
-            Blocks.WHITE_STAINED_GLASS,
-            Blocks.LIGHT_GRAY_STAINED_GLASS,
-            Blocks.GRAY_STAINED_GLASS,
-            Blocks.BLACK_STAINED_GLASS,
-            Blocks.BROWN_STAINED_GLASS,
-            Blocks.RED_STAINED_GLASS,
-            Blocks.ORANGE_STAINED_GLASS,
-            Blocks.YELLOW_STAINED_GLASS,
-            Blocks.LIME_STAINED_GLASS,
-            Blocks.GREEN_STAINED_GLASS,
-            Blocks.CYAN_STAINED_GLASS,
-            Blocks.LIGHT_BLUE_STAINED_GLASS,
-            Blocks.BLUE_STAINED_GLASS,
-            Blocks.PURPLE_STAINED_GLASS,
-            Blocks.MAGENTA_STAINED_GLASS,
-            Blocks.PINK_STAINED_GLASS,
+            Blocks.STAINED_GLASS.white(),
+            Blocks.STAINED_GLASS.lightGray(),
+            Blocks.STAINED_GLASS.gray(),
+            Blocks.STAINED_GLASS.black(),
+            Blocks.STAINED_GLASS.brown(),
+            Blocks.STAINED_GLASS.red(),
+            Blocks.STAINED_GLASS.orange(),
+            Blocks.STAINED_GLASS.yellow(),
+            Blocks.STAINED_GLASS.lime(),
+            Blocks.STAINED_GLASS.green(),
+            Blocks.STAINED_GLASS.cyan(),
+            Blocks.STAINED_GLASS.lightBlue(),
+            Blocks.STAINED_GLASS.blue(),
+            Blocks.STAINED_GLASS.purple(),
+            Blocks.STAINED_GLASS.magenta(),
+            Blocks.STAINED_GLASS.pink(),
             Blocks.GLASS_PANE,
-            Blocks.WHITE_STAINED_GLASS_PANE,
-            Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
-            Blocks.GRAY_STAINED_GLASS_PANE,
-            Blocks.BLACK_STAINED_GLASS_PANE,
-            Blocks.BROWN_STAINED_GLASS_PANE,
-            Blocks.RED_STAINED_GLASS_PANE,
-            Blocks.ORANGE_STAINED_GLASS_PANE,
-            Blocks.YELLOW_STAINED_GLASS_PANE,
-            Blocks.LIME_STAINED_GLASS_PANE,
-            Blocks.GREEN_STAINED_GLASS_PANE,
-            Blocks.CYAN_STAINED_GLASS_PANE,
-            Blocks.LIGHT_BLUE_STAINED_GLASS_PANE,
-            Blocks.BLUE_STAINED_GLASS_PANE,
-            Blocks.PURPLE_STAINED_GLASS_PANE,
-            Blocks.MAGENTA_STAINED_GLASS_PANE,
-            Blocks.PINK_STAINED_GLASS_PANE
+            Blocks.STAINED_GLASS_PANE.white(),
+            Blocks.STAINED_GLASS_PANE.lightGray(),
+            Blocks.STAINED_GLASS_PANE.gray(),
+            Blocks.STAINED_GLASS_PANE.black(),
+            Blocks.STAINED_GLASS_PANE.brown(),
+            Blocks.STAINED_GLASS_PANE.red(),
+            Blocks.STAINED_GLASS_PANE.orange(),
+            Blocks.STAINED_GLASS_PANE.yellow(),
+            Blocks.STAINED_GLASS_PANE.lime(),
+            Blocks.STAINED_GLASS_PANE.green(),
+            Blocks.STAINED_GLASS_PANE.cyan(),
+            Blocks.STAINED_GLASS_PANE.lightBlue(),
+            Blocks.STAINED_GLASS_PANE.blue(),
+            Blocks.STAINED_GLASS_PANE.purple(),
+            Blocks.STAINED_GLASS_PANE.magenta(),
+            Blocks.STAINED_GLASS_PANE.pink()
     );
 
     public BetterToolsLootTableProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {

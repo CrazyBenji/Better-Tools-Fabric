@@ -3,7 +3,7 @@ package net.benji.bettertools.data.recipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.benji.bettertools.item.crafting.PaxelRecipe;
-import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;

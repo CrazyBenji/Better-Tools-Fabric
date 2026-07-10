@@ -4,6 +4,7 @@ import net.benji.bettertools.BetterToolsFabric;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
@@ -16,28 +17,20 @@ import java.util.function.Function;
 
 public class BetterToolsBlocks {
     public static final Block SMASHED_BEDROCK = registerBlock(
-            "smashed_bedrock",
+            BetterToolsBlockItemIds.SMASHED_BEDROCK,
             Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN),
             true);
 
-    private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
-        ResourceKey<Block> blockKey = keyOfBlock(name);
+    private static Block registerBlock(BlockItemId blockItemId, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
+        ResourceKey<Block> blockKey = blockItemId.block();
         Block block = blockFactory.apply(settings.setId(blockKey));
         if (shouldRegisterItem) {
-            ResourceKey<Item> itemKey = keyOfItem(name);
+            ResourceKey<Item> itemKey = blockItemId.item();
             BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey).useBlockDescriptionPrefix());
             Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
         }
         return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
-    }
-
-    private static ResourceKey<Block> keyOfBlock(String name) {
-        return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
-    }
-
-    private static ResourceKey<Item> keyOfItem(String name) {
-        return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
     }
 
     public static void registerBlocks() {

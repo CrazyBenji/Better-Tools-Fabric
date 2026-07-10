@@ -5,9 +5,7 @@ import net.benji.bettertools.block.BetterToolsBlocks;
 import net.benji.bettertools.item.custom.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
 
@@ -15,200 +13,200 @@ import java.util.function.Function;
 
 public class BetterToolsItems {
     public static final Item IRON_HAMMER = registerItem(
-            "iron_hammer",
+            BetterToolsItemIds.IRON_HAMMER,
             properties -> new HammerItem(ToolMaterial.IRON, properties),
             new Item.Properties()
     );
     public static final Item GOLDEN_HAMMER = registerItem(
-            "golden_hammer",
+            BetterToolsItemIds.GOLDEN_HAMMER,
             properties -> new HammerItem(ToolMaterial.GOLD, properties),
             new Item.Properties()
     );
     public static final Item DIAMOND_HAMMER = registerItem(
-            "diamond_hammer",
+            BetterToolsItemIds.DIAMOND_HAMMER,
             properties -> new HammerItem(ToolMaterial.DIAMOND, properties),
             new Item.Properties()
     );
     public static final Item NETHERITE_HAMMER = registerItem(
-            "netherite_hammer",
+            BetterToolsItemIds.NETHERITE_HAMMER,
             properties -> new HammerItem(ToolMaterial.NETHERITE, properties),
             new Item.Properties()
     );
     public static final Item COPPER_HAMMER = registerItem(
-            "copper_hammer",
+            BetterToolsItemIds.COPPER_HAMMER,
             properties -> new HammerItem(ToolMaterial.COPPER, properties),
             new Item.Properties()
     );
     public static final Item AMETHYST_HAMMER = registerItem(
-            "amethyst_hammer",
+            BetterToolsItemIds.AMETHYST_HAMMER,
             properties -> new HammerItem(BetterToolsToolMaterials.AMETHYST, properties),
             new Item.Properties()
     );
 
     public static final Item IRON_PAXEL = registerItem(
-            "iron_paxel",
+            BetterToolsItemIds.IRON_PAXEL,
             properties -> new PaxelItem(ToolMaterial.IRON, properties),
             new Item.Properties()
     );
     public static final Item GOLDEN_PAXEL = registerItem(
-            "golden_paxel",
+            BetterToolsItemIds.GOLDEN_PAXEL,
             properties -> new PaxelItem(ToolMaterial.GOLD, properties),
             new Item.Properties()
     );
     public static final Item DIAMOND_PAXEL = registerItem(
-            "diamond_paxel",
+            BetterToolsItemIds.DIAMOND_PAXEL,
             properties -> new PaxelItem(ToolMaterial.DIAMOND, properties),
             new Item.Properties()
     );
     public static final Item NETHERITE_PAXEL = registerItem(
-            "netherite_paxel",
+            BetterToolsItemIds.NETHERITE_PAXEL,
             properties -> new PaxelItem(ToolMaterial.NETHERITE, properties),
             new Item.Properties()
     );
     public static final Item COPPER_PAXEL = registerItem(
-            "copper_paxel",
+            BetterToolsItemIds.COPPER_PAXEL,
             properties -> new PaxelItem(ToolMaterial.COPPER, properties),
             new Item.Properties()
     );
     public static final Item AMETHYST_PAXEL = registerItem(
-            "amethyst_paxel",
+            BetterToolsItemIds.AMETHYST_PAXEL,
             properties -> new PaxelItem(BetterToolsToolMaterials.AMETHYST, properties),
             new Item.Properties()
     );
 
     public static final Item IRON_SCYTHE = registerItem(
-            "iron_scythe",
+            BetterToolsItemIds.IRON_SCYTHE,
             properties -> new ScytheItem(ToolMaterial.IRON, properties),
             new Item.Properties()
     );
     public static final Item GOLDEN_SCYTHE = registerItem(
-            "golden_scythe",
+            BetterToolsItemIds.GOLDEN_SCYTHE,
             properties -> new ScytheItem(ToolMaterial.GOLD, properties),
             new Item.Properties()
     );
     public static final Item DIAMOND_SCYTHE = registerItem(
-            "diamond_scythe",
+            BetterToolsItemIds.DIAMOND_SCYTHE,
             properties -> new ScytheItem(ToolMaterial.DIAMOND, properties),
             new Item.Properties()
     );
     public static final Item NETHERITE_SCYTHE = registerItem(
-            "netherite_scythe",
+            BetterToolsItemIds.NETHERITE_SCYTHE,
             properties -> new ScytheItem(ToolMaterial.NETHERITE, properties),
             new Item.Properties()
     );
     public static final Item COPPER_SCYTHE = registerItem(
-            "copper_scythe",
+            BetterToolsItemIds.COPPER_SCYTHE,
             properties -> new ScytheItem(ToolMaterial.COPPER, properties),
             new Item.Properties()
     );
     public static final Item AMETHYST_SCYTHE = registerItem(
-            "amethyst_scythe",
+            BetterToolsItemIds.AMETHYST_SCYTHE,
             properties -> new ScytheItem(BetterToolsToolMaterials.AMETHYST, properties),
             new Item.Properties()
     );
 
     public static final Item GLASS_CHIPPER = registerItem(
-            "glass_chipper",
+            BetterToolsItemIds.GLASS_CHIPPER,
             properties -> new GlassChipperItem(ToolMaterial.IRON, properties),
             new Item.Properties()
     );
 
     public static final Item BEDROCK_SMASHER = registerItem(
-            "bedrock_smasher",
+            BetterToolsItemIds.BEDROCK_SMASHER,
             properties -> new BlockSmasherItem(() -> Blocks.BEDROCK, () -> BetterToolsBlocks.SMASHED_BEDROCK, properties),
             new Item.Properties().durability(16)
     );
 
     public static final Item WOOD_CHISEL = registerItem(
-            "wood_chisel",
+            BetterToolsItemIds.WOOD_CHISEL,
             properties -> new CraftingToolItem(properties, "desc.bettertools.wood_chisel"),
             new Item.Properties().durability(256)
     );
 
     public static final Item IRON_LUMBER_AXE = registerItem(
-            "iron_lumber_axe",
+            BetterToolsItemIds.IRON_LUMBER_AXE,
             properties -> new LumberAxeItem(ToolMaterial.IRON, properties, 32),
             new Item.Properties()
     );
     public static final Item GOLDEN_LUMBER_AXE = registerItem(
-            "golden_lumber_axe",
+            BetterToolsItemIds.GOLDEN_LUMBER_AXE,
             properties -> new LumberAxeItem(ToolMaterial.GOLD, properties, 64),
             new Item.Properties()
     );
     public static final Item DIAMOND_LUMBER_AXE = registerItem(
-            "diamond_lumber_axe",
+            BetterToolsItemIds.DIAMOND_LUMBER_AXE,
             properties -> new LumberAxeItem(ToolMaterial.DIAMOND, properties, 96),
             new Item.Properties()
     );
     public static final Item NETHERITE_LUMBER_AXE = registerItem(
-            "netherite_lumber_axe",
+            BetterToolsItemIds.NETHERITE_LUMBER_AXE,
             properties -> new LumberAxeItem(ToolMaterial.NETHERITE, properties, 128),
             new Item.Properties()
     );
     public static final Item COPPER_LUMBER_AXE = registerItem(
-            "copper_lumber_axe",
+            BetterToolsItemIds.COPPER_LUMBER_AXE,
             properties -> new LumberAxeItem(ToolMaterial.COPPER, properties, 32),
             new Item.Properties()
     );
     public static final Item AMETHYST_LUMBER_AXE = registerItem(
-            "amethyst_lumber_axe",
+            BetterToolsItemIds.AMETHYST_LUMBER_AXE,
             properties -> new LumberAxeItem(BetterToolsToolMaterials.AMETHYST, properties, 64),
             new Item.Properties()
     );
 
     public static final Item IRON_MACHETE = registerItem(
-            "iron_machete",
+            BetterToolsItemIds.IRON_MACHETE,
             properties -> new MacheteItem(ToolMaterial.IRON, properties, 16),
             new Item.Properties()
     );
     public static final Item GOLDEN_MACHETE = registerItem(
-            "golden_machete",
+            BetterToolsItemIds.GOLDEN_MACHETE,
             properties -> new MacheteItem(ToolMaterial.GOLD, properties, 32),
             new Item.Properties()
     );
     public static final Item DIAMOND_MACHETE = registerItem(
-            "diamond_machete",
+            BetterToolsItemIds.DIAMOND_MACHETE,
             properties -> new MacheteItem(ToolMaterial.DIAMOND, properties, 48),
             new Item.Properties()
     );
     public static final Item NETHERITE_MACHETE = registerItem(
-            "netherite_machete",
+            BetterToolsItemIds.NETHERITE_MACHETE,
             properties -> new MacheteItem(ToolMaterial.NETHERITE, properties, 64),
             new Item.Properties()
     );
     public static final Item COPPER_MACHETE = registerItem(
-            "copper_machete",
+            BetterToolsItemIds.COPPER_MACHETE,
             properties -> new MacheteItem(ToolMaterial.COPPER, properties, 16),
             new Item.Properties()
     );
     public static final Item AMETHYST_MACHETE = registerItem(
-            "amethyst_machete",
+            BetterToolsItemIds.AMETHYST_MACHETE,
             properties -> new MacheteItem(BetterToolsToolMaterials.AMETHYST, properties, 32),
             new Item.Properties()
     );
 
     public static final Item AMETHYST_SWORD = registerItem(
-            "amethyst_sword",
+            BetterToolsItemIds.AMETHYST_SWORD,
             Item::new,
             new Item.Properties().sword(BetterToolsToolMaterials.AMETHYST, 3, -2.4F)
     );
     public static final Item AMETHYST_SHOVEL = registerItem(
-            "amethyst_shovel",
+            BetterToolsItemIds.AMETHYST_SHOVEL,
             properties -> new ShovelItem(BetterToolsToolMaterials.AMETHYST, 1.5F, -3.0F, properties),
             new Item.Properties()
     );
     public static final Item AMETHYST_PICKAXE = registerItem(
-            "amethyst_pickaxe",
+            BetterToolsItemIds.AMETHYST_PICKAXE,
             Item::new,
             new Item.Properties().pickaxe(BetterToolsToolMaterials.AMETHYST, 1.0F, -2.8F)
     );
     public static final Item AMETHYST_AXE = registerItem(
-            "amethyst_axe",
+            BetterToolsItemIds.AMETHYST_AXE,
             properties -> new AxeItem(BetterToolsToolMaterials.AMETHYST, 7.0F, -3.2F, properties),
             new Item.Properties()
     );
     public static final Item AMETHYST_HOE = registerItem(
-            "amethyst_hoe",
+            BetterToolsItemIds.AMETHYST_HOE,
             properties -> new HoeItem(BetterToolsToolMaterials.AMETHYST, -1.0F, -2.0F, properties),
             new Item.Properties()
     );
@@ -217,10 +215,9 @@ public class BetterToolsItems {
         BetterToolsFabric.LOGGER.info("Registering Mod Items for " + BetterToolsFabric.MOD_ID);
     }
 
-    public static Item registerItem(String name, Function<Item.Properties, Item> itemFactory, Item.Properties properties) {
-        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(BetterToolsFabric.MOD_ID, name));
-        Item item = itemFactory.apply(properties.setId(itemKey));
-        Registry.register(BuiltInRegistries.ITEM, itemKey, item);
+    public static Item registerItem(ResourceKey<Item> key, Function<Item.Properties, Item> itemFactory, Item.Properties properties) {
+        Item item = itemFactory.apply(properties.setId(key));
+        Registry.register(BuiltInRegistries.ITEM, key, item);
 
         return item;
     }

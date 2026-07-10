@@ -33,7 +33,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 generateHammerRecipe(exporter, Items.GOLD_INGOT, Items.GOLD_BLOCK, BetterToolsItems.GOLDEN_HAMMER);
                 generateHammerRecipe(exporter, Items.DIAMOND, Items.DIAMOND_BLOCK, BetterToolsItems.DIAMOND_HAMMER);
                 netheriteSmithing(BetterToolsItems.DIAMOND_HAMMER, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_HAMMER);
-                generateHammerRecipe(exporter, Items.COPPER_INGOT, Items.COPPER_BLOCK, BetterToolsItems.COPPER_HAMMER);
+                generateHammerRecipe(exporter, Items.COPPER_INGOT, Items.COPPER_BLOCK.weathering().unaffected(), BetterToolsItems.COPPER_HAMMER);
                 generateHammerRecipe(exporter, Items.AMETHYST_SHARD, Items.AMETHYST_BLOCK, BetterToolsItems.AMETHYST_HAMMER);
 
                 generateScytheRecipe(exporter, Items.IRON_INGOT, BetterToolsItems.IRON_SCYTHE);
@@ -82,7 +82,7 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 generateLumberAxeRecipe(exporter, Items.GOLD_INGOT, Items.GOLD_BLOCK, BetterToolsItems.GOLDEN_LUMBER_AXE);
                 generateLumberAxeRecipe(exporter, Items.DIAMOND, Items.DIAMOND_BLOCK, BetterToolsItems.DIAMOND_LUMBER_AXE);
                 netheriteSmithing(BetterToolsItems.DIAMOND_LUMBER_AXE, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_LUMBER_AXE);
-                generateLumberAxeRecipe(exporter, Items.COPPER_INGOT, Items.COPPER_BLOCK, BetterToolsItems.COPPER_LUMBER_AXE);
+                generateLumberAxeRecipe(exporter, Items.COPPER_INGOT, Items.COPPER_BLOCK.weathering().unaffected(), BetterToolsItems.COPPER_LUMBER_AXE);
                 generateLumberAxeRecipe(exporter, Items.AMETHYST_SHARD, Items.AMETHYST_BLOCK, BetterToolsItems.AMETHYST_LUMBER_AXE);
 
                 generateMacheteRecipe(exporter, Items.IRON_INGOT, BetterToolsItems.IRON_MACHETE);
