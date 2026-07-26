@@ -1,7 +1,6 @@
 package net.benji.bettertools.item.custom;
 
 import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableMap.Builder;
 import net.benji.bettertools.mixin.AxeItemAccessor;
 import net.benji.bettertools.mixin.ShovelItemAccessor;
 import net.benji.bettertools.util.BetterToolsTags;

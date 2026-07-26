@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:story/iron_tools",
+  "criteria": {
+    "got_prospecting_pick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#bettertools:prospecting_pickaxes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.get_prospecting_pick.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bettertools:iron_prospecting_pick"
+    },
+    "title": {
+      "translate": "advancements.story.get_prospecting_pick.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_prospecting_pick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

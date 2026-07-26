@@ -38,6 +38,13 @@
   "item.bettertools.copper_machete": "Copper Machete",
   "item.bettertools.amethyst_machete": "Amethyst Machete",
 
+  "item.bettertools.iron_prospecting_pick": "Iron Prospecting Pickaxe",
+  "item.bettertools.golden_prospecting_pick": "Golden Prospecting Pickaxe",
+  "item.bettertools.diamond_prospecting_pick": "Diamond Prospecting Pickaxe",
+  "item.bettertools.netherite_prospecting_pick": "Netherite Prospecting Pickaxe",
+  "item.bettertools.copper_prospecting_pick": "Copper Prospecting Pickaxe",
+  "item.bettertools.amethyst_prospecting_pick": "Amethyst Prospecting Pickaxe",
+
   "item.bettertools.copper_sword": "Copper Sword",
   "item.bettertools.copper_shovel": "Copper Shovel",
   "item.bettertools.copper_pickaxe": "Copper Pickaxe",
@@ -78,6 +85,8 @@
   "advancements.story.get_amethyst_tools.description": "Geologists hate this one simple trick",
   "advancements.story.get_wood_chisel.title": "Almost an Axe",
   "advancements.story.get_wood_chisel.description": "Acquire a wood chisel to strip some logs",
+  "advancements.story.get_prospecting_pick.title": "Specialized Mining",
+  "advancements.story.get_prospecting_pick.description": "Craft a tool made just to mine ores",
 
   "desc.bettertools.block_smasher": "Use on:",
   "desc.bettertools.glass_chipper": "Breaks glass like blocks",
@@ -86,5 +95,6 @@
   "desc.bettertools.paxel": "Works as a pickaxe, axe, or shovel",
   "desc.bettertools.scythe": "Tills in a 3x3 area",
   "desc.bettertools.machete": "Breaks connected foliage",
-  "desc.bettertools.wood_chisel": "Crafts with logs to strip them"
+  "desc.bettertools.wood_chisel": "Crafts with logs to strip them",
+  "desc.bettertools.prospecting_pick": "Breaks ore clusters"
 }

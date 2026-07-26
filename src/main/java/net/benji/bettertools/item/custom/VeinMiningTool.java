@@ -41,6 +41,33 @@ public interface VeinMiningTool {
         return toBreak;
     }
 
+    default Set<BlockPos> findConnectedBlocks(ServerLevel serverLevel, BlockPos startingPos, int maxBlocks, TagKey<Block> blockType, BlockState blockState) {
+        Set<BlockPos> toBreak = new HashSet<>();
+        Queue<BlockPos> queue = new LinkedList<>();
+        Set<BlockPos> visited = new HashSet<>();
+
+        queue.add(startingPos.immutable());
+        visited.add(startingPos.immutable());
+
+        while (!queue.isEmpty() && toBreak.size() < maxBlocks) {
+            BlockPos current = queue.poll();
+            toBreak.add(current);
+
+            for (BlockPos neighbor : getNeighbors(current)) {
+                if (visited.contains(neighbor)) continue;
+                visited.add(neighbor.immutable());
+
+                BlockState neighborState = serverLevel.getBlockState(neighbor);
+
+                if (neighborState.is(blockType) && neighborState.is(blockState.getBlock())) {
+                    queue.add(neighbor.immutable());
+                }
+            }
+        }
+
+        return toBreak;
+    }
+
     private List<BlockPos> getNeighbors(BlockPos center) {
         List<BlockPos> neighbors = new ArrayList<>();
         int radius = 1;

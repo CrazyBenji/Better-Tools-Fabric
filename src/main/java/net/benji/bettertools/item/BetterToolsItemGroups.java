@@ -35,18 +35,21 @@ public class BetterToolsItemGroups {
                         output.accept(BetterToolsItems.COPPER_SCYTHE);
                         output.accept(BetterToolsItems.COPPER_LUMBER_AXE);
                         output.accept(BetterToolsItems.COPPER_MACHETE);
+                        output.accept(BetterToolsItems.COPPER_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.IRON_HAMMER);
                         output.accept(BetterToolsItems.IRON_PAXEL);
                         output.accept(BetterToolsItems.IRON_SCYTHE);
                         output.accept(BetterToolsItems.IRON_LUMBER_AXE);
                         output.accept(BetterToolsItems.IRON_MACHETE);
+                        output.accept(BetterToolsItems.IRON_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.GOLDEN_HAMMER);
                         output.accept(BetterToolsItems.GOLDEN_PAXEL);
                         output.accept(BetterToolsItems.GOLDEN_SCYTHE);
                         output.accept(BetterToolsItems.GOLDEN_LUMBER_AXE);
                         output.accept(BetterToolsItems.GOLDEN_MACHETE);
+                        output.accept(BetterToolsItems.GOLDEN_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.AMETHYST_SWORD);
                         output.accept(BetterToolsItems.AMETHYST_SHOVEL);
@@ -58,18 +61,21 @@ public class BetterToolsItemGroups {
                         output.accept(BetterToolsItems.AMETHYST_SCYTHE);
                         output.accept(BetterToolsItems.AMETHYST_LUMBER_AXE);
                         output.accept(BetterToolsItems.AMETHYST_MACHETE);
+                        output.accept(BetterToolsItems.AMETHYST_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.DIAMOND_HAMMER);
                         output.accept(BetterToolsItems.DIAMOND_PAXEL);
                         output.accept(BetterToolsItems.DIAMOND_SCYTHE);
                         output.accept(BetterToolsItems.DIAMOND_LUMBER_AXE);
                         output.accept(BetterToolsItems.DIAMOND_MACHETE);
+                        output.accept(BetterToolsItems.DIAMOND_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.NETHERITE_HAMMER);
                         output.accept(BetterToolsItems.NETHERITE_PAXEL);
                         output.accept(BetterToolsItems.NETHERITE_SCYTHE);
                         output.accept(BetterToolsItems.NETHERITE_LUMBER_AXE);
                         output.accept(BetterToolsItems.NETHERITE_MACHETE);
+                        output.accept(BetterToolsItems.NETHERITE_PROSPECTING_PICK);
 
                         output.accept(BetterToolsItems.GLASS_CHIPPER);
 

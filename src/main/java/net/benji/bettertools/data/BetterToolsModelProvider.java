@@ -62,6 +62,13 @@ public class BetterToolsModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(BetterToolsItems.COPPER_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BetterToolsItems.AMETHYST_MACHETE, ModelTemplates.FLAT_HANDHELD_ITEM);
 
+        itemModelGenerator.generateFlatItem(BetterToolsItems.IRON_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.GOLDEN_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.DIAMOND_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.NETHERITE_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.COPPER_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BetterToolsItems.AMETHYST_PROSPECTING_PICK, ModelTemplates.FLAT_HANDHELD_ITEM);
+
         itemModelGenerator.generateFlatItem(BetterToolsItems.COPPER_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BetterToolsItems.COPPER_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BetterToolsItems.COPPER_PICKAXE, ModelTemplates.FLAT_HANDHELD_ITEM);

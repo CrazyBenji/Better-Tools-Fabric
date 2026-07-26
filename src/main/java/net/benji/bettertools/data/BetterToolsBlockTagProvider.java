@@ -64,5 +64,11 @@ public class BetterToolsBlockTagProvider extends FabricTagProvider.BlockTagProvi
 
         getOrCreateTagBuilder(BetterToolsTags.Blocks.LUMBER_AXE_VEIN_MINES)
                 .forceAddTag(BlockTags.LOGS);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.PROSPECTING_PICK_MINEABLE)
+                .forceAddTag(ConventionalBlockTags.ORES);
+
+        getOrCreateTagBuilder(BetterToolsTags.Blocks.PROSPECTING_PICK_VEIN_MINES)
+                .forceAddTag(BetterToolsTags.Blocks.PROSPECTING_PICK_MINEABLE);
     }
 }

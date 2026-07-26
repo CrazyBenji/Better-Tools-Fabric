@@ -14,8 +14,6 @@ import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.TippedArrowRecipe;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -83,11 +81,22 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
                 .save(recipeOutput);
     }
 
+    public void generateProspectingPickRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
+                .pattern("iii")
+                .pattern("is ")
+                .pattern(" s ")
+                .define('i', ingot)
+                .define('s', ConventionalItemTags.WOODEN_RODS)
+                .unlockedBy(getHasName(ingot), has(ingot))
+                .save(recipeOutput);
+    }
+
     public void generateSwordRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
-                .pattern(" i ")
-                .pattern(" i ")
-                .pattern(" s ")
+                .pattern("i")
+                .pattern("i")
+                .pattern("s")
                 .define('i', ingot)
                 .define('s', ConventionalItemTags.WOODEN_RODS)
                 .unlockedBy(getHasName(ingot), has(ingot))
@@ -95,9 +104,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
     }
     public void generateShovelRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
-                .pattern(" i ")
-                .pattern(" s ")
-                .pattern(" s ")
+                .pattern("i")
+                .pattern("s")
+                .pattern("s")
                 .define('i', ingot)
                 .define('s', ConventionalItemTags.WOODEN_RODS)
                 .unlockedBy(getHasName(ingot), has(ingot))
@@ -115,9 +124,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
     }
     public void generateAxeRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
-                .pattern("ii ")
-                .pattern("is ")
-                .pattern(" s ")
+                .pattern("ii")
+                .pattern("is")
+                .pattern(" s")
                 .define('i', ingot)
                 .define('s', ConventionalItemTags.WOODEN_RODS)
                 .unlockedBy(getHasName(ingot), has(ingot))
@@ -125,9 +134,9 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
     }
     public void generateHoeRecipe(RecipeOutput recipeOutput, Item ingot, Item output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output, 1)
-                .pattern("ii ")
-                .pattern(" s ")
-                .pattern(" s ")
+                .pattern("ii")
+                .pattern(" s")
+                .pattern(" s")
                 .define('i', ingot)
                 .define('s', ConventionalItemTags.WOODEN_RODS)
                 .unlockedBy(getHasName(ingot), has(ingot))
@@ -198,6 +207,13 @@ public class BetterToolsRecipeProvider extends FabricRecipeProvider {
         netheriteSmithing(recipeOutput, BetterToolsItems.DIAMOND_MACHETE, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_MACHETE);
         generateMacheteRecipe(recipeOutput, Items.COPPER_INGOT, BetterToolsItems.COPPER_MACHETE);
         generateMacheteRecipe(recipeOutput, Items.AMETHYST_SHARD, BetterToolsItems.AMETHYST_MACHETE);
+
+        generateProspectingPickRecipe(recipeOutput, Items.IRON_INGOT, BetterToolsItems.IRON_PROSPECTING_PICK);
+        generateProspectingPickRecipe(recipeOutput, Items.GOLD_INGOT, BetterToolsItems.GOLDEN_PROSPECTING_PICK);
+        generateProspectingPickRecipe(recipeOutput, Items.DIAMOND, BetterToolsItems.DIAMOND_PROSPECTING_PICK);
+        netheriteSmithing(recipeOutput, BetterToolsItems.DIAMOND_PROSPECTING_PICK, RecipeCategory.TOOLS, BetterToolsItems.NETHERITE_PROSPECTING_PICK);
+        generateProspectingPickRecipe(recipeOutput, Items.COPPER_INGOT, BetterToolsItems.COPPER_PROSPECTING_PICK);
+        generateProspectingPickRecipe(recipeOutput, Items.AMETHYST_SHARD, BetterToolsItems.AMETHYST_PROSPECTING_PICK);
 
         generateSwordRecipe(recipeOutput, Items.COPPER_INGOT, BetterToolsItems.COPPER_SWORD);
         generateShovelRecipe(recipeOutput, Items.COPPER_INGOT, BetterToolsItems.COPPER_SHOVEL);

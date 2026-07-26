@@ -61,20 +61,30 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.COPPER_MACHETE)
                 .add(BetterToolsItems.AMETHYST_MACHETE);
 
+        getOrCreateTagBuilder(BetterToolsTags.Items.PROSPECTING_PICKS)
+                .add(BetterToolsItems.IRON_PROSPECTING_PICK)
+                .add(BetterToolsItems.GOLDEN_PROSPECTING_PICK)
+                .add(BetterToolsItems.DIAMOND_PROSPECTING_PICK)
+                .add(BetterToolsItems.NETHERITE_PROSPECTING_PICK)
+                .add(BetterToolsItems.COPPER_PROSPECTING_PICK)
+                .add(BetterToolsItems.AMETHYST_PROSPECTING_PICK);
+
         getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
                 .addTag(BetterToolsTags.Items.PAXELS)
                 .addTag(BetterToolsTags.Items.SCYTHES)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES)
                 .addTag(BetterToolsTags.Items.GLASS_CHIPPERS)
-                .addTag(BetterToolsTags.Items.MACHETES);
+                .addTag(BetterToolsTags.Items.MACHETES)
+                .addTag(BetterToolsTags.Items.PROSPECTING_PICKS);
 
         getOrCreateTagBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
                 .addTag(BetterToolsTags.Items.PAXELS)
                 .addTag(BetterToolsTags.Items.SCYTHES)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES)
-                .addTag(BetterToolsTags.Items.MACHETES);
+                .addTag(BetterToolsTags.Items.MACHETES)
+                .addTag(BetterToolsTags.Items.PROSPECTING_PICKS);
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.HAMMERS)
@@ -83,7 +93,8 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .addTag(BetterToolsTags.Items.LUMBER_AXES)
                 .addTag(BetterToolsTags.Items.GLASS_CHIPPERS)
                 .add(BetterToolsItems.BEDROCK_SMASHER)
-                .addTag(BetterToolsTags.Items.MACHETES);
+                .addTag(BetterToolsTags.Items.MACHETES)
+                .addTag(BetterToolsTags.Items.PROSPECTING_PICKS);
 
         getOrCreateTagBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
                 .addTag(BetterToolsTags.Items.LUMBER_AXES);
@@ -124,7 +135,8 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.COPPER_PAXEL)
                 .add(BetterToolsItems.COPPER_SCYTHE)
                 .add(BetterToolsItems.COPPER_LUMBER_AXE)
-                .add(BetterToolsItems.COPPER_MACHETE);
+                .add(BetterToolsItems.COPPER_MACHETE)
+                .add(BetterToolsItems.COPPER_PROSPECTING_PICK);
 
         getOrCreateTagBuilder(BetterToolsTags.Items.AMETHYST_TOOLS)
                 .add(BetterToolsItems.AMETHYST_SWORD)
@@ -136,6 +148,7 @@ public class BetterToolsItemTagProvider extends FabricTagProvider.ItemTagProvide
                 .add(BetterToolsItems.AMETHYST_PAXEL)
                 .add(BetterToolsItems.AMETHYST_SCYTHE)
                 .add(BetterToolsItems.AMETHYST_LUMBER_AXE)
-                .add(BetterToolsItems.AMETHYST_MACHETE);
+                .add(BetterToolsItems.AMETHYST_MACHETE)
+                .add(BetterToolsItems.AMETHYST_PROSPECTING_PICK);
     }
 }

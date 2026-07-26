@@ -205,5 +205,22 @@ public class BetterToolsAdvancementProvider extends FabricAdvancementProvider {
                 )
                 .addCriterion("got_wood_chisel", InventoryChangeTrigger.TriggerInstance.hasItems(BetterToolsItems.WOOD_CHISEL))
                 .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_wood_chisel");
+
+        AdvancementHolder getProspectingPick = Advancement.Builder.advancement()
+                .parent(getAdvancement("story/iron_tools"))
+                .display(
+                        BetterToolsItems.IRON_PROSPECTING_PICK,
+                        Component.translatable("advancements.story.get_prospecting_pick.title"),
+                        Component.translatable("advancements.story.get_prospecting_pick.description"),
+                        null,
+                        AdvancementType.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .addCriterion("got_prospecting_pick", InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ItemPredicate.Builder.item().of(BetterToolsTags.Items.PROSPECTING_PICKS).build()
+                ))
+                .save(consumer, BetterToolsFabric.MOD_ID + ":story/get_prospecting_pick");
     }
 }

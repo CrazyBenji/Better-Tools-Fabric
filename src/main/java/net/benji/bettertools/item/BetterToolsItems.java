@@ -185,6 +185,37 @@ public class BetterToolsItems {
             new Item.Properties()
     );
 
+    public static final Item IRON_PROSPECTING_PICK = registerItem(
+            "iron_prospecting_pick",
+            properties -> new ProspectingPickItem(Tiers.IRON, properties, 6),
+            new Item.Properties()
+    );
+    public static final Item GOLDEN_PROSPECTING_PICK = registerItem(
+            "golden_prospecting_pick",
+            properties -> new ProspectingPickItem(Tiers.GOLD, properties, 7),
+            new Item.Properties()
+    );
+    public static final Item DIAMOND_PROSPECTING_PICK = registerItem(
+            "diamond_prospecting_pick",
+            properties -> new ProspectingPickItem(Tiers.DIAMOND, properties, 12),
+            new Item.Properties()
+    );
+    public static final Item NETHERITE_PROSPECTING_PICK = registerItem(
+            "netherite_prospecting_pick",
+            properties -> new ProspectingPickItem(Tiers.NETHERITE, properties, 16),
+            new Item.Properties()
+    );
+    public static final Item COPPER_PROSPECTING_PICK = registerItem(
+            "copper_prospecting_pick",
+            properties -> new ProspectingPickItem(BetterToolsTiers.COPPER, properties, 3),
+            new Item.Properties()
+    );
+    public static final Item AMETHYST_PROSPECTING_PICK = registerItem(
+            "amethyst_prospecting_pick",
+            properties -> new ProspectingPickItem(BetterToolsTiers.AMETHYST, properties, 9),
+            new Item.Properties()
+    );
+
     public static final Item COPPER_SWORD = registerItem(
             "copper_sword",
             properties -> new SwordItem(BetterToolsTiers.COPPER, properties.attributes(SwordItem.createAttributes(BetterToolsTiers.COPPER, 3, -2.4F))),
