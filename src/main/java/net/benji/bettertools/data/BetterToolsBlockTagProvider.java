@@ -49,7 +49,8 @@ public class BetterToolsBlockTagProvider extends FabricTagProvider.BlockTagProvi
                 .add(Blocks.NETHER_WART_BLOCK)
                 .add(Blocks.WARPED_WART_BLOCK)
                 .add(Blocks.CRIMSON_ROOTS)
-                .add(Blocks.WARPED_ROOTS);
+                .add(Blocks.WARPED_ROOTS)
+                .add(Blocks.SHROOMLIGHT);
 
         getOrCreateTagBuilder(BetterToolsTags.Blocks.INCORRECT_FOR_COPPER_TOOL)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)

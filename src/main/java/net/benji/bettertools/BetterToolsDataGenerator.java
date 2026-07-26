@@ -17,7 +17,7 @@ public class BetterToolsDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(BetterToolsModelProvider::new);
         pack.addProvider(BetterToolsRecipeProvider::new);
         pack.addProvider(BetterToolsAdvancementProvider::new);
-        pack.addProvider(BetterToolsLootTableProvider::new);
+        // pack.addProvider(BetterToolsLootTableProvider::new);
         pack.addProvider(BetterToolsRegistryDataGenerator::new);
 	}
 
