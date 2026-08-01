@@ -63,6 +63,9 @@ public class WoodChiselingRecipe extends CustomRecipe {
                     if (logBlock.isPresent()) {
                         log = true;
                     }
+                    else {
+                        return false;
+                    }
                 }
                 else {
                     return false;
